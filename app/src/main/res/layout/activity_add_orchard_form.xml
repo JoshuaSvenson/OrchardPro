@@ -1,0 +1,132 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_orchard_form"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.joshuasvenson.insectmanager.AddOrchardForm"
+    android:background="@android:color/white">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:ems="10"
+        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
+        android:id="@+id/addOrchardForm_Name" />
+
+
+    <EditText
+        android:hint="Latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number|numberSigned|numberDecimal"
+        android:ems="10"
+        android:layout_below="@+id/addOrchardForm_Name"
+        android:layout_alignRight="@+id/addOrchardForm_Name"
+        android:layout_alignEnd="@+id/addOrchardForm_Name"
+        android:id="@+id/addOrchardForm_Latitude" />
+
+    <EditText
+        android:hint="Longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number|numberSigned|numberDecimal"
+        android:ems="10"
+        android:layout_below="@+id/addOrchardForm_Latitude"
+        android:layout_alignLeft="@+id/addOrchardForm_Latitude"
+        android:layout_alignStart="@+id/addOrchardForm_Latitude"
+        android:id="@+id/addOrchardForm_Longitude" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Weather Station"
+        android:id="@+id/weather_station"
+        android:layout_below="@id/addOrchardForm_Longitude"
+        android:layout_alignLeft="@+id/addOrchardForm_Longitude"
+        android:layout_alignStart="@+id/addOrchardForm_Longitude"/>
+
+    <Button
+        android:text="Use Current Location"
+        android:id="@+id/use_curent_location"
+        android:layout_below="@+id/weather_station"
+        android:layout_alignLeft="@id/weather_station"
+        android:layout_alignStart="@+id/weather_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"/>
+
+    <Button
+        android:text="Autofill"
+        android:id="@+id/autofill"
+        android:layout_below="@+id/use_curent_location"
+        android:layout_alignLeft="@id/use_curent_location"
+        android:layout_alignStart="@+id/use_curent_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"/>
+
+
+    <EditText
+        android:hint="Tree Row Spacing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:layout_below="@+id/autofill"
+        android:layout_alignLeft="@+id/autofill"
+        android:layout_alignStart="@+id/autofill"
+        android:id="@+id/addOrchardForm_TreeRowSpacing" />
+
+    <EditText
+        android:hint="Cross Row Spread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number|numberDecimal"
+        android:ems="10"
+        android:layout_below="@+id/addOrchardForm_TreeRowSpacing"
+        android:layout_alignRight="@+id/addOrchardForm_TreeRowSpacing"
+        android:layout_alignEnd="@+id/addOrchardForm_TreeRowSpacing"
+        android:id="@+id/addOrchardForm_CrossRowSpread" />
+
+    <EditText
+        android:hint="Plant Height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number|numberDecimal"
+        android:ems="10"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/addOrchardForm_CrossRowSpread"
+        android:layout_alignRight="@+id/addOrchardForm_CrossRowSpread"
+        android:layout_alignEnd="@+id/addOrchardForm_CrossRowSpread"
+        android:id="@+id/addOrchardForm_PlantHeight" />
+
+    <EditText
+        android:hint="Density Factor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number|numberDecimal"
+        android:ems="10"
+        android:layout_below="@+id/addOrchardForm_PlantHeight"
+        android:layout_alignRight="@+id/addOrchardForm_PlantHeight"
+        android:layout_alignEnd="@+id/addOrchardForm_PlantHeight"
+        android:id="@+id/addOrchardForm_DensityFactor" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addOrchardForm_DensityFactor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:id="@+id/addOrchardForm_Submit" />
+
+</RelativeLayout>

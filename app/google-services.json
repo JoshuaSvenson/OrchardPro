@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "2473043010",
+    "firebase_url": "https://uiowa-senior-design.firebaseio.com",
+    "project_id": "uiowa-senior-design",
+    "storage_bucket": "uiowa-senior-design.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2473043010:android:6bab19b6132501a1",
+        "android_client_info": {
+          "package_name": "com.joshuasvenson.insectmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2473043010-7blo0f69ggoietmmmgie8qeo87ursnko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.joshuasvenson.insectmanager",
+            "certificate_hash": "C75A6FE80B58313C70F92D7D2A12C98DF12BB73F"
+          }
+        },
+        {
+          "client_id": "2473043010-hj6o2fjhhgqkrfllmqng1qneo67ru44v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA51fvYgPMrCG-8sDtOqTrXUzR5IXO-GQk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2473043010-hj6o2fjhhgqkrfllmqng1qneo67ru44v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Insect Manager</string>
+    <string name="action_settings">Settings</string>
+    <string name="change_city">Change city</string>
+
+    <string-array name="fruit_array">
+        <item>Apples</item>
+        <item>Cherries</item>
+        <item>Grapes</item>
+        <item>Pumpkins</item>
+        <item>Oranges</item>
+    </string-array>
+    <string name="title_activity_weather">WeatherActivity</string>
+    <string name="title_activity_insects">Insects</string>
+
+
+</resources>

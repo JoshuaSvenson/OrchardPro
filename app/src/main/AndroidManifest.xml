@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.joshuasvenson.insectmanager">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Home"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Orchard"
+            android:label="Orchards" />
+        <activity
+            android:name=".AddOrchard"
+            android:label="AddOrchard" />
+        <activity
+            android:name=".Weather"
+            android:label="MyCurrentWeather" />
+        <activity
+            android:name=".Insects"
+            android:label="Insects"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Diseases"
+            android:label="Diseases"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CodlingMoth"
+            android:label="Codling Moth" />
+        <activity
+            android:name=".Aphids"
+            android:label="Aphids" />
+        <activity
+            android:name=".AddOrchardLocations"
+            android:label="AddOrchardLocations" />
+        <activity
+            android:name=".AppleMagot"
+            android:label="AppleMagot" />
+        <activity
+            android:name=".EuropeanRedMites"
+            android:label="EuropeanRedMites" />
+        <activity android:name=".Tree_Spacing" />
+        <activity android:name=".Cross_Row_Spread" />
+        <activity android:name=".Plant_Height" />
+        <activity android:name=".Density_Factor" />
+        <activity android:name=".Tractor_Speed" />
+        <activity android:name=".AllensOrchard" />
+        <activity android:name=".AddOrchardForm" />
+        <activity
+            android:name=".AppleScab"
+            android:label="AppleScab" />
+        <activity
+            android:name=".FireBlight"
+            android:label="FireBlight" />
+        <activity
+            android:name=".BlackRot"
+            android:label="BlackRot" />
+        <activity
+            android:name=".CollarRot"
+            android:label="CollarRot" />
+        <activity
+            android:name=".PowderyMildew"
+            android:label="PowderyMildew" />
+        <activity
+            android:name=".History"
+            android:label="History" />
+        <activity
+            android:name=".Weather1"
+            android:label="Local Weather" />
+        <activity
+            android:name=".BioFix"
+            android:label="Biofix" />
+        <activity android:name=".BiofixList" />
+        <activity android:name=".SpraySchedule" />
+        <activity android:name=".Calculations" />
+        <activity android:name=".OrchardWeather" />
+        <activity android:name=".OrchardSettings"></activity>
+    </application>
+
+</manifest>
