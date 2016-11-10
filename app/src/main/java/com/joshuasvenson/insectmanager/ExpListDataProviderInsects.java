@@ -1,8 +1,6 @@
 package com.joshuasvenson.insectmanager;
 
 import android.database.Cursor;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,5 +63,6 @@ public class ExpListDataProviderInsects {
         degree_day_cursor.close();
 
         return RiskLevelDetails;
+
     }
 }
