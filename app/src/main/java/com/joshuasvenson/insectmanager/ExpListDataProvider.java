@@ -44,7 +44,7 @@ public class ExpListDataProvider {
         for(int i =0; i < biofixCount; i++){
 
             int sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(4)));
-            int accumulatedDegreeDay = Integer.parseInt(degree_day_cursor.getString(1));
+            int accumulatedDegreeDay = Integer.parseInt(degree_day_cursor.getString(1))+250;
 
             if(accumulatedDegreeDay >= sprayDegreeDay){
                 High_Risk_List.add(myDb.GetInsectName(Integer.parseInt(biofix_row_cursor.getString(4))));

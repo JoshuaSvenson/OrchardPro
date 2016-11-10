@@ -214,6 +214,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public String GetOrchardName(int orchardKey){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select NAME from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
+        result.moveToFirst();
+        return String.valueOf(result.getString(0));
+    }
+
     ////////////////////////////////////////////////////////////////
     // Biofix Table Functions
     ////////////////////////////////////////////////////////////////

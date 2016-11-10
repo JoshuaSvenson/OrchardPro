@@ -41,19 +41,19 @@ public class ExpListDataProviderInsects {
 
         biofix_row_cursor.moveToFirst();
         degree_day_cursor.moveToFirst();
-        /*for(int i =0; i < biofixCount; i++){
+        for(int i =0; i < biofixCount; i++){
 
             int sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(4)));
-            int accumulatedDegreeDay = Integer.parseInt(degree_day_cursor.getString(1));
+            int accumulatedDegreeDay = Integer.parseInt(degree_day_cursor.getString(1))+250;
 
             if(accumulatedDegreeDay >= sprayDegreeDay){
-                High_Risk_List.add(myDb.GetInsectName(Integer.parseInt(biofix_row_cursor.getString(4))));
+                High_Risk_List.add(myDb.GetOrchardName(Integer.parseInt(biofix_row_cursor.getString(5))));
             }
             else if(accumulatedDegreeDay >= sprayDegreeDay - 100){
-                Medium_Risk_List.add(myDb.GetInsectName(Integer.parseInt(biofix_row_cursor.getString(4))));
+                Medium_Risk_List.add(myDb.GetOrchardName(Integer.parseInt(biofix_row_cursor.getString(5))));
             }
             else{
-                Low_Risk_List.add(myDb.GetInsectName(Integer.parseInt(biofix_row_cursor.getString(4))));
+                Low_Risk_List.add(myDb.GetOrchardName(Integer.parseInt(biofix_row_cursor.getString(5))));
             }
             //Low_Risk_List.add(myDb.GetInsectName(Integer.parseInt(cursor.getString(4))));
             //Low_Risk_List.add(String.valueOf(accumulatedDegreeDay));
@@ -62,7 +62,7 @@ public class ExpListDataProviderInsects {
             degree_day_cursor.moveToNext();
         }
         biofix_row_cursor.close();
-        degree_day_cursor.close();*/
+        degree_day_cursor.close();
 
         return RiskLevelDetails;
     }
