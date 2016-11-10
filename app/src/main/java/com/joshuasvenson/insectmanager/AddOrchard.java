@@ -27,7 +27,7 @@ import static com.joshuasvenson.insectmanager.Orchard.list;
 import static com.joshuasvenson.insectmanager.Orchard.list_adapter;
 import static com.joshuasvenson.insectmanager.Orchard.mChildRef;
 import static com.joshuasvenson.insectmanager.Orchard.mRootRef;
-import static com.joshuasvenson.insectmanager.Orchard.myDb;
+import static com.joshuasvenson.insectmanager.Home.myDb;
 import static com.joshuasvenson.insectmanager.Orchard.orchardArray;
 
 public class AddOrchard extends Activity {

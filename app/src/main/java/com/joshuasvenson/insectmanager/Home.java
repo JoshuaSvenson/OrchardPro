@@ -24,6 +24,8 @@ public class Home extends AppCompatActivity {
     Button DiseasesButton;
     Button WeatherButton;
 
+    static DatabaseHelper myDb;
+
     /*
     Name: onCreate
     Description:
@@ -37,6 +39,7 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        myDb = new DatabaseHelper(this);
         //This method adds listeners on all of the buttons
         addListenerOnButton();
     }

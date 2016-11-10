@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
 
-import static com.joshuasvenson.insectmanager.Orchard.myDb;
+import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class AllensOrchard extends AppCompatActivity {
     Button deleteButton;

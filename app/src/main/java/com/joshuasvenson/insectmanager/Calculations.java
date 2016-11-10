@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import static com.joshuasvenson.insectmanager.Orchard.myDb;
+import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class Calculations extends AppCompatActivity {
 

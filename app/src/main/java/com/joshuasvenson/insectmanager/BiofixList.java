@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.joshuasvenson.insectmanager.Orchard.myDb;
+import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class BiofixList extends AppCompatActivity {
 

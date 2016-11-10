@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import static com.joshuasvenson.insectmanager.Orchard.mChildRef;
-import static com.joshuasvenson.insectmanager.Orchard.myDb;
+import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class AddOrchardForm extends AppCompatActivity {
 

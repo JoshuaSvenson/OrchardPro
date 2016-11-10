@@ -35,9 +35,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Orchard extends AppCompatActivity {
+import static com.joshuasvenson.insectmanager.Home.myDb;
 
-    static DatabaseHelper myDb;
+public class Orchard extends AppCompatActivity {
 
     Button AddOrchardButton;
     Button CurrentLocationConditionsButton;
@@ -59,7 +59,6 @@ public class Orchard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.orchards_main);
-        myDb = new DatabaseHelper(this);
 
         lv = (ListView) findViewById(R.id.orchard_list);
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.joshuasvenson.insectmanager.Orchard.myDb;
+import static com.joshuasvenson.insectmanager.Home.myDb;
 
 /**
  * Created by Joshua on 11/6/2016.
@@ -44,7 +44,7 @@ public class ExpListDataProvider {
         for(int i =0; i < biofixCount; i++){
 
             int sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(4)));
-            int accumulatedDegreeDay = Integer.parseInt(degree_day_cursor.getString(1))+250;
+            int accumulatedDegreeDay = Integer.parseInt(degree_day_cursor.getString(1));
 
             if(accumulatedDegreeDay >= sprayDegreeDay){
                 High_Risk_List.add(myDb.GetInsectName(Integer.parseInt(biofix_row_cursor.getString(4))));

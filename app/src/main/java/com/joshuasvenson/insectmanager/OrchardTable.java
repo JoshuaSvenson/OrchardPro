@@ -10,7 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.joshuasvenson.insectmanager.Orchard.myDb;
+import static com.joshuasvenson.insectmanager.Home.myDb;
 
 /**
  * Created by Joshua on 10/20/2016.
