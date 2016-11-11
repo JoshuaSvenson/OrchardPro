@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.joshuasvenson.insectmanager.Orchard.list_adapter;
 import static com.joshuasvenson.insectmanager.Orchard.mChildRef;
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
@@ -102,7 +103,7 @@ public class BioFix extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                String data = getIntent().getExtras().getString("orchard_key");
+                String orchardKey = getIntent().getExtras().getString("orchard_key");
 
                 int insectID = insectSpinner.getSelectedItemPosition() + 1;
 
@@ -114,14 +115,18 @@ public class BioFix extends AppCompatActivity {
                 Date date = cal.getTime();
                 //SimpleDateFormat stringDate = new SimpleDateFormat(date.toString());
                // String biofix_date = stringDate.format(new Date());
-                boolean isInserted = myDb.createBiofix(date.toString(), 0, date.toString(), Integer.parseInt(data), insectID);
+                boolean isInserted = myDb.createBiofix(date.toString(), 0, date.toString(), Integer.parseInt(orchardKey), insectID);
                 if(isInserted == true){
                     Toast.makeText(BioFix.this, "Data Inserted " +date.toString(),Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(BioFix.this, "Error Inserting",Toast.LENGTH_LONG).show();
                 }
-                finish();
+
+                Intent intent = new Intent(context, BiofixList.class);
+                intent.putExtra("orchard_key", orchardKey);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
 
         });
