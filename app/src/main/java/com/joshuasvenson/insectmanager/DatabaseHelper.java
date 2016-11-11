@@ -224,6 +224,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return String.valueOf(result.getString(0));
     }
 
+    public boolean updateData(String orchardKey, String name, String latitude, String longitude, String station, String trs, String crs, String plantHeight, String density) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ORCHARD_NAME, name);
+        contentValues.put(ORCHARD_CRS, crs);
+        contentValues.put(ORCHARD_DENSITY, density);
+        contentValues.put(ORCHARD_LATITUDE, latitude);
+        contentValues.put(ORCHARD_LONGITUDE, longitude);
+        contentValues.put(ORCHARD_PLANT_HEIGHT, plantHeight);
+        contentValues.put(ORCHARD_TRS, trs);
+        contentValues.put(ORCHARD_STATION, station);
+        db.update(ORCHARD_TABLE, contentValues, "ID = ?", new String[]{orchardKey});
+        return true;
+
+    }
+
     ////////////////////////////////////////////////////////////////
     // Biofix Table Functions
     ////////////////////////////////////////////////////////////////
