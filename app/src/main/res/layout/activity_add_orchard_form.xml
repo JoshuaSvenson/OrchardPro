@@ -76,7 +76,7 @@
 
 
     <EditText
-        android:hint="Tree Row Spacing"
+        android:hint="Tree Row Spacing (ft)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
@@ -87,7 +87,7 @@
         android:id="@+id/addOrchardForm_TreeRowSpacing" />
 
     <EditText
-        android:hint="Cross Row Spread"
+        android:hint="Cross Row Spread (ft)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number|numberDecimal"
@@ -98,7 +98,7 @@
         android:id="@+id/addOrchardForm_CrossRowSpread" />
 
     <EditText
-        android:hint="Plant Height"
+        android:hint="Plant Height (ft)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number|numberDecimal"
@@ -110,7 +110,7 @@
         android:id="@+id/addOrchardForm_PlantHeight" />
 
     <EditText
-        android:hint="Density Factor"
+        android:hint="Density Factor (gal/cu ft)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number|numberDecimal"

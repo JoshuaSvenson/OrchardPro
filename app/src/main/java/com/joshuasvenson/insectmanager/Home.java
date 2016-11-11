@@ -136,7 +136,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Create new activity from the Weather1 class
-                Intent intent = new Intent(context,History.class);
+                Intent intent = new Intent(context,Weather1.class);
                 //Starts activity and opens up the Weather page
                 startActivity(intent);
             }
