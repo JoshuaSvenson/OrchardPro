@@ -22,8 +22,8 @@ public class History extends AppCompatActivity {
     String lon = "-91.53";
 
     String biofix_year = "2016";
-    String biofix_month = "10";
-    String biofix_day = "31";
+    String biofix_month = "11";
+    String biofix_day = "10";
 
     double base_temperature = 50;
     double average;

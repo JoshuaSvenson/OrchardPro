@@ -221,7 +221,7 @@ public class AddOrchardForm extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-                mChildRef.child("name").setValue(mOrchardName.getText().toString());
+                //mChildRef.child("name").setValue(mOrchardName.getText().toString());
                 if(mOrchardLatitude.getText().toString() == ""){
                     mOrchardLatitude.setText("0");
                 }
@@ -240,21 +240,22 @@ public class AddOrchardForm extends AppCompatActivity {
                 if(mOrchardDensity.getText().toString() == ""){
                     mOrchardDensity.setText("0");
                 }
-                mChildRef.child("latitude").setValue(Double.parseDouble(mOrchardLatitude.getText().toString()));
+                /*mChildRef.child("latitude").setValue(Double.parseDouble(mOrchardLatitude.getText().toString()));
                 mChildRef.child("longitude").setValue(Double.parseDouble(mOrchardLongitude.getText().toString()));
                 mChildRef.child("tree_row_spacing").setValue(Double.parseDouble(mOrchardTreeRowSpacing.getText().toString()));
                 mChildRef.child("cross_row_spread").setValue(Double.parseDouble(mOrchardCrossRowSpread.getText().toString()));
                 mChildRef.child("plant_height").setValue(Double.parseDouble(mOrchardPlantHeight.getText().toString()));
-                mChildRef.child("density_factor").setValue(Double.parseDouble(mOrchardDensity.getText().toString()));
+                mChildRef.child("density_factor").setValue(Double.parseDouble(mOrchardDensity.getText().toString()));*/
 
                 boolean isInserted = myDb.createOrchard(mOrchardName.getText().toString(),
                         Double.parseDouble(mOrchardLatitude.getText().toString()),
                         Double.parseDouble(mOrchardLongitude.getText().toString()),
+                        mOrchardStation.getText().toString(),
                         Double.parseDouble(mOrchardTreeRowSpacing.getText().toString()),
                         Double.parseDouble(mOrchardCrossRowSpread.getText().toString()),
                         Double.parseDouble(mOrchardPlantHeight.getText().toString()),
                         Double.parseDouble(mOrchardDensity.getText().toString()));
-                //boolean isInserted = myDb.insertData2("NAME", "NAME IS NULL", mOrchardName.getText().toString(), 0);
+
                 if(isInserted == true){
                     Toast.makeText(AddOrchardForm.this, "Data Inserted " +mOrchardName.getText().toString(),Toast.LENGTH_LONG).show();
                 }
@@ -270,7 +271,7 @@ public class AddOrchardForm extends AppCompatActivity {
         });
     }
 
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
 
@@ -285,5 +286,5 @@ public class AddOrchardForm extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }

@@ -4,27 +4,19 @@ package com.joshuasvenson.insectmanager;
  * Created by Joshua on 5/27/2016.
  */
 
-import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,6 +29,11 @@ import java.util.List;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/*
+Name: Orchard
+Description: This class provides the code for the Orchards page where the list of orchards are
+Layout File: orchards_main.xml
+ */
 public class Orchard extends AppCompatActivity {
 
     Button AddOrchardButton;

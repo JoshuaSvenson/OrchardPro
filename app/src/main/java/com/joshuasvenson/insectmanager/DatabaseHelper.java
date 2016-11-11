@@ -20,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String ORCHARD_DENSITY = "DENSITY_FACTOR";
     public static final String ORCHARD_LATITUDE = "LATITUDE";
     public static final String ORCHARD_LONGITUDE = "LONGITUDE";
+    public static final String ORCHARD_STATION = "WEATHER_STATION";
     public static final String ORCHARD_PLANT_HEIGHT = "PLANT_HEIGHT";
     public static final String ORCHARD_TRS = "TREE_ROW_SPACING";
 
@@ -51,7 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "LATITUDE DOUBLE," +
                 "LONGITUDE DOUBLE," +
                 "PLANT_HEIGHT DOUBLE," +
-                "TREE_ROW_SPACING DOUBLE)");
+                "TREE_ROW_SPACING DOUBLE," +
+                "WEATHER_STATION TEXT)");
         db.execSQL("create table " +BIOFIX_TABLE +
                 "(BIOFIX_ID INTEGER PRIMARY KEY, " +
                 "BIOFIX_DATE DATETIME," +
@@ -102,7 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean createOrchard(String name, double latitude, double longitude, double trs, double crs, double plantHeight, double density){
+    public boolean createOrchard(String name, double latitude, double longitude, String stationID, double trs, double crs, double plantHeight, double density){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ORCHARD_NAME, name);
@@ -112,6 +114,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(ORCHARD_LONGITUDE, longitude);
         contentValues.put(ORCHARD_PLANT_HEIGHT, plantHeight);
         contentValues.put(ORCHARD_TRS, trs);
+        contentValues.put(ORCHARD_STATION, stationID);
         long result = db.insert(ORCHARD_TABLE, null, contentValues);
         if(result == -1)
             return false;

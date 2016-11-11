@@ -32,6 +32,5 @@ public class CodlingMoth extends AppCompatActivity {
         RiskAdapter = new MyExListAdapter(this, Risk_category, Risk_list);
         Exp_list.setAdapter(RiskAdapter);
 
-
     }
 }
