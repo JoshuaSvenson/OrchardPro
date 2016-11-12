@@ -1,25 +1,350 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    android:paddingTop="10dp">
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="none"
+    android:layout_weight="1">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/apple_maggot" >
-    </ImageView>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="10dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="19sp"/>
+        android:paddingTop="10dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/appleMaggotHeader"
+            android:text="Apple Maggot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/appleMaggotScientificHeader"
+            android:text="(Rhagoletis pomonella)"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/apple_maggot"
+            android:layout_below="@+id/appleMagotHeader">
+        </ImageView>
+
+        <TableLayout
+            android:id="@+id/appleMagotTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical"
+            android:layout_below="@+id/imageView">
+
+            <TableRow
+                android:id="@+id/appleMagotTableRow"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/appleMaggotDescriptionHeader"
+            android:text="Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/appleMagotTable"/>
+
+        <TextView
+            android:id="@+id/appleMaggotDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/appleMaggotDescriptionHeader"/>
+
+        <TextView
+            android:id="@+id/appleMaggotBiofixHeader"
+            android:text="Biofix Information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/appleMagotDescription"/>
+
+        <TextView
+            android:id="@+id/appleMaggotBiofix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/appleMaggotDescriptionHeader"/>
+
+        <TextView
+            android:id="@+id/appleMaggotTrapsHeader"
+            android:text="Traps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/appleMagotBiofix"/>
+
+        <TextView
+            android:id="@+id/appleMaggotTraps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/appleMaggotBiofixHeader"/>
+
+        <TextView
+            android:id="@+id/appleMaggotSprayTimingHeader"
+            android:text="Spray Timing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/appleMagotTraps"/>
+
+        <TextView
+            android:id="@+id/appleMaggotSprayTiming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/appleMaggotSprayTimingHeader"/>
+
+        <TextView
+            android:id="@+id/appleMaggotInsecticidesHeader"
+            android:text="Insecticides"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/appleMagotSprayTiming"/>
+
+        <TableLayout
+            android:id="@+id/appleMaggotInsecticideTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical"
+            android:layout_below="@+id/appleMaggotInsecticidesHeader">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Material"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:text="Rate/acre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"
+                    android:textStyle="bold"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Imidan 70WP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="2.1-5.3 lbs."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Sevin XLR Plus (4L)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="1.5-3 qts."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Calypso 4F"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="4-8 fl oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Assail 30SG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="8 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Entrust 80WP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="2-3 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Entrust 2SC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="6-10 fl oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Admire Pro 4.6EC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="2.8 fl oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Altacor 35WDG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="2.5-4.5 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Belay 2.13SC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="6 fl oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</ScrollView>

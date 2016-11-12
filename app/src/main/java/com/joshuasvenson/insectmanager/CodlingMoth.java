@@ -27,7 +27,7 @@ public class CodlingMoth extends AppCompatActivity {
         setContentView(R.layout.codling_moth);
 
         Exp_list = (ExpandableListView) findViewById(R.id.exp_list);
-        Risk_category = ExpListDataProviderInsects.getInfo("0");
+        Risk_category = ExpListDataProviderInsects.getInfo("1");
         Risk_list = new ArrayList<String>(Risk_category.keySet());
         RiskAdapter = new MyExListAdapter(this, Risk_category, Risk_list);
         Exp_list.setAdapter(RiskAdapter);
