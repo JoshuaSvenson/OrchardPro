@@ -1,6 +1,7 @@
 package com.joshuasvenson.insectmanager;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -13,10 +14,17 @@ public class PlumCurculio extends AppCompatActivity {
 
     TextView textView;
 
+    ViewPager viewPager;
+    CustomSwipeAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plum_curculio);
+
+        viewPager = (ViewPager)findViewById(R.id.plum_curculio_view_pager);
+        adapter = new CustomSwipeAdapter(this);
+        viewPager.setAdapter(adapter);
 
         textView = (TextView) findViewById(R.id.textView);
         textView.setText("Apples attacked by plum curculio frequently suffer surface scarring and distortion" +

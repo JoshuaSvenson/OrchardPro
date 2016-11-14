@@ -50,7 +50,10 @@
             android:label="AddOrchardLocations" />
         <activity
             android:name=".AppleMagot"
-            android:label="AppleMagot" />
+            android:label="OrchardPro" />
+        <activity
+            android:name=".PlumCurculio"
+            android:label="OrchardPro" />
         <activity
             android:name=".EuropeanRedMites"
             android:label="EuropeanRedMites" />

@@ -24,7 +24,7 @@
 
     <Button
         android:id="@+id/orchardsCurrentWeatherButton"
-        android:text="Current Location Conditions"
+        android:text="Delete All Orchards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

@@ -106,7 +106,8 @@ public class Orchard extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 myDb.onUpgrade(myDb.getWritableDatabase(), 1, 2);
-                Intent intent = new Intent(context, Weather1.class);
+                Intent intent = new Intent(context, Orchard.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
             }
