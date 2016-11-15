@@ -29,7 +29,6 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class BioFix extends AppCompatActivity {
 
-    Spinner orchardSpinner;
     Spinner insectSpinner;
     Button submitButton;
     DatePicker datePicker;
