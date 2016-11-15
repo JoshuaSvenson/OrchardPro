@@ -10,18 +10,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-
-import static com.joshuasvenson.insectmanager.Orchard.mChildRef;
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class AddOrchardForm extends AppCompatActivity {
@@ -174,45 +167,21 @@ public class AddOrchardForm extends AppCompatActivity {
         autofill.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0){
-                mOrchardLatitude.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        Otherlatitude = String.valueOf(mOrchardLatitude.getText());
-                        Otherlongitude = String.valueOf(mOrchardLongitude.getText());
+                String s = mOrchardStation.getText().toString();
+                if (s.matches("")){
+                    if((!mOrchardLongitude.getText().toString().matches(""))&&(!mOrchardLongitude.getText().toString().matches(""))){
+                        Otherlatitude = mOrchardLatitude.getText().toString();
+                        Otherlongitude = mOrchardLongitude.getText().toString();
                         new autofillStation().execute();
                         mOrchardStation.setText(Otherstation);
                     }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
-                mOrchardStation.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        Otherstation = String.valueOf(mOrchardStation.getText());
-                        new autofillCoordinates().execute();
-                        mOrchardLatitude.setText(Otherlatitude);
-                        mOrchardLongitude.setText(Otherlongitude);
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
+                }
+                if (!s.matches("")){
+                    Otherstation = mOrchardStation.getText().toString();
+                    new autofillCoordinates().execute();
+                    mOrchardLongitude.setText(Otherlongitude);
+                    mOrchardLatitude.setText(Otherlatitude);
+                }
             }
         });
 

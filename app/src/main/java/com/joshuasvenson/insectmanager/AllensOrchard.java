@@ -38,6 +38,7 @@ public class AllensOrchard extends AppCompatActivity {
 
     ImageView iv;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +86,11 @@ public class AllensOrchard extends AppCompatActivity {
                     Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
                     Drawable d = new BitmapDrawable(yourSelectedImage);
 
+                    //iv.setImageBitmap(BitmapFactory.decodeFile(filePath));
+
                     iv.setBackground(d);
+
+
                 }
                 break;
             default:
