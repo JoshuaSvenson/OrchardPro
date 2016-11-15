@@ -24,13 +24,14 @@ public class Home extends AppCompatActivity {
     Button DiseasesButton;
     Button WeatherButton;
 
+    //Declare database object to be used throughout the application
     static DatabaseHelper myDb;
 
     /*
     Name: onCreate
-    Description:
-    Parameters:
-    Returns:
+    Description: Creates the activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,29 +40,35 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Initialize database object as a new DatabaseHelper
         myDb = new DatabaseHelper(this);
+
         //This method adds listeners on all of the buttons
         addListenerOnButton();
     }
 
     /*
     Name: onCreateOptionsMenu
-    Description:
-    Parameters:
-    Returns:
+    Description: Initialize the contents of the Activity's standard options menu.
+    Parameters: Menu menu - The options menu in which you place your items.
+    Returns: boolean - You must return true for the menu to be displayed; if you return false it will not be shown.
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu. This adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        //return true to display menu
         return true;
     }
 
     /*
     Name: onOptionsItemSelected
-    Description:
-    Parameters:
-    Returns:
+    Description: This hook is called whenever an item in your options menu is selected. The default implementation
+                simply returns false to have the normal processing happen (calling the item's Runnable or sending
+                a message to its Handler as appropriate). You can use this method for any items for which you would
+                like to do processing without those other facilities.
+    Parameters: MenuItem item - The menu item that was selected.
+    Returns: boolean - Return false to allow normal menu processing to proceed, true to consume it here.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

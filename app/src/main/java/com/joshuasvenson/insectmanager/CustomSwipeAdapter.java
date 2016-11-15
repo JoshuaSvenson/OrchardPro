@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 /**
  * Created by Joshua on 11/13/2016.
@@ -15,12 +14,23 @@ import android.widget.RelativeLayout;
 
 public class CustomSwipeAdapter extends PagerAdapter {
 
-    private int[] image_resources = {R.drawable.apple_maggot_damage, R.drawable.apple_maggot, R.drawable.apple_maggot_eggs, R.drawable.apple_maggot_trap};
+    private int[] image_resources;
+    private int[] apple_maggot_resources = {R.drawable.apple_maggot_damage,
+            R.drawable.apple_maggot, R.drawable.apple_maggot_eggs, R.drawable.apple_maggot_trap};
+    private int[] codling_moth_resources = {R.drawable.codling_moth_2,
+            R.drawable.codling_moth_1, R.drawable.codling_moth_5, R.drawable.codling_moth_3, R.drawable.codling_moth_4};
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public CustomSwipeAdapter(Context ctx){
+    public CustomSwipeAdapter(Context ctx, String insectKey){
         context = ctx;
+
+        if(insectKey == "1"){
+            image_resources = codling_moth_resources;
+        }
+        else if(insectKey == "2"){
+            image_resources = apple_maggot_resources;
+        }
     }
 
     @Override
@@ -38,7 +48,7 @@ public class CustomSwipeAdapter extends PagerAdapter {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view = layoutInflater.inflate(R.layout.swipe_layout, container, false);
 
-        ImageView imageView = (ImageView) item_view.findViewById(R.id.appleMaggotImageView);
+        ImageView imageView = (ImageView) item_view.findViewById(R.id.insectImageView);
 
         imageView.setImageResource(image_resources[position]);
 

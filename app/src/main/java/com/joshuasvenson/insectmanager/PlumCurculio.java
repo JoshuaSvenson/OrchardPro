@@ -17,13 +17,15 @@ public class PlumCurculio extends AppCompatActivity {
     ViewPager viewPager;
     CustomSwipeAdapter adapter;
 
+    String insectKey = "4";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plum_curculio);
 
         viewPager = (ViewPager)findViewById(R.id.plum_curculio_view_pager);
-        adapter = new CustomSwipeAdapter(this);
+        adapter = new CustomSwipeAdapter(this, insectKey);
         viewPager.setAdapter(adapter);
 
         textView = (TextView) findViewById(R.id.textView);

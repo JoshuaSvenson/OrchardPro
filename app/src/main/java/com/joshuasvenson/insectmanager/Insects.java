@@ -25,7 +25,7 @@ public class Insects extends AppCompatActivity  {
 
         listView = (ListView)findViewById(R.id.listView);
 
-        String[] insects = {"Codling Moth", "Aphids", "Apple Maggot", "Plum Curculio", "European Red Mites"};
+        String[] insects = {"Apple Maggot", "Aphids", "Codling Moth", "Plum Curculio", "European Red Mites"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listview, R.id.listText, insects);
 
@@ -37,7 +37,7 @@ public class Insects extends AppCompatActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 if(position==0){
-                    Intent one = new Intent(Insects.this, CodlingMoth.class);
+                    Intent one = new Intent(Insects.this, AppleMagot.class);
                     startActivity(one);
                 }
                 if(position==1){
@@ -45,7 +45,7 @@ public class Insects extends AppCompatActivity  {
                     startActivity(two);
                 }
                 if(position == 2){
-                    Intent three = new Intent(Insects.this, AppleMagot.class);
+                    Intent three = new Intent(Insects.this, CodlingMoth.class);
                     startActivity(three);
                 }
                 if (position == 3){

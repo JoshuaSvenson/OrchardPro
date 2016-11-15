@@ -25,7 +25,6 @@ public class AppleMagot extends AppCompatActivity {
     TextView biofix_info;
     TextView traps;
     TextView spray_timing;
-    TextView insecticides;
 
     String insectKey = "2";
 
@@ -38,7 +37,7 @@ public class AppleMagot extends AppCompatActivity {
         setContentView(R.layout.apple_magot);
 
         viewPager = (ViewPager)findViewById(R.id.apple_maggot_view_pager);
-        adapter = new CustomSwipeAdapter(this);
+        adapter = new CustomSwipeAdapter(this, insectKey);
         viewPager.setAdapter(adapter);
 
         TableLayout table = (TableLayout) findViewById(R.id.appleMagotTable);
