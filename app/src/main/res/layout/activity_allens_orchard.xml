@@ -26,27 +26,41 @@
         android:layout_height="wrap_content"
         android:gravity="center"/>
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft= "@+id/imageView1"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/ScreenTitle"
+        android:text="Set Picture from gallery"
+        android:onClick="btnClick"/>
 
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="202dp"
-        app:srcCompat="@drawable/apples"
-        android:id="@+id/imageButton"
-        android:layout_below="@+id/ScreenTitle" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop ="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/button1"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Spray Schedule"
         android:id="@+id/SprayScheduleButton"
-        android:layout_below="@+id/imageButton" />
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="70dp"/>
 
     <Button
         android:text="Calculations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/OrchardCalculationsButton"
-        android:layout_above="@+id/SprayScheduleButton" />
+        android:layout_below="@+id/SprayScheduleButton" />
 
     <Button
         android:text="Biofix Data"
