@@ -8,6 +8,7 @@
         android:title="Home"
         app:showAsAction="never" />
     <item
+        android:id="@+id/Settings_bar"
         android:title="Settings"
         android:orderInCategory="101" />
 </menu>

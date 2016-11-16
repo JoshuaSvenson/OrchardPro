@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 /*
 Name: Home
 Description: This class provides the code for the homepage of the app and manages the button clicks
@@ -42,6 +45,15 @@ public class Home extends AppCompatActivity {
 
         //Initialize database object as a new DatabaseHelper
         myDb = new DatabaseHelper(this);
+
+        //Creates insects if they are not already in the database
+        myDb.createInsect("Codling Moth", 50.0, 88.0, 225.0);
+        myDb.createInsect("Apple Maggot", 50.0, -1, 1000.0);
+        myDb.createInsect("Rosy Apple Aphid", 40.0, -1, 200.0);
+
+        String currentDateString = DateFormat.getDateInstance().format(new Date());
+
+        myDb.createSettings(currentDateString);
 
         //This method adds listeners on all of the buttons
         addListenerOnButton();
@@ -81,6 +93,11 @@ public class Home extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.Home_bar) {
             Intent intent = new Intent(context, Home.class);
+            startActivity(intent);
+            return true;
+        }
+        else if(id ==R.id.Settings_bar) {
+            Intent intent = new Intent(context, SettingsToolbar.class);
             startActivity(intent);
             return true;
         }

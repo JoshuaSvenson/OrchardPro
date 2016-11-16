@@ -39,6 +39,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String INSECT_HIGH_THRESH = "INSECT_HIGH_THRESH";
     public static final String INSECT_FIRST_DD = "INSECT_FIRST_DD";
 
+    public static final String SETTINGS_TABLE = "settings_table";
+    public static final String SETTINGS_DATE = "DATE";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
@@ -67,6 +70,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "INSECT_LOW_THRESH DOUBLE," +
                 "INSECT_HIGH_THRESH DOUBLE," +
                 "INSECT_FIRST_DD)");
+        db.execSQL("create table " +SETTINGS_TABLE +
+                "(SETTINGS_ID INTEGER, " +
+                "DATE DATETIME)");
         /*createInsect("Codling Moth", 50.0, 88.0, 225.0);
         createInsect("Apple Maggot", 50.0, -1, 1000.0);
         createInsect("Rosy Apple Aphid", 40.0, -1, 200.0);*/
@@ -77,6 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " +ORCHARD_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " +BIOFIX_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " +INSECT_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " +SETTINGS_TABLE);
         onCreate(db);
     }
 
@@ -159,6 +166,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 return true;
         }
         return false;
+    }
+
+    public boolean createSettings(String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("SETTINGS_ID", 0);
+        contentValues.put("DATE", date);
+
+        long result = db.insert(SETTINGS_TABLE, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
     }
 
 
@@ -335,6 +356,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return Integer.parseInt(result.getString(0));
     }
 
+    ////////////////////////////////////////////////////////////////
+    // Settings Table Functions
+    ////////////////////////////////////////////////////////////////
 
+    /*
+    Name: GetSettingDate
+    Description:
+    Parameters: None
+    Return Value: A string of the date set in settings
+     */
+    public String GetSettingsDate(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select DATE from " +SETTINGS_TABLE, null);
+        result.moveToFirst();
+        return String.valueOf(result.getString(0));
+    }
 
+    /*
+    Name: SetSettingDate
+    Description:
+    Parameters: String date
+    Return Value: boolean
+     */
+    public boolean SetSettingsDate(String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("DATE", date);
+        db.update(SETTINGS_TABLE, contentValues, "SETTINGS_ID = ?", new String[]{"0"});
+        return true;
+    }
 }

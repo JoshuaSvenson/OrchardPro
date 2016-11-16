@@ -75,10 +75,6 @@ public class Orchard extends AppCompatActivity {
         }
 
         lv.setAdapter(list_adapter);
-
-        myDb.createInsect("Codling Moth", 50.0, 88.0, 225.0);
-        myDb.createInsect("Apple Maggot", 50.0, -1, 1000.0);
-        myDb.createInsect("Rosy Apple Aphid", 40.0, -1, 200.0);
     }
 
     public void addListenerOnButton(){
