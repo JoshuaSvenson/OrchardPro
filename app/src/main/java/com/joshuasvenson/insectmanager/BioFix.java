@@ -14,6 +14,7 @@ import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -108,15 +109,23 @@ public class BioFix extends AppCompatActivity {
 
                 datePicker = (DatePicker) findViewById(R.id.biofix_datePicker);
                 Calendar cal = Calendar.getInstance();
-                cal.set(Calendar.YEAR, datePicker.getYear());
-                cal.set(Calendar.MONTH, datePicker.getMonth());
-                cal.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
-                Date date = cal.getTime();
-                //SimpleDateFormat stringDate = new SimpleDateFormat(date.toString());
-               // String biofix_date = stringDate.format(new Date());
-                boolean isInserted = myDb.createBiofix(date.toString(), 0, date.toString(), Integer.parseInt(orchardKey), insectID);
+
+                int biofix_day = datePicker.getDayOfMonth();
+                int biofix_month = datePicker.getMonth() + 1;
+                int biofix_year = datePicker.getYear();
+
+                int current_day = cal.get(Calendar.DAY_OF_MONTH);
+                int current_month = cal.get(Calendar.MONTH) + 1;
+                int current_year = cal.get(Calendar.YEAR);
+
+                boolean isInserted = myDb.createBiofix(biofix_day, biofix_month,
+                        biofix_year, 0, current_day, current_month,
+                        current_year, Integer.parseInt(orchardKey), insectID);
                 if(isInserted == true){
-                    Toast.makeText(BioFix.this, "Data Inserted " +date.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(BioFix.this, "Data Inserted "
+                            + biofix_month+ " " +biofix_day
+                            + " " + biofix_year +" | " + current_month + " " +
+                            current_day + " " + current_year,Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(BioFix.this, "Error Inserting",Toast.LENGTH_LONG).show();

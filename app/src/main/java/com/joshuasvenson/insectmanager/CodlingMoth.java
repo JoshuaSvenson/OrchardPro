@@ -57,10 +57,10 @@ public class CodlingMoth extends AppCompatActivity {
             TextView orchard = new TextView(findViewById(R.id.codlingMothDescription).getContext());
             TextView risk = new TextView(findViewById(R.id.codlingMothDescription).getContext());
 
-            int sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(4)));
+            int sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(8)));
             int accumulatedDegreeDay = Integer.parseInt(degree_day_cursor.getString(1));
 
-            orchard.setText(myDb.GetOrchardName(Integer.parseInt(biofix_row_cursor.getString(5))) + " ");
+            orchard.setText(myDb.GetOrchardName(Integer.parseInt(biofix_row_cursor.getString(9))) + " ");
             orchard.setTextColor(Color.parseColor("#000000"));
 
             if(accumulatedDegreeDay >= sprayDegreeDay){

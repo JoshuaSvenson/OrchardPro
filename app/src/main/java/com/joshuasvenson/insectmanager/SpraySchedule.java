@@ -16,9 +16,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class SpraySchedule extends AppCompatActivity {;
 
@@ -42,6 +49,8 @@ public class SpraySchedule extends AppCompatActivity {;
         RiskAdapter = new MyExListAdapter(this, Risk_category, Risk_list);
         Exp_list.setAdapter(RiskAdapter);
 
+        //calculateDegreeDays();
+
         Exp_list.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
              @Override
              public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
@@ -53,4 +62,44 @@ public class SpraySchedule extends AppCompatActivity {;
          });
 
     }
+
+    /*private void calculateDegreeDays(){
+        String latitude;
+        String longitude;
+
+        String biofix_year;
+        String biofix_month;
+        String biofix_day;
+
+        String baseTemp;
+        double average;
+        double degree_day;
+
+        DateFormat formatter;
+
+        latitude = myDb.GetOrchardLatitude(Integer.parseInt(orchardKey));
+        longitude = myDb.GetOrchardLongitude(Integer.parseInt(orchardKey));
+
+        String currentDate = myDb.GetSettingsDate();
+
+        formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+
+        Date startDate = null;
+
+        try {
+            startDate = (Date) formatter.parse(currentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        biofix_day = (String) android.text.format.DateFormat.format("dd", startDate);
+        biofix_month = (String) android.text.format.DateFormat.format("MMM", startDate);
+        biofix_year = (String) android.text.format.DateFormat.format("yyyy", startDate);
+
+        Toast.makeText(SpraySchedule.this, "Latitude: " +latitude +
+                " Longitude: " +longitude +
+                " Current Day: " +biofix_year +
+                " startDate: " +startDate +
+                " currentDate: " +currentDate,Toast.LENGTH_LONG).show();
+    }*/
 }

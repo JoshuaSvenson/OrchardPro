@@ -13,6 +13,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static com.joshuasvenson.insectmanager.Home.myDb;
+
 
 public class History extends AppCompatActivity {
 
@@ -23,7 +25,7 @@ public class History extends AppCompatActivity {
 
     String biofix_year = "2016";
     String biofix_month = "11";
-    String biofix_day = "10";
+    String biofix_day = "15";
 
     double base_temperature = 50;
     double average;

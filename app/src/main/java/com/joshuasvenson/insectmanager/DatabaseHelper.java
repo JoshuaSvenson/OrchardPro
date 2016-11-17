@@ -26,9 +26,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String BIOFIX_TABLE = "biofix_table";
     public static final String BIOFIX_ID = "BIOFIX_ID";
-    public static final String BIOFIX_DATE = "BIOFIX_DATE";
+    public static final String BIOFIX_DATE_DAY = "BIOFIX_DATE_DAY";
+    public static final String BIOFIX_DATE_MONTH = "BIOFIX_DATE_MONTH";
+    public static final String BIOFIX_DATE_YEAR = "BIOFIX_DATE_YEAR";
     public static final String BIOFIX_DEGREE_DAYS = "BIOFIX_DEGREE_DAYS";
-    public static final String BIOFIX_LAST_UPDATE = "BIOFIX_LAST_UPDATE";
+    public static final String BIOFIX_LAST_UPDATE_DAY = "BIOFIX_LAST_UPDATE_DAY";
+    public static final String BIOFIX_LAST_UPDATE_MONTH = "BIOFIX_LAST_UPDATE_MONTH";
+    public static final String BIOFIX_LAST_UPDATE_YEAR = "BIOFIX_LAST_UPDATE_YEAR";
     public static final String BIOFIX_INSECT_FOREIGN_KEY = "BIOFIX_INSECT_FOREIGN_KEY";
     public static final String BIOFIX_ORCHARD_FOREIGN_KEY = "BIOFIX_ORCHARD_FOREIGN_KEY";
 
@@ -59,9 +63,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "WEATHER_STATION TEXT)");
         db.execSQL("create table " +BIOFIX_TABLE +
                 "(BIOFIX_ID INTEGER PRIMARY KEY, " +
-                "BIOFIX_DATE DATETIME," +
+                "BIOFIX_DATE_DAY INTEGER," +
+                "BIOFIX_DATE_MONTH INTEGER," +
+                "BIOFIX_DATE_YEAR INTEGER," +
                 "BIOFIX_DEGREE_DAYS DOUBLE," +
-                "BIOFIX_LAST_UPDATE DATETIME," +
+                "BIOFIX_LAST_UPDATE_DAY INTEGER," +
+                "BIOFIX_LAST_UPDATE_MONTH INTEGER," +
+                "BIOFIX_LAST_UPDATE_YEAR INTEGER," +
                 "BIOFIX_INSECT_FOREIGN_KEY INTEGER," +
                 "BIOFIX_ORCHARD_FOREIGN_KEY INTEGER)");
         db.execSQL("create table " +INSECT_TABLE +
@@ -72,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "INSECT_FIRST_DD)");
         db.execSQL("create table " +SETTINGS_TABLE +
                 "(SETTINGS_ID INTEGER, " +
-                "DATE DATETIME)");
+                "DATE DATE)");
         /*createInsect("Codling Moth", 50.0, 88.0, 225.0);
         createInsect("Apple Maggot", 50.0, -1, 1000.0);
         createInsect("Rosy Apple Aphid", 40.0, -1, 200.0);*/
@@ -129,12 +137,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean createBiofix(String date, int degree_days, String last_update, int orchard_key, int insect_key){
+    public boolean createBiofix(int date_day, int date_month, int date_year, int degree_days,
+                                int last_update_day, int last_update_month, int last_update_year,
+                                int orchard_key, int insect_key){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("BIOFIX_DATE", date);
+        contentValues.put("BIOFIX_DATE_DAY", date_day);
+        contentValues.put("BIOFIX_DATE_MONTH", date_month);
+        contentValues.put("BIOFIX_DATE_YEAR", date_year);
         contentValues.put("BIOFIX_DEGREE_DAYS", degree_days);
-        contentValues.put("BIOFIX_LAST_UPDATE", last_update);
+        contentValues.put("BIOFIX_LAST_UPDATE_DAY", last_update_day);
+        contentValues.put("BIOFIX_LAST_UPDATE_MONTH", last_update_month);
+        contentValues.put("BIOFIX_LAST_UPDATE_YEAR", last_update_year);
         contentValues.put("BIOFIX_INSECT_FOREIGN_KEY", insect_key);
         contentValues.put("BIOFIX_ORCHARD_FOREIGN_KEY", orchard_key);
         long result = db.insert("biofix_table", null, contentValues);
@@ -241,6 +255,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String GetOrchardName(int orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select NAME from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
+        result.moveToFirst();
+        return String.valueOf(result.getString(0));
+    }
+
+    public String GetOrchardLatitude(int orchardKey){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select LATITUDE from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
+        result.moveToFirst();
+        return String.valueOf(result.getString(0));
+    }
+
+    public String GetOrchardLongitude(int orchardKey){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select LONGITUDE from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
         result.moveToFirst();
         return String.valueOf(result.getString(0));
     }
