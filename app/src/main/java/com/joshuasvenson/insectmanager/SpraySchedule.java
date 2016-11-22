@@ -63,7 +63,7 @@ public class SpraySchedule extends AppCompatActivity {;
 
     }
 
-    /*private void calculateDegreeDays(){
+    private void calculateDegreeDays(){
         String latitude;
         String longitude;
 
@@ -80,26 +80,18 @@ public class SpraySchedule extends AppCompatActivity {;
         latitude = myDb.GetOrchardLatitude(Integer.parseInt(orchardKey));
         longitude = myDb.GetOrchardLongitude(Integer.parseInt(orchardKey));
 
-        String currentDate = myDb.GetSettingsDate();
+        Cursor cursor = myDb.GetBiofixDate("0",orchardKey);
+        //String currentDate = myDb.GetSettingsDate();
 
-        formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
 
-        Date startDate = null;
-
-        try {
-            startDate = (Date) formatter.parse(currentDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        biofix_day = (String) android.text.format.DateFormat.format("dd", startDate);
-        biofix_month = (String) android.text.format.DateFormat.format("MMM", startDate);
-        biofix_year = (String) android.text.format.DateFormat.format("yyyy", startDate);
+        biofix_day = cursor.getString(0);
+        biofix_month = cursor.getString(1);
+        biofix_year = cursor.getString(2);
 
         Toast.makeText(SpraySchedule.this, "Latitude: " +latitude +
                 " Longitude: " +longitude +
-                " Current Day: " +biofix_year +
-                " startDate: " +startDate +
-                " currentDate: " +currentDate,Toast.LENGTH_LONG).show();
-    }*/
+                " Current Month: " +biofix_month +
+                " Current Day: " +biofix_day +
+                " Current Year: " +biofix_year,Toast.LENGTH_LONG).show();
+    }
 }

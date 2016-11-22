@@ -2,6 +2,7 @@ package com.joshuasvenson.insectmanager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +31,12 @@ public class SettingsToolbar extends AppCompatActivity {
         setDatePicker = (DatePicker) findViewById(R.id.settingsDatePicker);
         setDateButton = (Button) findViewById(R.id.settingsSetDateButton);
 
-        setDate.setText(myDb.GetSettingsDate());
+        Cursor date = myDb.GetSettingsDate();
+        date.moveToFirst();
+        String day = String.valueOf(date.getString(0));
+        String month = String.valueOf(date.getString(1));
+        String year = String.valueOf(date.getString(2));
+        setDate.setText("Current Set Date (MM/DD/YYYY): " + month + "/" + day + "/" + year);
 
         addListenerOnButton();
     }
@@ -43,15 +49,21 @@ public class SettingsToolbar extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                Calendar cal = Calendar.getInstance();
+                /*Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.YEAR, setDatePicker.getYear());
                 cal.set(Calendar.MONTH, setDatePicker.getMonth());
                 cal.set(Calendar.DAY_OF_MONTH, setDatePicker.getDayOfMonth());
-                Date date = cal.getTime();
+                Date date = cal.getTime();*/
 
-                boolean isInserted = myDb.SetSettingsDate(String.valueOf(date));
+                int day = setDatePicker.getDayOfMonth();
+                int month = setDatePicker.getMonth() + 1;
+                int year = setDatePicker.getYear();
+
+                boolean isInserted = myDb.SetSettingsDate(day, month, year);
                 if(isInserted == true){
-                    Toast.makeText(SettingsToolbar.this, "Data Inserted " +date.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(SettingsToolbar.this, "Data Inserted " +String.valueOf(month).toString()
+                            + "/" + String.valueOf(day).toString() + "/" + String.valueOf(year).toString()
+                            ,Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(SettingsToolbar.this, "Error Inserting",Toast.LENGTH_LONG).show();
