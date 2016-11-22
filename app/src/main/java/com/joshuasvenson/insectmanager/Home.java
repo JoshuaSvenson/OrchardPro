@@ -12,6 +12,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /*
@@ -55,9 +57,9 @@ public class Home extends AppCompatActivity {
         myDb.createInsect("Apple Maggot", 50.0, -1, 1000.0);
         myDb.createInsect("Rosy Apple Aphid", 40.0, -1, 200.0);
 
-        String currentDateString = DateFormat.getDateInstance().format(new Date());
+        Calendar c = Calendar.getInstance();
 
-        myDb.createSettings(currentDateString);
+        myDb.createSettings(c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH) + 1, c.get(Calendar.YEAR));
 
         //This method adds listeners on all of the buttons
         addListenerOnButton();

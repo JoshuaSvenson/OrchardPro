@@ -49,9 +49,9 @@ public class BiofixList extends AppCompatActivity {
             TextView biofix = new TextView(this);
             TextView degreeDays = new TextView(this);
 
-            insect.setText(myDb.GetInsectName(Integer.parseInt(cursor.getString(4))) + " ");
-            biofix.setText(cursor.getString(1) + " ");
-            degreeDays.setText(cursor.getString(2));
+            insect.setText(myDb.GetInsectName(Integer.parseInt(cursor.getString(8))) + " ");
+            biofix.setText(cursor.getString(2) + " " + cursor.getString(1) + " " + cursor.getString(3) + " ");
+            degreeDays.setText(cursor.getString(4));
 
             row.addView(insect);
             row.addView(biofix);

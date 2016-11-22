@@ -16,9 +16,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class SpraySchedule extends AppCompatActivity {;
 
@@ -42,6 +49,8 @@ public class SpraySchedule extends AppCompatActivity {;
         RiskAdapter = new MyExListAdapter(this, Risk_category, Risk_list);
         Exp_list.setAdapter(RiskAdapter);
 
+        //calculateDegreeDays();
+
         Exp_list.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
              @Override
              public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
@@ -52,5 +61,37 @@ public class SpraySchedule extends AppCompatActivity {;
              }
          });
 
+    }
+
+    private void calculateDegreeDays(){
+        String latitude;
+        String longitude;
+
+        String biofix_year;
+        String biofix_month;
+        String biofix_day;
+
+        String baseTemp;
+        double average;
+        double degree_day;
+
+        DateFormat formatter;
+
+        latitude = myDb.GetOrchardLatitude(Integer.parseInt(orchardKey));
+        longitude = myDb.GetOrchardLongitude(Integer.parseInt(orchardKey));
+
+        Cursor cursor = myDb.GetBiofixDate("0",orchardKey);
+        //String currentDate = myDb.GetSettingsDate();
+
+
+        biofix_day = cursor.getString(0);
+        biofix_month = cursor.getString(1);
+        biofix_year = cursor.getString(2);
+
+        Toast.makeText(SpraySchedule.this, "Latitude: " +latitude +
+                " Longitude: " +longitude +
+                " Current Month: " +biofix_month +
+                " Current Day: " +biofix_day +
+                " Current Year: " +biofix_year,Toast.LENGTH_LONG).show();
     }
 }

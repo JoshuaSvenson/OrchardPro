@@ -27,9 +27,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String BIOFIX_TABLE = "biofix_table";
     public static final String BIOFIX_ID = "BIOFIX_ID";
-    public static final String BIOFIX_DATE = "BIOFIX_DATE";
+    public static final String BIOFIX_DATE_DAY = "BIOFIX_DATE_DAY";
+    public static final String BIOFIX_DATE_MONTH = "BIOFIX_DATE_MONTH";
+    public static final String BIOFIX_DATE_YEAR = "BIOFIX_DATE_YEAR";
     public static final String BIOFIX_DEGREE_DAYS = "BIOFIX_DEGREE_DAYS";
-    public static final String BIOFIX_LAST_UPDATE = "BIOFIX_LAST_UPDATE";
+    public static final String BIOFIX_LAST_UPDATE_DAY = "BIOFIX_LAST_UPDATE_DAY";
+    public static final String BIOFIX_LAST_UPDATE_MONTH = "BIOFIX_LAST_UPDATE_MONTH";
+    public static final String BIOFIX_LAST_UPDATE_YEAR = "BIOFIX_LAST_UPDATE_YEAR";
     public static final String BIOFIX_INSECT_FOREIGN_KEY = "BIOFIX_INSECT_FOREIGN_KEY";
     public static final String BIOFIX_ORCHARD_FOREIGN_KEY = "BIOFIX_ORCHARD_FOREIGN_KEY";
 
@@ -41,7 +45,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String INSECT_FIRST_DD = "INSECT_FIRST_DD";
 
     public static final String SETTINGS_TABLE = "settings_table";
-    public static final String SETTINGS_DATE = "DATE";
+    public static final String SETTINGS_DATE_DAY = "SETTINGS_DATE_DAY";
+    public static final String SETTINGS_DATE_MONTH = "SETTINGS_DATE_MONTH";
+    public static final String SETTINGS_DATE_YEAR = "SETTINGS_DATE_YEAR";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -61,9 +67,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "IMAGE_DATA BLOB)");
         db.execSQL("create table " +BIOFIX_TABLE +
                 "(BIOFIX_ID INTEGER PRIMARY KEY, " +
-                "BIOFIX_DATE DATETIME," +
+                "BIOFIX_DATE_DAY INTEGER," +
+                "BIOFIX_DATE_MONTH INTEGER," +
+                "BIOFIX_DATE_YEAR INTEGER," +
                 "BIOFIX_DEGREE_DAYS DOUBLE," +
-                "BIOFIX_LAST_UPDATE DATETIME," +
+                "BIOFIX_LAST_UPDATE_DAY INTEGER," +
+                "BIOFIX_LAST_UPDATE_MONTH INTEGER," +
+                "BIOFIX_LAST_UPDATE_YEAR INTEGER," +
                 "BIOFIX_INSECT_FOREIGN_KEY INTEGER," +
                 "BIOFIX_ORCHARD_FOREIGN_KEY INTEGER)");
         db.execSQL("create table " +INSECT_TABLE +
@@ -74,7 +84,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "INSECT_FIRST_DD)");
         db.execSQL("create table " +SETTINGS_TABLE +
                 "(SETTINGS_ID INTEGER, " +
-                "DATE DATETIME)");
+                "SETTINGS_DATE_DAY INTEGER, " +
+                "SETTINGS_DATE_MONTH INTEGER, " +
+                "SETTINGS_DATE_YEAR INTEGER)");
         /*createInsect("Codling Moth", 50.0, 88.0, 225.0);
         createInsect("Apple Maggot", 50.0, -1, 1000.0);
         createInsect("Rosy Apple Aphid", 40.0, -1, 200.0);*/
@@ -89,17 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String name){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(ORCHARD_NAME, name);
-        long result = db.insert(ORCHARD_TABLE, null, contentValues);
-        if(result == -1)
-            return false;
-        else
-            return true;
-    }
-
+    //Used in AddOrchard.java which isn't currently used
     public boolean insertData2(String col, String row, String str_val, double double_val){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -132,12 +134,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean createBiofix(String date, int degree_days, String last_update, int orchard_key, int insect_key){
+    public boolean createBiofix(int date_day, int date_month, int date_year, int degree_days,
+                                int last_update_day, int last_update_month, int last_update_year,
+                                int orchard_key, int insect_key){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("BIOFIX_DATE", date);
+        contentValues.put("BIOFIX_DATE_DAY", date_day);
+        contentValues.put("BIOFIX_DATE_MONTH", date_month);
+        contentValues.put("BIOFIX_DATE_YEAR", date_year);
         contentValues.put("BIOFIX_DEGREE_DAYS", degree_days);
-        contentValues.put("BIOFIX_LAST_UPDATE", last_update);
+        contentValues.put("BIOFIX_LAST_UPDATE_DAY", last_update_day);
+        contentValues.put("BIOFIX_LAST_UPDATE_MONTH", last_update_month);
+        contentValues.put("BIOFIX_LAST_UPDATE_YEAR", last_update_year);
         contentValues.put("BIOFIX_INSECT_FOREIGN_KEY", insect_key);
         contentValues.put("BIOFIX_ORCHARD_FOREIGN_KEY", orchard_key);
         long result = db.insert("biofix_table", null, contentValues);
@@ -171,12 +179,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public boolean createSettings(String date){
+    public boolean createSettings(int day, int month, int year){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put("SETTINGS_ID", 0);
-        contentValues.put("DATE", date);
+        contentValues.put("SETTINGS_DATE_DAY", day);
+        contentValues.put("SETTINGS_DATE_MONTH", month);
+        contentValues.put("SETTINGS_DATE_YEAR", year);
 
         long result = db.insert(SETTINGS_TABLE, null, contentValues);
         if(result == -1)
@@ -185,39 +195,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-
-    public Cursor getAllNameData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("select NAME from " +ORCHARD_TABLE, null);
-        return result;
-    }
-
     public Cursor query_row(String orchardName){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select * from " +ORCHARD_TABLE + " where NAME = ?", new String[] {orchardName});
-        return result;
-    }
-
-    public void deleteOrchard(String orchardName){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("delete from " +ORCHARD_TABLE + " where NAME = ?", new String[] {orchardName});
-    }
-
-    public Cursor query_names(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("select NAME from " +ORCHARD_TABLE, null);
-        return result;
-    }
-
-    public Cursor query_biofix_row(int orchardKey){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("select * from " +BIOFIX_TABLE, null);// + " where BIOFIX_ORCHARD_FOREIGN_KEY = ?", new String[] {String.valueOf(orchardKey)});
-        return result;
-    }
-
-    public Cursor getBiofixData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("select BIOFIX_DATE from " +BIOFIX_TABLE, null);
         return result;
     }
 
@@ -255,9 +235,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public Cursor getAllNameData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select NAME from " +ORCHARD_TABLE, null);
+        return result;
+    }
+
     public String GetOrchardName(int orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select NAME from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
+        result.moveToFirst();
+        return String.valueOf(result.getString(0));
+    }
+
+    public String GetOrchardLatitude(int orchardKey){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select LATITUDE from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
+        result.moveToFirst();
+        return String.valueOf(result.getString(0));
+    }
+
+    public String GetOrchardLongitude(int orchardKey){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select LONGITUDE from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
         result.moveToFirst();
         return String.valueOf(result.getString(0));
     }
@@ -330,6 +330,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    /*
+    Name: GetBiofixDate
+    Description:
+    Parameters:
+    Return Value: A Cursor to all
+     */
+    public Cursor GetBiofixDate(String insectKey, String orchardKey){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select BIOFIX_DATE_DAY, BIOFIX_DATE_MONTH, BIOFIX_DATE_YEAR from " +BIOFIX_TABLE +
+                " where BIOFIX_INSECT_FOREIGN_KEY = ? and BIOFIX_ORCHARD_FOREIGN_KEY = ?"
+                , new String[]{insectKey, orchardKey});
+        return result;
+    }
+
     ////////////////////////////////////////////////////////////////
     // Insect Table Functions
     ////////////////////////////////////////////////////////////////
@@ -383,11 +397,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     Parameters: None
     Return Value: A string of the date set in settings
      */
-    public String GetSettingsDate(){
+    public Cursor GetSettingsDate(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("select DATE from " +SETTINGS_TABLE, null);
-        result.moveToFirst();
-        return String.valueOf(result.getString(0));
+        Cursor result = db.rawQuery("select SETTINGS_DATE_DAY, SETTINGS_DATE_MONTH, SETTINGS_DATE_YEAR from "
+                +SETTINGS_TABLE, null);
+        return result;
     }
 
     /*
@@ -396,10 +410,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     Parameters: String date
     Return Value: boolean
      */
-    public boolean SetSettingsDate(String date){
+    public boolean SetSettingsDate(int day, int month, int year){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("DATE", date);
+        contentValues.put("SETTINGS_DATE_DAY", day);
+        contentValues.put("SETTINGS_DATE_MONTH", month);
+        contentValues.put("SETTINGS_DATE_YEAR", year);
         db.update(SETTINGS_TABLE, contentValues, "SETTINGS_ID = ?", new String[]{"0"});
         return true;
     }
