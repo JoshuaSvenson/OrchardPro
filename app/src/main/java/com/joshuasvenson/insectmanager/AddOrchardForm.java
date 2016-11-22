@@ -223,7 +223,9 @@ public class AddOrchardForm extends AppCompatActivity {
                         Double.parseDouble(mOrchardTreeRowSpacing.getText().toString()),
                         Double.parseDouble(mOrchardCrossRowSpread.getText().toString()),
                         Double.parseDouble(mOrchardPlantHeight.getText().toString()),
-                        Double.parseDouble(mOrchardDensity.getText().toString()));
+                        Double.parseDouble(mOrchardDensity.getText().toString()),
+                        null);
+
 
                 if(isInserted == true){
                     Toast.makeText(AddOrchardForm.this, "Data Inserted " +mOrchardName.getText().toString(),Toast.LENGTH_LONG).show();

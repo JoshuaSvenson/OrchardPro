@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
@@ -33,6 +33,8 @@ public class AllensOrchard extends AppCompatActivity {
 
     String orchard_key;
     String name;
+
+    Bitmap bitmap;
 
     private static final int SELECTED_PICTURE= 1;
 
@@ -56,6 +58,12 @@ public class AllensOrchard extends AppCompatActivity {
         orchardName.setText(String.valueOf(cursor.getString(1)));
 
         cursor.close();
+
+        byte[] image2 = myDb.GetImage(orchard_key);
+        if(image2 != null){
+            bitmap = getImage(image2);
+            iv.setImageBitmap(bitmap);
+        }
 
         addListenerOnButton();
     }
@@ -84,11 +92,19 @@ public class AllensOrchard extends AppCompatActivity {
                     cursor.close();
 
                     Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
-                    Drawable d = new BitmapDrawable(yourSelectedImage);
+                    //Drawable d = new BitmapDrawable(yourSelectedImage);
+
+                    byte[] image = getBytes(yourSelectedImage);
+
+                    myDb.addImage(orchard_key,image);
+
+                    byte[] image2 = myDb.GetImage(orchard_key);
+                    bitmap = getImage(image2);
+
+                    iv.setImageBitmap(bitmap);
 
                     //iv.setImageBitmap(BitmapFactory.decodeFile(filePath));
-
-                    iv.setBackground(d);
+                    //iv.setBackground(d);
 
 
                 }
@@ -97,6 +113,19 @@ public class AllensOrchard extends AppCompatActivity {
                 break;
         }
 
+    }
+
+
+    // convert from bitmap to byte array
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
+    }
+
+    // convert from byte array to bitmap
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
     public void addListenerOnButton() {

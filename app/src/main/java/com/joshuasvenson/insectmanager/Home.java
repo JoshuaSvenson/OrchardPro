@@ -46,6 +46,10 @@ public class Home extends AppCompatActivity {
         //Initialize database object as a new DatabaseHelper
         myDb = new DatabaseHelper(this);
 
+
+        //myDb.onUpgrade(myDb.getWritableDatabase(), 1, 2);
+
+
         //Creates insects if they are not already in the database
         myDb.createInsect("Codling Moth", 50.0, 88.0, 225.0);
         myDb.createInsect("Apple Maggot", 50.0, -1, 1000.0);

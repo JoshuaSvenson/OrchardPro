@@ -23,6 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String ORCHARD_STATION = "WEATHER_STATION";
     public static final String ORCHARD_PLANT_HEIGHT = "PLANT_HEIGHT";
     public static final String ORCHARD_TRS = "TREE_ROW_SPACING";
+    public static final String ORCHARD_KEY_IMAGE = "IMAGE_DATA";
 
     public static final String BIOFIX_TABLE = "biofix_table";
     public static final String BIOFIX_ID = "BIOFIX_ID";
@@ -56,7 +57,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "LONGITUDE DOUBLE," +
                 "PLANT_HEIGHT DOUBLE," +
                 "TREE_ROW_SPACING DOUBLE," +
-                "WEATHER_STATION TEXT)");
+                "WEATHER_STATION TEXT," +
+                "IMAGE_DATA BLOB)");
         db.execSQL("create table " +BIOFIX_TABLE +
                 "(BIOFIX_ID INTEGER PRIMARY KEY, " +
                 "BIOFIX_DATE DATETIME," +
@@ -111,7 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean createOrchard(String name, double latitude, double longitude, String stationID, double trs, double crs, double plantHeight, double density){
+    public boolean createOrchard(String name, double latitude, double longitude, String stationID, double trs, double crs, double plantHeight, double density, byte[] image){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ORCHARD_NAME, name);
@@ -122,6 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(ORCHARD_PLANT_HEIGHT, plantHeight);
         contentValues.put(ORCHARD_TRS, trs);
         contentValues.put(ORCHARD_STATION, stationID);
+        contentValues.put(ORCHARD_KEY_IMAGE, image);
         long result = db.insert(ORCHARD_TABLE, null, contentValues);
         if(result == -1)
             return false;
@@ -232,6 +235,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Orchard Table Functions
     ////////////////////////////////////////////////////////////////
 
+    public byte[] GetImage (String orchardKey){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select IMAGE_DATA from " + ORCHARD_TABLE + " where ID = ?", new String[] {orchardKey});
+        result.moveToFirst();
+        return result.getBlob(0);
+    }
+
+    public void addImage (String orchardKey, byte[] image){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("IMAGE_DATA", image);
+
+        db.update(ORCHARD_TABLE, cv, "ID=" + orchardKey, null);
+    }
     public Cursor GetOrchardSettings(String orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select * from " +ORCHARD_TABLE + " where ID = ?", new String[] {orchardKey});
