@@ -11,14 +11,47 @@
     tools:context="com.joshuasvenson.insectmanager.Calculations">
 
     <TextView
+        android:id="@+id/TRV"
+        android:text="Tree Row Volume"
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20sp"
+        android:layout_below="@+id/TRV"
         android:id="@+id/TreeRowVolume" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="800dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TreeRowVolume"
+        android:layout_marginTop="10sp"
+        android:text="Calculate gpm (per side) of the sprayer (gallons per minute) and Calculate GPM (per nozzle)" />
+
+    <TextView
+        android:text="Gpm (per side)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_below="@+id/button1"
+        android:id="@+id/GPM"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:text="GPM (per nozzle)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_below="@+id/GPM"
+        android:id="@+id/GPM_nozzle"
+        android:textSize="25sp"/>
+
+
 </RelativeLayout>

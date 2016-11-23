@@ -1,0 +1,107 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_orchard_form"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.joshuasvenson.insectmanager.AddOrchardForm"
+    android:background="@android:color/white">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="gpa (gallons per acre)"
+        android:id="@+id/addOrchardForm_gpa"
+        android:layout_marginTop="10dp"
+        android:inputType="number|numberSigned|numberDecimal"/>
+
+
+    <EditText
+        android:hint="mph (speed) (in miles per hour)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addOrchardForm_gpa"
+        android:id="@+id/addOrchardForm_mph"
+        android:inputType="number|numberSigned|numberDecimal"
+        />
+
+    <EditText
+        android:hint="W (spacing between rows) (in feet)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addOrchardForm_mph"
+        android:layout_alignLeft="@+id/addOrchardForm_mph"
+        android:layout_alignStart="@+id/addOrchardForm_mph"
+        android:id="@+id/addOrchardForm_W"
+        android:inputType="number|numberSigned|numberDecimal"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addOrchardForm_W"
+        android:layout_alignLeft="@+id/addOrchardForm_W"
+        android:layout_alignStart="@+id/addOrchardForm_W"
+        android:id="@+id/addOrchardForm_gpm"
+        android:inputType="number|numberSigned|numberDecimal"
+        android:text="GPM (per side)"
+        android:textSize="20sp"
+        android:layout_marginTop="20sp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="GPA (desired total carrier volume in gallons/acre)"
+        android:id="@+id/addOrchardForm_GPA"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/addOrchardForm_gpm"
+        android:inputType="number|numberSigned|numberDecimal"/>
+
+
+    <EditText
+        android:hint="MPH (desired ground speed in miles/hour)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addOrchardForm_GPA"
+        android:id="@+id/addOrchardForm_MPH"
+        android:inputType="number|numberSigned|numberDecimal"
+        />
+
+    <EditText
+        android:hint="W (inches between nozzles)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addOrchardForm_MPH"
+        android:layout_alignLeft="@+id/addOrchardForm_MPH"
+        android:layout_alignStart="@+id/addOrchardForm_MPH"
+        android:id="@+id/addOrchardForm_W2"
+        android:inputType="number|numberSigned|numberDecimal"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addOrchardForm_W2"
+        android:layout_alignLeft="@+id/addOrchardForm_W2"
+        android:layout_alignStart="@+id/addOrchardForm_W2"
+        android:id="@+id/addOrchardForm_GPM"
+        android:inputType="number|numberSigned|numberDecimal"
+        android:text="GPM (per nozzle)"
+        android:textSize="20sp"
+        android:layout_marginTop="20sp"
+        />
+
+    <Button
+        android:text="Calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addOrchardForm_GPM"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:id="@+id/addOrchardForm_Submit" />
+
+</RelativeLayout>

@@ -95,6 +95,7 @@
         <activity android:name=".OrchardWeather" />
         <activity android:name=".OrchardSettings" />
         <activity android:name=".SettingsToolbar"></activity>
+        <activity android:name=".gpm"></activity>
     </application>
 
 </manifest>
