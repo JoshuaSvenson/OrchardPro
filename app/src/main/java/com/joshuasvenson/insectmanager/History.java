@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -85,66 +86,62 @@ public class History extends AppCompatActivity{
         Cursor cursor = myDb.GetOrchardBiofix(orchardKey);
 
         cursor.moveToFirst();
-        for(int count = 0; count < cursor.getCount(); count++) {
 
-            base_temperature = myDb.GetInsectLowerThreshTemp(String.valueOf(cursor.getString(8)));
+        biofix_day = String.valueOf(cursor.getString(5));
+        biofix_month = String.valueOf(cursor.getString(6));
+        biofix_year = String.valueOf(cursor.getString(7));
 
-            biofix_day = String.valueOf(cursor.getString(5));
-            biofix_month = String.valueOf(cursor.getString(6));
-            biofix_year = String.valueOf(cursor.getString(7));
+        DecimalFormat two_digit_formatter = new DecimalFormat("00");
+        biofix_day = two_digit_formatter.format(Integer.parseInt(biofix_day));
+        biofix_month = two_digit_formatter.format(Integer.parseInt(biofix_month));
 
-            DecimalFormat two_digit_formatter = new DecimalFormat("00");
-            biofix_day = two_digit_formatter.format(Integer.parseInt(biofix_day));
-            biofix_month = two_digit_formatter.format(Integer.parseInt(biofix_month));
+        DecimalFormat four_digit_formatter = new DecimalFormat("0000");
+        biofix_year = two_digit_formatter.format(Integer.parseInt(biofix_year));
 
-            DecimalFormat four_digit_formatter = new DecimalFormat("0000");
-            biofix_year = two_digit_formatter.format(Integer.parseInt(biofix_year));
+        String str_date = biofix_year + biofix_month + biofix_day;
 
-            String str_date = biofix_year + biofix_month + biofix_day;
+        formatter = new SimpleDateFormat("yyyyMMdd");
 
-            formatter = new SimpleDateFormat("yyyyMMdd");
+        Date startDate = null;
 
-            Date startDate = null;
-
-            try {
-                startDate = (Date) formatter.parse(str_date);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            String date = getSetDate();
-
-            Date endDate = null;
-
-            try {
-                endDate = (Date) formatter.parse(date);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            long interval = 24 * 1000 * 60 * 60; // 1 hour in millis
-            long endTime = endDate.getTime(); // create your endtime here, possibly using Calendar or Date
-            long curTime = startDate.getTime();
-
-            while (curTime < endTime) {
-                dates.add(new Date(curTime));
-                curTime += interval;
-            }
-
-            String[] array_dates = new String[dates.size()];
-
-            for (int i = 0; i < dates.size(); i++) {
-                Date lDate = (Date) dates.get(i);
-                array_dates[i] = formatter.format(lDate);
-            }
-
-            new letsGetWeather().execute(array_dates);
+        try {
+            startDate = (Date) formatter.parse(str_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+
+        String date = getSetDate();
+
+        Date endDate = null;
+
+        try {
+            endDate = (Date) formatter.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        long interval = 24 * 1000 * 60 * 60; // 1 hour in millis
+        long endTime = endDate.getTime(); // create your endtime here, possibly using Calendar or Date
+        long curTime = startDate.getTime();
+
+        while (curTime < endTime) {
+            dates.add(new Date(curTime));
+            curTime += interval;
+        }
+
+        String[] array_dates = new String[dates.size()];
+
+        for (int i = 0; i < dates.size(); i++) {
+            Date lDate = (Date) dates.get(i);
+            array_dates[i] = formatter.format(lDate);
+        }
+
+        new letsGetWeather().execute(array_dates);
 
         cursor.close();
     }
 
-    protected String getSetDate(){
+    public static String getSetDate(){
         String setDate;
 
         Cursor result = myDb.GetSettingsDate();
@@ -194,45 +191,45 @@ public class History extends AppCompatActivity{
 
         protected void onPostExecute(String[] weatherData) {
 
-            sum = 0;
-
-            for (int m = 0; m < dates.size(); m++) {
-                String max = gw.getMaxTemp(weatherData[m]);
-                String min = gw.getMinTemp(weatherData[m]);
-
-                average = 0;
-                degree_day = 0;
-
-                average = ((Double.parseDouble(max)) + (Double.parseDouble(min))) / 2;
-                if (average > base_temperature) {
-                    degree_day = average - base_temperature;
-                    myArray.add(degree_day);
-                }
-                else{
-                    myArray.add(degree_day);
-                }
-            }
-
-            for (int x = 0; x < dates.size(); x++) {
-                sum = sum + myArray.get(x);
-            }
-
-            /*MaxTemp = (TextView) findViewById(R.id.max_temp);
-            MinTemp = (TextView) findViewById(R.id.min_temp);
-            MaxTemp.setText(Double.toString(sum));
-            MinTemp.setText(Double.toString(myArray.get(0)));*/
-
-            Toast.makeText(History.this, "Latitude: " +lat +
-                            " Longitude: " +lon +
-                            " Biofix Date: " +biofix_month + "/" + biofix_day + "/" + biofix_year + ".........DEGREE DAYS: " +
-                            sum + ".........",
-                    Toast.LENGTH_LONG).show();
-
-
             Cursor cursor = myDb.GetOrchardBiofix(orchardKey);
+
             cursor.moveToFirst();
 
-            myDb.SetDegreeDay(cursor.getString(0), sum);
+            for(int count = 0; count < cursor.getCount(); count++) {
+                sum = 0;
+                base_temperature = myDb.GetInsectLowerThreshTemp(String.valueOf(cursor.getString(8)));
+                for (int m = 0; m < dates.size(); m++) {
+                    String max = gw.getMaxTemp(weatherData[m]);
+                    String min = gw.getMinTemp(weatherData[m]);
+
+                    average = 0;
+                    degree_day = 0;
+
+                    average = ((Double.parseDouble(max)) + (Double.parseDouble(min))) / 2;
+                    if (average > base_temperature) {
+                        degree_day = average - base_temperature;
+                        myArray.add(degree_day);
+                    }
+                    else{
+                        myArray.add(degree_day);
+                    }
+                }
+
+                for (int x = 0; x < dates.size(); x++) {
+                    sum = sum + myArray.get(x);
+                }
+
+                Toast.makeText(History.this, "Latitude: " +lat +
+                                " Longitude: " +lon +
+                                " Biofix Date: " +biofix_month + "/" + biofix_day + "/" + biofix_year + ".........DEGREE DAYS: " +
+                                sum + ".........",
+                        Toast.LENGTH_LONG).show();
+
+                myDb.SetDegreeDay(cursor.getString(0), sum);
+                cursor.moveToNext();
+            }
+
+            cursor.close();
         }
     }
 }

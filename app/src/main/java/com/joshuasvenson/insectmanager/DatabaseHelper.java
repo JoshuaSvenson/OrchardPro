@@ -136,7 +136,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean createBiofix(String date_day, String date_month, String date_year, int degree_days,
+    public long createBiofix(String date_day, String date_month, String date_year, int degree_days,
                                 String last_update_day, String last_update_month, String last_update_year,
                                 int orchard_key, int insect_key){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -152,9 +152,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("BIOFIX_ORCHARD_FOREIGN_KEY", orchard_key);
         long result = db.insert("biofix_table", null, contentValues);
         if(result == -1)
-            return false;
+            return -1;
         else
-            return true;
+            return result;
     }
 
     public boolean createInsect(String name, double low_temp, double high_temp, double first_DD){
@@ -385,7 +385,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         result.moveToFirst();
         return result.getString(0);
+    }
 
+    public Cursor GetBiofix(String biofixID){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor result = db.rawQuery("select * from " + BIOFIX_TABLE +
+                " where BIOFIX_ID = ?", new String[]{biofixID});
+
+        result.moveToFirst();
+        return result;
     }
 
     ////////////////////////////////////////////////////////////////
