@@ -1,8 +1,12 @@
 package com.joshuasvenson.insectmanager;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
@@ -11,6 +15,12 @@ public class Calculations extends AppCompatActivity {
 
     double tree_row_volume;
     TextView TRV;
+    Button button;
+
+    TextView GPM;
+    TextView GPM2;
+
+    String gallons_minute;
 
 
     @Override
@@ -19,6 +29,9 @@ public class Calculations extends AppCompatActivity {
         setContentView(R.layout.calculations);
 
         TRV = (TextView)findViewById(R.id.TreeRowVolume);
+        button = (Button) findViewById(R.id.button1);
+        GPM = (TextView) findViewById(R.id.GPM);
+        GPM2 = (TextView) findViewById(R.id.GPM_nozzle);
 
         String orchard_key = getIntent().getExtras().get("orchard_key").toString();
         Cursor cursor = myDb.GetOrchardSettings(orchard_key);
@@ -31,6 +44,32 @@ public class Calculations extends AppCompatActivity {
                 Double.parseDouble(cursor.getString(3)));
         TRV.setText(String.valueOf(tree_row_volume));
 
+        GPM.setText("Gpm (gallons per minute) = " + gpm.getGpm() + " per side");
+
+        GPM2.setText("Gpm (gallons per minute) = " + gpm.getGpm2() + " per nozzle");
+
+
+        addListenerOnButton();
+
+    }
+
+    private void addListenerOnButton() {
+        final Context context = this;
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                //Create new activity from the Orchard class
+                Intent intent = new Intent(context, gpm.class);
+                //Starts activity and opens up the Orchards page
+                startActivity(intent);
+
+
+
+            }
+
+        });
     }
 
     double CalcTreeRowVolume(double trs, double crs, double ph, double density){
