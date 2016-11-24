@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -59,10 +60,16 @@ public class SettingsToolbar extends AppCompatActivity {
                 int month = setDatePicker.getMonth() + 1;
                 int year = setDatePicker.getYear();
 
-                boolean isInserted = myDb.SetSettingsDate(day, month, year);
+                DecimalFormat two_digit_formatter = new DecimalFormat("00");
+                String dayFormatted = two_digit_formatter.format(day);
+                String monthFormatted = two_digit_formatter.format(month);
+                DecimalFormat four_digit_formatter = new DecimalFormat("0000");
+                String yearFormatted = four_digit_formatter.format(year);
+
+                boolean isInserted = myDb.SetSettingsDate(dayFormatted, monthFormatted, yearFormatted);
                 if(isInserted == true){
-                    Toast.makeText(SettingsToolbar.this, "Data Inserted " +String.valueOf(month).toString()
-                            + "/" + String.valueOf(day).toString() + "/" + String.valueOf(year).toString()
+                    Toast.makeText(SettingsToolbar.this, "Data Inserted " +monthFormatted
+                            + "/" + dayFormatted + "/" + yearFormatted
                             ,Toast.LENGTH_LONG).show();
                 }
                 else{

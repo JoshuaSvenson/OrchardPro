@@ -11,13 +11,18 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class JSONParser {
+
+    HttpURLConnection conn;
 
     // N4n8Rr8T0MmshJsPpTftAFlmgjGEp1fJuQzjsnADtsEG9RFJRR
     // Get you own API Key here: http://www.wunderground.com/weather/api
@@ -30,16 +35,19 @@ public class JSONParser {
         String url = "http://api.wunderground.com/api/" + API_KEY
                 + "/history_"+date+"/q/"+lat+","+lon+".xml";
 
-        InputStream is = null;
         String weatherData = null;
 
         // Get the XML stream from the web
         try {
-            HttpClient httpclient = new DefaultHttpClient();
+            /*HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(url);
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
-            is = entity.getContent();
+            is = entity.getContent();*/
+
+            URL url2 = new URL(url);
+            conn = (HttpURLConnection) url2.openConnection();
+            conn.setRequestMethod("GET");
 
         } catch (Exception e) {
             Log.e("getWeather", "Error in http connection " + e.toString());
@@ -47,15 +55,14 @@ public class JSONParser {
 
         // Let's convert stream to string
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    is, "UTF-8"), 8);
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+            BufferedReader is = new BufferedReader(new InputStreamReader(conn.getInputStream()), 8);
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = is.readLine()) != null) {
+                response.append(inputLine);
             }
-            is.close();
-            weatherData= sb.toString();
+            weatherData= response.toString();
         } catch (Exception e) {
             Log.e("getWeather", "Error converting result " + e.toString());
         }

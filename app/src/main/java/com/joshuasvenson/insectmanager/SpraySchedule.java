@@ -49,7 +49,7 @@ public class SpraySchedule extends AppCompatActivity {;
         RiskAdapter = new MyExListAdapter(this, Risk_category, Risk_list);
         Exp_list.setAdapter(RiskAdapter);
 
-        //calculateDegreeDays();
+        calculateDegreeDays();
 
         Exp_list.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
              @Override
@@ -67,31 +67,30 @@ public class SpraySchedule extends AppCompatActivity {;
         String latitude;
         String longitude;
 
-        String biofix_year;
-        String biofix_month;
-        String biofix_day;
+        String biofix_year = "0";
+        String biofix_month = "0";
+        String biofix_day = "0";
 
-        String baseTemp;
-        double average;
+        double baseTemp;
         double degree_day;
-
-        DateFormat formatter;
 
         latitude = myDb.GetOrchardLatitude(Integer.parseInt(orchardKey));
         longitude = myDb.GetOrchardLongitude(Integer.parseInt(orchardKey));
 
-        Cursor cursor = myDb.GetBiofixDate("0",orchardKey);
-        //String currentDate = myDb.GetSettingsDate();
+        Cursor cursor = myDb.GetOrchardBiofix(orchardKey);
 
+        cursor.moveToFirst();
 
-        biofix_day = cursor.getString(0);
-        biofix_month = cursor.getString(1);
-        biofix_year = cursor.getString(2);
+        baseTemp = myDb.GetInsectLowerThreshTemp(String.valueOf(cursor.getString(8)));
+
+        biofix_day = String.valueOf(cursor.getString(1));
+        biofix_month = String.valueOf(cursor.getString(2));
+        biofix_year = String.valueOf(cursor.getString(3));
 
         Toast.makeText(SpraySchedule.this, "Latitude: " +latitude +
                 " Longitude: " +longitude +
-                " Current Month: " +biofix_month +
-                " Current Day: " +biofix_day +
-                " Current Year: " +biofix_year,Toast.LENGTH_LONG).show();
+                " Biofix Date: " +biofix_month + "/" + biofix_day + "/" + biofix_year + ".........DEGREE DAYS: " +
+                "degree_day" + ".........",
+                Toast.LENGTH_LONG).show();
     }
 }

@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static com.joshuasvenson.insectmanager.Home.myDb;
+
 /**
  * Created by Joshua on 10/13/2016.
  */
@@ -134,8 +136,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean createBiofix(int date_day, int date_month, int date_year, int degree_days,
-                                int last_update_day, int last_update_month, int last_update_year,
+    public boolean createBiofix(String date_day, String date_month, String date_year, int degree_days,
+                                String last_update_day, String last_update_month, String last_update_year,
                                 int orchard_key, int insect_key){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -336,12 +338,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     Parameters:
     Return Value: A Cursor to all
      */
-    public Cursor GetBiofixDate(String insectKey, String orchardKey){
+    public Cursor GetBiofixDate(String orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select BIOFIX_DATE_DAY, BIOFIX_DATE_MONTH, BIOFIX_DATE_YEAR from " +BIOFIX_TABLE +
-                " where BIOFIX_INSECT_FOREIGN_KEY = ? and BIOFIX_ORCHARD_FOREIGN_KEY = ?"
-                , new String[]{insectKey, orchardKey});
+                " where BIOFIX_ORCHARD_FOREIGN_KEY = ?"
+                , new String[]{orchardKey});
         return result;
+    }
+
+    /*
+    Name: SetDegreeDay
+    Description:
+    Parameters:
+    Return Value:
+     */
+    public boolean SetDegreeDay(String biofixID, double degree_days){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        double old_degree_days;
+
+        Cursor result = GetSettingsDate();
+        result.moveToFirst();
+
+        String setYear = String.valueOf(result.getString(2));
+        String setMonth = String.valueOf(result.getString(1));
+        String setDay = String.valueOf(result.getString(0));
+
+        old_degree_days = Double.parseDouble(GetDegreeDay(biofixID));
+
+        degree_days += old_degree_days;
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("BIOFIX_DEGREE_DAYS", degree_days);
+        contentValues.put("BIOFIX_LAST_UPDATE_DAY", setDay);
+        contentValues.put("BIOFIX_LAST_UPDATE_MONTH", setMonth);
+        contentValues.put("BIOFIX_LAST_UPDATE_YEAR", setYear);
+        db.update(BIOFIX_TABLE, contentValues, "BIOFIX_ID = ?", new String[]{biofixID});
+        return true;
+    }
+
+    public String GetDegreeDay(String biofixID){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor result = db.rawQuery("select BIOFIX_DEGREE_DAYS from " + BIOFIX_TABLE +
+                " where BIOFIX_ID = ?", new String[]{biofixID});
+
+        result.moveToFirst();
+        return result.getString(0);
+
     }
 
     ////////////////////////////////////////////////////////////////
@@ -387,6 +431,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return Integer.parseInt(result.getString(0));
     }
 
+    /*
+    Name: GetInsectLowerThreshTemp
+    Description:
+    Parameters: int insectKey
+    Return Value:
+     */
+    public int GetInsectLowerThreshTemp(String insectKey){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select INSECT_LOW_THRESH from " +INSECT_TABLE + " where INSECT_ID = "+insectKey, null);
+        result.moveToFirst();
+
+        return Integer.parseInt(result.getString(0));
+    }
+
     ////////////////////////////////////////////////////////////////
     // Settings Table Functions
     ////////////////////////////////////////////////////////////////
@@ -410,7 +468,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     Parameters: String date
     Return Value: boolean
      */
-    public boolean SetSettingsDate(int day, int month, int year){
+    public boolean SetSettingsDate(String day, String month, String year){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("SETTINGS_DATE_DAY", day);

@@ -143,7 +143,7 @@ public class AllensOrchard extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                Intent intent = new Intent(context, SpraySchedule.class);
+                Intent intent = new Intent(context, History.class);
                 intent.putExtra("orchard_key", orchard_key);
                 startActivity(intent);
             }
