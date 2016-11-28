@@ -37,7 +37,7 @@ public class AppleMagot extends AppCompatActivity {
         setContentView(R.layout.apple_magot);
 
         viewPager = (ViewPager)findViewById(R.id.apple_maggot_view_pager);
-        adapter = new CustomSwipeAdapter(this, insectKey);
+        adapter = new CustomSwipeAdapter(this, insectKey, "insect");
         viewPager.setAdapter(adapter);
 
         TableLayout table = (TableLayout) findViewById(R.id.appleMagotTable);
@@ -57,8 +57,8 @@ public class AppleMagot extends AppCompatActivity {
             TextView orchard = new TextView(findViewById(R.id.appleMaggotDescription).getContext());
             TextView risk = new TextView(findViewById(R.id.appleMaggotDescription).getContext());
 
-            int sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(8)));
-            int accumulatedDegreeDay = Integer.parseInt(degree_day_cursor.getString(1));
+            double sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(8)));
+            double accumulatedDegreeDay = Double.parseDouble(degree_day_cursor.getString(1));
 
             orchard.setText(myDb.GetOrchardName(Integer.parseInt(biofix_row_cursor.getString(9))) + " ");
             orchard.setTextColor(Color.parseColor("#000000"));

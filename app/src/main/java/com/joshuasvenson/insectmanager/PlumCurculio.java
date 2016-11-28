@@ -25,7 +25,7 @@ public class PlumCurculio extends AppCompatActivity {
         setContentView(R.layout.plum_curculio);
 
         viewPager = (ViewPager)findViewById(R.id.plum_curculio_view_pager);
-        adapter = new CustomSwipeAdapter(this, insectKey);
+        adapter = new CustomSwipeAdapter(this, insectKey, "insect");
         viewPager.setAdapter(adapter);
 
         textView = (TextView) findViewById(R.id.textView);

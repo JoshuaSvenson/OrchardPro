@@ -37,7 +37,7 @@ public class CodlingMoth extends AppCompatActivity {
         setContentView(R.layout.codling_moth);
 
         viewPager = (ViewPager)findViewById(R.id.codling_moth_view_pager);
-        adapter = new CustomSwipeAdapter(this, insectKey);
+        adapter = new CustomSwipeAdapter(this, insectKey, "insect");
         viewPager.setAdapter(adapter);
 
         TableLayout table = (TableLayout) findViewById(R.id.codlingMothTable);
@@ -57,8 +57,8 @@ public class CodlingMoth extends AppCompatActivity {
             TextView orchard = new TextView(findViewById(R.id.codlingMothDescription).getContext());
             TextView risk = new TextView(findViewById(R.id.codlingMothDescription).getContext());
 
-            int sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(8)));
-            int accumulatedDegreeDay = Integer.parseInt(degree_day_cursor.getString(1));
+            double sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(8)));
+            double accumulatedDegreeDay = Double.parseDouble(degree_day_cursor.getString(1));
 
             orchard.setText(myDb.GetOrchardName(Integer.parseInt(biofix_row_cursor.getString(9))) + " ");
             orchard.setTextColor(Color.parseColor("#000000"));
