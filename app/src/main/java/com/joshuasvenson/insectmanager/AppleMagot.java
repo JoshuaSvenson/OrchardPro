@@ -78,12 +78,12 @@ public class AppleMagot extends AppCompatActivity {
 
             orchard.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.6f));
             orchard.setGravity(Gravity.CENTER);
-            orchard.setBackgroundResource(R.color.backgroundColor2);
+            orchard.setBackgroundResource(R.color.backgroundColor);
 
 
             risk.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.4f));
             risk.setGravity(Gravity.CENTER);
-            risk.setBackgroundResource(R.color.backgroundColor2);
+            risk.setBackgroundResource(R.color.backgroundColor);
 
             row.addView(orchard);
             row.addView(risk);

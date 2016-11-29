@@ -85,58 +85,60 @@ public class History extends AppCompatActivity{
 
         Cursor cursor = myDb.GetOrchardBiofix(orchardKey);
 
-        cursor.moveToFirst();
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
 
-        biofix_day = String.valueOf(cursor.getString(5));
-        biofix_month = String.valueOf(cursor.getString(6));
-        biofix_year = String.valueOf(cursor.getString(7));
+            biofix_day = String.valueOf(cursor.getString(5));
+            biofix_month = String.valueOf(cursor.getString(6));
+            biofix_year = String.valueOf(cursor.getString(7));
 
-        DecimalFormat two_digit_formatter = new DecimalFormat("00");
-        biofix_day = two_digit_formatter.format(Integer.parseInt(biofix_day));
-        biofix_month = two_digit_formatter.format(Integer.parseInt(biofix_month));
+            DecimalFormat two_digit_formatter = new DecimalFormat("00");
+            biofix_day = two_digit_formatter.format(Integer.parseInt(biofix_day));
+            biofix_month = two_digit_formatter.format(Integer.parseInt(biofix_month));
 
-        DecimalFormat four_digit_formatter = new DecimalFormat("0000");
-        biofix_year = two_digit_formatter.format(Integer.parseInt(biofix_year));
+            DecimalFormat four_digit_formatter = new DecimalFormat("0000");
+            biofix_year = two_digit_formatter.format(Integer.parseInt(biofix_year));
 
-        String str_date = biofix_year + biofix_month + biofix_day;
+            String str_date = biofix_year + biofix_month + biofix_day;
 
-        formatter = new SimpleDateFormat("yyyyMMdd");
+            formatter = new SimpleDateFormat("yyyyMMdd");
 
-        Date startDate = null;
+            Date startDate = null;
 
-        try {
-            startDate = (Date) formatter.parse(str_date);
-        } catch (ParseException e) {
-            e.printStackTrace();
+            try {
+                startDate = (Date) formatter.parse(str_date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            String date = getSetDate();
+
+            Date endDate = null;
+
+            try {
+                endDate = (Date) formatter.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            long interval = 24 * 1000 * 60 * 60; // 1 hour in millis
+            long endTime = endDate.getTime(); // create your endtime here, possibly using Calendar or Date
+            long curTime = startDate.getTime();
+
+            while (curTime < endTime) {
+                dates.add(new Date(curTime));
+                curTime += interval;
+            }
+
+            String[] array_dates = new String[dates.size()];
+
+            for (int i = 0; i < dates.size(); i++) {
+                Date lDate = (Date) dates.get(i);
+                array_dates[i] = formatter.format(lDate);
+            }
+
+            new letsGetWeather().execute(array_dates);
         }
-
-        String date = getSetDate();
-
-        Date endDate = null;
-
-        try {
-            endDate = (Date) formatter.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        long interval = 24 * 1000 * 60 * 60; // 1 hour in millis
-        long endTime = endDate.getTime(); // create your endtime here, possibly using Calendar or Date
-        long curTime = startDate.getTime();
-
-        while (curTime < endTime) {
-            dates.add(new Date(curTime));
-            curTime += interval;
-        }
-
-        String[] array_dates = new String[dates.size()];
-
-        for (int i = 0; i < dates.size(); i++) {
-            Date lDate = (Date) dates.get(i);
-            array_dates[i] = formatter.format(lDate);
-        }
-
-        new letsGetWeather().execute(array_dates);
 
         cursor.close();
     }
