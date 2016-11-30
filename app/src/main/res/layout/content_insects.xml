@@ -7,7 +7,6 @@
     android:background = "@color/backgroundColor"
     android:padding="20dp">
 
-
     <ListView
         android:id="@+id/listView"
         android:layout_width="wrap_content"
@@ -16,14 +15,5 @@
         android:layout_alignParentTop="true"
         android:paddingTop="55dp">
     </ListView>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_below="@id/listView"
-        android:src="@drawable/apples2" >
-    </ImageView>
 
 </RelativeLayout>
