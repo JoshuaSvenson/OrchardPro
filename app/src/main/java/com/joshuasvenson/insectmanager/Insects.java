@@ -27,7 +27,13 @@ public class Insects extends AppCompatActivity  {
 
         String[] insects = {"Apple Maggot", "Aphids", "Codling Moth", "Plum Curculio", "European Red Mites"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listview, R.id.listText, insects);
+        Integer insectImages[] = {R.drawable.apple_maggot_list_view,
+                R.drawable.aphids_list_view,
+                R.drawable.codling_moth_list_view,
+                R.drawable.plum_curculio_list_view,
+                R.drawable.european_red_mites_list_view};
+
+        ListAdapter adapter = new ListAdapter(this, insects, insectImages);
 
         //listView.setBackgroundResource(R.drawable.apple_maggot);
 

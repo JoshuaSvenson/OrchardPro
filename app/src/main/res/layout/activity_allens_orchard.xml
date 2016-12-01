@@ -18,7 +18,7 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".Home"
-        android:background="@color/backgroundColor2"
+        android:background="@color/backgroundColor"
         android:layout_width="match_parent"
         android:weightSum="1">
 

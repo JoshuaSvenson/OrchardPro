@@ -397,6 +397,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public void deleteBiofixData(String biofixID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from " +BIOFIX_TABLE + " where BIOFIX_ID = ?", new String[] {biofixID});
+    }
+
     ////////////////////////////////////////////////////////////////
     // Insect Table Functions
     ////////////////////////////////////////////////////////////////
