@@ -28,9 +28,6 @@
             android:name=".Orchard"
             android:label="Orchards" />
         <activity
-            android:name=".AddOrchard"
-            android:label="AddOrchard" />
-        <activity
             android:name=".Weather"
             android:label="MyCurrentWeather" />
         <activity
@@ -45,11 +42,8 @@
             android:name=".CodlingMoth"
             android:label="Codling Moth" />
         <activity
-            android:name=".Aphids"
+            android:name=".RosyAppleAphid"
             android:label="Aphids" />
-        <activity
-            android:name=".AddOrchardLocations"
-            android:label="AddOrchardLocations" />
         <activity
             android:name=".AppleMagot"
             android:label="OrchardPro" />
@@ -59,11 +53,6 @@
         <activity
             android:name=".EuropeanRedMites"
             android:label="EuropeanRedMites" />
-        <activity android:name=".Tree_Spacing" />
-        <activity android:name=".Cross_Row_Spread" />
-        <activity android:name=".Plant_Height" />
-        <activity android:name=".Density_Factor" />
-        <activity android:name=".Tractor_Speed" />
         <activity android:name=".AllensOrchard" />
         <activity android:name=".AddOrchardForm" />
         <activity

@@ -19,6 +19,8 @@ public class CustomSwipeAdapter extends PagerAdapter {
             R.drawable.apple_maggot, R.drawable.apple_maggot_eggs, R.drawable.apple_maggot_trap};
     private int[] codling_moth_resources = {R.drawable.codling_moth_2,
             R.drawable.codling_moth_1, R.drawable.codling_moth_5, R.drawable.codling_moth_3, R.drawable.codling_moth_4};
+    private int[] rosy_apple_aphid_resources = {R.drawable.rosy_apple_aphid_4, R.drawable.rosy_apple_aphid_5,
+            R.drawable.rosy_apple_aphid_3, R.drawable.rosy_apple_aphid_1, R.drawable.rosy_apple_aphid_2};
     private int[] fire_blight_resources = {R.drawable.fire_blight_1,
             R.drawable.fire_blight_2, R.drawable.fire_blight_3};
     private Context context;
@@ -32,6 +34,8 @@ public class CustomSwipeAdapter extends PagerAdapter {
                 image_resources = codling_moth_resources;
             } else if (key == "2") {
                 image_resources = apple_maggot_resources;
+            } else if (key == "3") {
+                image_resources = rosy_apple_aphid_resources;
             }
         }
         else if (type == "disease"){

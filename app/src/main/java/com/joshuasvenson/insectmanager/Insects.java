@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class Insects extends AppCompatActivity  {
@@ -25,10 +24,10 @@ public class Insects extends AppCompatActivity  {
 
         listView = (ListView)findViewById(R.id.listView);
 
-        String[] insects = {"Apple Maggot", "Aphids", "Codling Moth", "Plum Curculio", "European Red Mites"};
+        String[] insects = {"Apple Maggot", "Rosy Apple Aphid", "Codling Moth", "Plum Curculio", "European Red Mites"};
 
         Integer insectImages[] = {R.drawable.apple_maggot_list_view,
-                R.drawable.aphids_list_view,
+                R.drawable.rosy_apple_aphid_list_view,
                 R.drawable.codling_moth_list_view,
                 R.drawable.plum_curculio_list_view,
                 R.drawable.european_red_mites_list_view};
@@ -47,7 +46,7 @@ public class Insects extends AppCompatActivity  {
                     startActivity(one);
                 }
                 if(position==1){
-                    Intent two=new Intent(Insects.this,Aphids.class);
+                    Intent two=new Intent(Insects.this,RosyAppleAphid.class);
                     startActivity(two);
                 }
                 if(position == 2){

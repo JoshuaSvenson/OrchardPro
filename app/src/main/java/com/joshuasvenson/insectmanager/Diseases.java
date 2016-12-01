@@ -32,7 +32,7 @@ public class Diseases extends AppCompatActivity {
         String[] diseases = {"Apple Scab", "Powdery Mildew", "Black Rot", "Collar Rot", "Fire Blight"};
 
         Integer diseaseImages[] = {R.drawable.apple_scab_list_view,
-                R.drawable.aphids_list_view,
+                R.drawable.rosy_apple_aphid_list_view,
                 R.drawable.codling_moth_list_view,
                 R.drawable.plum_curculio_list_view,
                 R.drawable.fire_blight_list_view};
@@ -64,8 +64,6 @@ public class Diseases extends AppCompatActivity {
                     Intent five = new Intent(Diseases.this, FireBlight.class);
                     startActivity(five);
                 }
-
-
             }
         });
     }

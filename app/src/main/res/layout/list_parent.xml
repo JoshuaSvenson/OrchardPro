@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-        android:textColor="#A4C739"
+        android:textColor="#000000"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         />

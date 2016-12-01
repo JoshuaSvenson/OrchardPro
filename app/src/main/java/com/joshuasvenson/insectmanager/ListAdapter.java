@@ -21,7 +21,6 @@ public class ListAdapter extends ArrayAdapter<String> {
                        Integer[] ImageName) {
 
         super(context, R.layout.listview, content);
-        // TODO Auto-generated constructor stub
 
         this.Context = context;
         this.ListItemsName = content;
