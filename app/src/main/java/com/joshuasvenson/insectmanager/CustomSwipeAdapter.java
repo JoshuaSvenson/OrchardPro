@@ -21,6 +21,14 @@ public class CustomSwipeAdapter extends PagerAdapter {
             R.drawable.codling_moth_1, R.drawable.codling_moth_5, R.drawable.codling_moth_3, R.drawable.codling_moth_4};
     private int[] fire_blight_resources = {R.drawable.fire_blight_1,
             R.drawable.fire_blight_2, R.drawable.fire_blight_3};
+    private int[] apple_scab_resources = {R.drawable.applescab,
+            R.drawable.applescab2, R.drawable.applescab3};
+    private int[] black_rot_resources = {R.drawable.blackrot,
+            R.drawable.blackrot2, R.drawable.blackrot3};
+    private int[] collar_rot_resources = {R.drawable.collarrot,
+            R.drawable.collarrot2, R.drawable.collarrot3};
+    private int[] powdery_mildew_resources = {R.drawable.powderymildew,
+            R.drawable.powderymildew2, R.drawable.powderymildew3};
     private Context context;
     private LayoutInflater layoutInflater;
 
@@ -37,6 +45,18 @@ public class CustomSwipeAdapter extends PagerAdapter {
         else if (type == "disease"){
             if(key == "1"){
                 image_resources = fire_blight_resources;
+            }
+            if(key == "2"){
+                image_resources = apple_scab_resources;
+            }
+            if(key == "3"){
+                image_resources = black_rot_resources;
+            }
+            if(key=="4"){
+                image_resources = collar_rot_resources;
+            }
+            if(key=="5"){
+                image_resources = powdery_mildew_resources;
             }
         }
     }

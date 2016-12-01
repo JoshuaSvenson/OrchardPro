@@ -1,25 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    android:paddingTop="10dp">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/collarrot" >
-    </ImageView>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="none"
+    android:fillViewport="true">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="10dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"/>
+        android:paddingTop="10dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/collarRotHeader"
+            android:text="Collar Rot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/collarRotScientificHeader"
+            android:text="(Phytophthora)"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/collar_rot_view_pager"
+            android:layout_height="300dp"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:layout_below="@+id/collarRotScientificHeader"
+            ></android.support.v4.view.ViewPager>
+
+        <TableLayout
+            android:id="@+id/collarRotTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical"
+            android:layout_below="@+id/collar_rot_view_pager">
+
+            <TableRow
+                android:id="@+id/collarRotTableRow"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/collarRotDescriptionHeader"
+            android:text="Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/collarRotTable"/>
+
+        <TextView
+            android:id="@+id/collarRotDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/collarRotDescriptionHeader"/>
+
+        <TextView
+            android:id="@+id/collarRotSymptomsHeader"
+            android:text="Symptoms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/collarRotDescription"/>
+
+        <TextView
+            android:id="@+id/collarRotSymptoms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/collarRotDescriptionHeader"/>
+
+        <TextView
+            android:id="@+id/collarRotPreventingHeader"
+            android:text="Preventing Collar Rot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/collarRotSymptoms"/>
+
+        <TextView
+            android:id="@+id/collarRotPreventing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/collarRotPreventingHeader"/>
+
+        <TextView
+            android:id="@+id/collarRotTreatingHeader"
+            android:text="Treating Collar Rot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/collarRotPreventing"/>
+
+        <TextView
+            android:id="@+id/collarRotTreating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/collarRotTreatingHeader"/>
+
+        <TextView
+            android:id="@+id/collarRotFungicidesHeader"
+            android:text="Fungicides"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/collarRotTreating"/>
+
+        <TableLayout
+            android:id="@+id/collarRotInsecticideTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical"
+            android:layout_below="@+id/collarRotFungicidesHeader">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Material"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:text="Rate/acre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"
+                    android:textStyle="bold"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Ridomil Gold EC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="(1.5 fl.oz./1,000 sq. ft."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Aliette"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="5 lb/acre (up to 20lb/year)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+
+        </TableLayout>
+    </LinearLayout>
+</ScrollView>
