@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scrollbars="none"
+    android:background = "@color/backgroundColor"
     android:fillViewport="true">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
@@ -11,27 +12,356 @@
         android:padding="10dp"
         android:paddingTop="10dp">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/plum_curculio_view_pager"
-            android:layout_height="0dp"
-            android:layout_width="fill_parent"
-            android:layout_weight="1"
-            ></android.support.v4.view.ViewPager>
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/plum" >
-        </ImageView>
-
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/plumCurculioHeader"
+            android:text="Plum Curculio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"/>
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/plumCurculioScientificHeader"
+            android:text="(Conotrachelus nenuphar)"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/plum_curculio_view_pager"
+            android:layout_height="300dp"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:layout_below="@+id/plumCurculioScientificHeader"
+            ></android.support.v4.view.ViewPager>
+
+        <TableLayout
+            android:id="@+id/plumCurculioTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical"
+            android:layout_below="@+id/plum_curculio_view_pager">
+
+            <TableRow
+                android:id="@+id/plumCurculioTableRow"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/plumCurculioDescriptionHeader"
+            android:text="Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/plumCurculioTable"/>
+
+        <TextView
+            android:id="@+id/plumCurculioDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/plumCurculioDescriptionHeader"/>
+
+        <TextView
+            android:id="@+id/plumCurculioBiofixHeader"
+            android:text="Biofix Information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/plumCurculioDescription"/>
+
+        <TextView
+            android:id="@+id/plumCurculioBiofix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/plumCurculioDescriptionHeader"/>
+
+        <TextView
+            android:id="@+id/plumCurculioTrapsHeader"
+            android:text="Traps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/plumCurculioBiofix"/>
+
+        <TextView
+            android:id="@+id/plumCurculioTraps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/plumCurculioBiofixHeader"/>
+
+        <TextView
+            android:id="@+id/plumCurculioSprayTimingHeader"
+            android:text="Spray Timing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/plumCurculioTraps"/>
+
+        <TextView
+            android:id="@+id/plumCurculioSprayTiming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            android:layout_below="@+id/plumCurculioSprayTimingHeader"/>
+
+        <TextView
+            android:id="@+id/plumCurculioInsecticidesHeader"
+            android:text="Insecticides"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:layout_below="@+id/plumCurculioSprayTiming"/>
+
+        <TableLayout
+            android:id="@+id/plumCurculioInsecticideTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical"
+            android:layout_below="@+id/plumCurculioInsecticidesHeader">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Material"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:text="Rate/acre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"
+                    android:textStyle="bold"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Imidan 70W"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="2.1-3 lbs."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Actara 25WG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="4.5 oz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Calypso 480SC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="4 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Assail 30SG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="6 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Belay 2.13SC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="6 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Delegate 25WG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="6 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Avaunt 30WG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="5 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Leverage 2.7F"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="4.4-5.1 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Voliam Xpress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="6-12 oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:text="Voliam flexi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp"/>
+                <TextView
+                    android:text="6-7oz."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="19sp" />
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 </ScrollView>

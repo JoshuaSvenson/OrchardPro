@@ -53,6 +53,7 @@ public class Home extends AppCompatActivity {
         myDb.createInsect("Codling Moth", 50.0, 88.0, 225.0);
         myDb.createInsect("Apple Maggot", 50.0, -1, 1000.0);
         myDb.createInsect("Rosy Apple Aphid", 40.0, -1, 200.0);
+        myDb.createInsect("Plum Curculio", 50.0, 88.0, 225.0);
 
         Calendar c = Calendar.getInstance();
 

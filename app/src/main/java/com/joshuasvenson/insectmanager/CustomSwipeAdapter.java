@@ -21,6 +21,8 @@ public class CustomSwipeAdapter extends PagerAdapter {
             R.drawable.codling_moth_1, R.drawable.codling_moth_5, R.drawable.codling_moth_3, R.drawable.codling_moth_4};
     private int[] rosy_apple_aphid_resources = {R.drawable.rosy_apple_aphid_4, R.drawable.rosy_apple_aphid_5,
             R.drawable.rosy_apple_aphid_3, R.drawable.rosy_apple_aphid_1, R.drawable.rosy_apple_aphid_2};
+    private int[] plum_curculio_resources = {R.drawable.plum_curculio_1, R.drawable.plum,
+            R.drawable.plum_2};
     private int[] fire_blight_resources = {R.drawable.fire_blight_1,
             R.drawable.fire_blight_2, R.drawable.fire_blight_3};
     private int[] apple_scab_resources = {R.drawable.applescab,
@@ -45,12 +47,15 @@ public class CustomSwipeAdapter extends PagerAdapter {
             } else if (key == "3") {
                 image_resources = rosy_apple_aphid_resources;
             }
+            else if (key == "4") {
+                image_resources = plum_curculio_resources;
+            }
         }
         else if (type == "disease"){
             if(key == "1"){
                 image_resources = fire_blight_resources;
             }
-            if(key == "2"){
+            /*if(key == "2"){
                 image_resources = apple_scab_resources;
             }
             if(key == "3"){
@@ -61,7 +66,7 @@ public class CustomSwipeAdapter extends PagerAdapter {
             }
             if(key=="5"){
                 image_resources = powdery_mildew_resources;
-            }
+            }*/
         }
     }
 
