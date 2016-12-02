@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scrollbars="none"
+    android:background = "@color/backgroundColor"
     android:fillViewport="true">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
@@ -13,7 +14,7 @@
 
         <TextView
             android:id="@+id/pMildewHeader"
-            android:text="Fire Blight"
+            android:text="Powdery Mildew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"

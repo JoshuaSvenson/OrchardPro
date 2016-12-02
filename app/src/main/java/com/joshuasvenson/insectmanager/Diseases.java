@@ -32,9 +32,9 @@ public class Diseases extends AppCompatActivity {
         String[] diseases = {"Apple Scab", "Powdery Mildew", "Black Rot", "Collar Rot", "Fire Blight"};
 
         Integer diseaseImages[] = {R.drawable.apple_scab_list_view,
-                R.drawable.rosy_apple_aphid_list_view,
-                R.drawable.codling_moth_list_view,
-                R.drawable.plum_curculio_list_view,
+                R.drawable.powdery_mildew_list_view,
+                R.drawable.black_rot_list_view,
+                R.drawable.collar_rot_list_view,
                 R.drawable.fire_blight_list_view};
 
         ListAdapter adapter = new ListAdapter(this, diseases, diseaseImages);
