@@ -22,7 +22,10 @@ public class CustomSwipeAdapter extends PagerAdapter {
     private int[] rosy_apple_aphid_resources = {R.drawable.rosy_apple_aphid_4, R.drawable.rosy_apple_aphid_5,
             R.drawable.rosy_apple_aphid_3, R.drawable.rosy_apple_aphid_1, R.drawable.rosy_apple_aphid_2};
     private int[] plum_curculio_resources = {R.drawable.plum_curculio_1, R.drawable.plum,
-            R.drawable.plum_2};
+            R.drawable.plum_2, R.drawable.plum_4};
+    private int[] european_red_mites_resources = {R.drawable.european_red_mites_1, R.drawable.european_red_mites_5,
+            R.drawable.european_red_mites_3, R.drawable.european_red_mites_2, R.drawable.european_red_mites_4};
+
     private int[] fire_blight_resources = {R.drawable.fire_blight_1,
             R.drawable.fire_blight_2, R.drawable.fire_blight_3};
     private int[] apple_scab_resources = {R.drawable.apple_scab_1, R.drawable.applescab,
@@ -48,6 +51,8 @@ public class CustomSwipeAdapter extends PagerAdapter {
                 image_resources = rosy_apple_aphid_resources;
             } else if (key == "4") {
                 image_resources = plum_curculio_resources;
+            } else if (key == "5") {
+                image_resources = european_red_mites_resources;
             }
         }
         else if (type == "disease"){

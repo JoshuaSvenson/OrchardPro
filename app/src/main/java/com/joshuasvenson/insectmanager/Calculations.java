@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
@@ -48,7 +50,6 @@ public class Calculations extends AppCompatActivity {
 
         GPM2.setText("Gpm (gallons per minute) = " + gpm.getGpm2() + " per nozzle");
 
-
         addListenerOnButton();
 
     }
@@ -60,13 +61,10 @@ public class Calculations extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-                //Create new activity from the Orchard class
+                //Create new activity from the gpm class
                 Intent intent = new Intent(context, gpm.class);
-                //Starts activity and opens up the Orchards page
+                //Starts activity and opens up the gpm calculator page
                 startActivity(intent);
-
-
-
             }
 
         });

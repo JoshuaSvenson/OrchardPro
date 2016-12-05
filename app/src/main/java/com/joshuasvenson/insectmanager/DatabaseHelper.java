@@ -277,7 +277,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(ORCHARD_STATION, station);
         db.update(ORCHARD_TABLE, contentValues, "ID = ?", new String[]{orchardKey});
         return true;
-
     }
 
     ////////////////////////////////////////////////////////////////
