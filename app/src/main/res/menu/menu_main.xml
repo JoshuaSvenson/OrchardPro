@@ -8,7 +8,23 @@
         android:title="Home"
         app:showAsAction="never" />
     <item
+        android:id="@+id/Insects_bar"
+        android:title="Insects"
+        android:orderInCategory="101" />
+
+    <item
+        android:id="@+id/Diseases_bar"
+        android:title="Diseases"
+        android:orderInCategory="101" />
+
+    <item
+        android:id="@+id/LocalWeather_bar"
+        android:title="Local Weather"
+        android:orderInCategory="101" />
+
+    <item
         android:id="@+id/Settings_bar"
         android:title="Settings"
         android:orderInCategory="101" />
+
 </menu>

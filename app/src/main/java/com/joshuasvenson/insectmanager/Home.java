@@ -100,11 +100,27 @@ public class Home extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        else if(id ==R.id.Insects_bar) {
+            Intent intent = new Intent(context, Insects.class);
+            startActivity(intent);
+            return true;
+        }
+        else if(id ==R.id.Diseases_bar) {
+            Intent intent = new Intent(context, Diseases.class);
+            startActivity(intent);
+            return true;
+        }
+        else if(id ==R.id.LocalWeather_bar) {
+            Intent intent = new Intent(context, Weather1.class);
+            startActivity(intent);
+            return true;
+        }
         else if(id ==R.id.Settings_bar) {
             Intent intent = new Intent(context, SettingsToolbar.class);
             startActivity(intent);
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }

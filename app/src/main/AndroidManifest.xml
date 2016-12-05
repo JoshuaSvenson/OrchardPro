@@ -28,9 +28,6 @@
             android:name=".Orchard"
             android:label="Orchards" />
         <activity
-            android:name=".Weather"
-            android:label="MyCurrentWeather" />
-        <activity
             android:name=".Insects"
             android:label="Insects"
             android:theme="@style/AppTheme.NoActionBar" />
