@@ -56,6 +56,8 @@ public class AllensOrchard extends AppCompatActivity {
         Cursor cursor = myDb.query_row(name);
         cursor.moveToFirst();
 
+        setTitle(name);
+
         orchard_key = cursor.getString(0);
         orchardName.setText(String.valueOf(cursor.getString(1)));
 

@@ -16,8 +16,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Home"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="Orchard Pro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,29 +28,29 @@
             android:label="Orchards" />
         <activity
             android:name=".Insects"
-            android:label="Insects"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Insects" />
         <activity
             android:name=".Diseases"
-            android:label="Diseases"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Diseases"/>
         <activity
             android:name=".CodlingMoth"
             android:label="Codling Moth" />
         <activity
             android:name=".RosyAppleAphid"
-            android:label="Aphids" />
+            android:label="Rosy Apple Aphid" />
         <activity
             android:name=".AppleMagot"
-            android:label="OrchardPro" />
+            android:label="Apple Maggot" />
         <activity
             android:name=".PlumCurculio"
-            android:label="OrchardPro" />
+            android:label="Plum Curculio" />
         <activity
             android:name=".EuropeanRedMites"
             android:label="EuropeanRedMites" />
-        <activity android:name=".AllensOrchard" />
-        <activity android:name=".AddOrchardForm" />
+        <activity android:name=".AllensOrchard"
+            android:label=""/>
+        <activity android:name=".AddOrchardForm"
+            android:label = "Add Orchard"/>
         <activity
             android:name=".AppleScab"
             android:label="AppleScab" />
@@ -69,21 +68,28 @@
             android:label="PowderyMildew" />
         <activity
             android:name=".History"
-            android:label="History" />
+            android:label= "Spray Schedule" />
         <activity
             android:name=".Weather1"
             android:label="Local Weather" />
         <activity
             android:name=".BioFix"
             android:label="Biofix" />
-        <activity android:name=".BiofixList" />
+        <activity android:name=".BiofixList"
+            android:label="Add Biofix"/>
         <activity android:name=".SpraySchedule" />
-        <activity android:name=".Calculations" />
-        <activity android:name=".OrchardWeather" />
-        <activity android:name=".OrchardSettings" />
-        <activity android:name=".SettingsToolbar" />
-        <activity android:name=".gpm" />
+        <activity android:name=".Calculations"
+            android:label="Calculations"/>
+        <activity android:name=".OrchardWeather"
+            android:label="My Orchard's Weather"/>
+        <activity android:name=".OrchardSettings"
+            android:label="Orchard Settings"/>
+        <activity android:name=".SettingsToolbar"
+            android:label="Settings Toolbar"/>
+        <activity android:name=".gpm"
+            android:label="Calculate GPM"/>
         <activity android:name=".CalculateDDBase"></activity>
+
     </application>
 
 </manifest>
