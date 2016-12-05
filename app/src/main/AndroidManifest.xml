@@ -81,8 +81,9 @@
         <activity android:name=".Calculations" />
         <activity android:name=".OrchardWeather" />
         <activity android:name=".OrchardSettings" />
-        <activity android:name=".SettingsToolbar"></activity>
-        <activity android:name=".gpm"></activity>
+        <activity android:name=".SettingsToolbar" />
+        <activity android:name=".gpm" />
+        <activity android:name=".CalculateDDBase"></activity>
     </application>
 
 </manifest>

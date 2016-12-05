@@ -105,19 +105,20 @@ public class PlumCurculio extends AppCompatActivity {
                 "Adult plum curculio are generally 4 to 6 mm long, they have specks with brown, black and grey colors  " +
                 "Apple maggot eggs get laid underneath the skin of the fruit where the larvae hatch and develop inside. " +
                 "\n\n"+
-                "Damage: Uncontrolled plum curculio would be internally damaged to fruits listed above. " +
-                "The damages make the fruit drop prematurely.");
+                "Damage: Uncontrolled plum curculio would be internally damaging to fruits listed above. " +
+                "The damage can make the fruit drop prematurely.");
 
         biofix_info.setText("Application of appropriate insecticide during the pink and petal-fall stages of apples. " +
-                "An significant prevention for curculio is destroying the fallen, damaged host fruits before the adults emerge." + "Bioxfix at petal fall is also really important.");
+                "Removing the damaged, host fruit before adults emerge can significantly help prevention." +
+                "Bioxfix at petal fall is also really important.");
 
         traps.setText("Growers can use Dead-inn Pyramid trap for plum curculio  " +
                 "Unassembled dark green pyramid composed of heavy duty corrugated plastic, green entry cone, square collection jar, one bungee cord for securing collection jar, four 6” anchor pins for securing to ground. "
-               +"(information from http://www.agbio-inc.com/dead-inn-pyramid-trap.html)");
+               /*"(information from http://www.agbio-inc.com/dead-inn-pyramid-trap.html)"*/);
 
         spray_timing.setText("Spraying needs to begin during the first few days of warm and humid weather after petal fall " +
                 " with maximum temperature of 70" + (char) 0x00B0 + "F."+ "Avoid the low temperature and rains because spray would be washed off " +"A spray residue should be maintained for 308 DD base 50 following petal fall."
-               +"(information from http://extension.psu.edu/plants/tree-fruit/insects-mites/factsheets/plum-curculio)" );
+               /*"(information from http://extension.psu.edu/plants/tree-fruit/insects-mites/factsheets/plum-curculio)"*/ );
 
     }
 
