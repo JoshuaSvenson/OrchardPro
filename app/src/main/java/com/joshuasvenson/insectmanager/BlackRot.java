@@ -47,7 +47,14 @@ public class BlackRot extends AppCompatActivity {
                 "out and turn yellow to brown. Over time, the spots expand and heavily infected leaves drop from the " +
                 "tree. Infected branches or limbs will show characteristic red-brown sunken areas that expand each year.");
 
-        biofix_info.setText("");
+        biofix_info.setText("To control this disease, remove dead material from the planting. Prune out dead or " +
+                "diseased branches, and pick all mummy fruits remaining on the trees, as these are sources of " +
+                "spores for future infections. All infected plant parts should be burned, buried, included it " +
+                "in household trash, or sent to a municipal composting site. Be sure to remove the stumps of " +
+                "any apple trees you cut down, as dead stumps can be a source of spores.\n" +
+                "\n" + "All winter pruning, of healthy or dead tissue, must be completed during freezing weather, " +
+                "as the fungus is not active until spring. Pruning cuts made in winter will have dried out and " +
+                "will not be susceptible to the disease by the time black rot spores are available to infect them.");
 
         spray_timing.setText("Treating black rot on apple trees starts with sanitation. Because fungal " +
                 "spores overwinter on fallen leaves, mummified fruits, dead bark and cankers, it’s " +

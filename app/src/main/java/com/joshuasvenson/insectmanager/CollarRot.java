@@ -43,14 +43,14 @@ public class CollarRot extends AppCompatActivity {
         description.setText("Collar rot is a fungal disease that begins at the tree union. Over time, the " +
                 "fungus will girdle the trunk, which prevents important nutrients and water from moving " +
                 "into the vascular system of the plant. The causal agent is a water mold named Phytophthora. " +
-                "Treating collar rot starts with creating a well-drained planting site and watching young trees " +
+                "\n\nTreating collar rot starts with creating a well-drained planting site and watching young trees " +
                 "carefully for any signs of disease. Reddish leaves in late summer may be the first identification " +
                 "of collar rot. Trees may then develop poor twig growth, small fruit and smaller, discolored leaves.");
 
         symptoms_info.setText("Apple trees with collar rot decline at the same rate as the fungus spreads " +
                 "through their root or collar tissues. The disease advances most quickly during warm, wet " +
                 "spring weather. Initial signs of infection include wilted, early-dropping yellowed or purple " +
-                "spring foliage, sparse, undersized fruit and stunted growth. Peeling back the darkened crown " +
+                "spring foliage, sparse, undersized fruit and stunted growth. \n\nPeeling back the darkened crown " +
                 "bark of trees with advanced collar rot reveals wood discolored from healthy, pale green to " +
                 "rusty brown. Fatalities are highest in young apple trees, because the fungi so rapidly engulf " +
                 "their small root systems.");
@@ -59,7 +59,7 @@ public class CollarRot extends AppCompatActivity {
                 "Give your trees a location with well-draining, loose soil where water can’t collect around " +
                 "their crowns. Alternatively, plant them on raised, drainage-improving berms. Watering more " +
                 "frequently, but for shorter periods, provides adequate water without saturating the soil. " +
-                "Mefenoxam-fungicide soil drench applied immediately after planting, and every spring and " +
+                "\n\nMefenoxam-fungicide soil drench applied immediately after planting, and every spring and " +
                 "fall until the trees begin fruiting, discourages infection. Always apply mefenoxam according " +
                 "to the manufacturer's specifications. Finally, use apple cultivars grafted to Phytophthora-resistant " +
                 "rootstocks, such as M 9 or M 26.");
