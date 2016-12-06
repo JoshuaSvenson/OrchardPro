@@ -20,11 +20,15 @@ import java.util.regex.Pattern;
 
 public class XMLParser_Station {
 
-    // Get you own API Key here: http://www.wunderground.com/weather/api
+    // Our group's API Key here: http://www.wunderground.com/weather/api
     static final String API_KEY = "61ed0556abc8b758";
 
+    //constructor
     public XMLParser_Station() {}
 
+    //method that will get the XML string from the web after the API call
+    //Parameter: weather station given by the user
+    //Returns a string which is all the XML string from the API call
     public String getWeatherData(String station) {
 
         String url = "http://api.wunderground.com/api/" + API_KEY
@@ -61,6 +65,7 @@ public class XMLParser_Station {
         }
         return weatherData;
     }
+
 
     public String getLatitude(String weatherData) {
 
