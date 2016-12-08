@@ -34,7 +34,7 @@ public class History extends AppCompatActivity{
 
     String orchardKey;
 
-    JSONParser gw = new JSONParser();
+    XMLParser gw = new XMLParser();
 
     String lat = "41.66";
     String lon = "-91.53";

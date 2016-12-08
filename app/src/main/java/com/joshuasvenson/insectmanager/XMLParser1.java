@@ -19,12 +19,12 @@ import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class JSONParser1 {
+public class XMLParser1 {
 
     // Get you own API Key here: http://www.wunderground.com/weather/api
     static final String API_KEY = "61ed0556abc8b758";
 
-    public JSONParser1() {}
+    public XMLParser1() {}
 
     public String getWeatherData(String lat, String lon) {
 

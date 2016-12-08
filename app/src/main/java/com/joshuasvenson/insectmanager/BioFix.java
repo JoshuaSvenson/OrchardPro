@@ -36,7 +36,7 @@ public class BioFix extends AppCompatActivity {
 
     String orchardKey;
 
-    JSONParser gw = new JSONParser();
+    XMLParser gw = new XMLParser();
     String lat;
     String lon;
     List<Date> dates = new ArrayList<Date>();

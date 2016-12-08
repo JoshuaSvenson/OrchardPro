@@ -18,7 +18,7 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class OrchardWeather extends AppCompatActivity {
 
-    JSONParser1 gw = new JSONParser1();
+    XMLParser1 gw = new XMLParser1();
 
     public static String lat;
     public static String lon;

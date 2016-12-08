@@ -66,7 +66,13 @@ public class XMLParser_Station {
         return weatherData;
     }
 
-
+    /*
+    Name: getLatitude
+    Description: This method will parse an XML string into Java objects and get the value of the
+    latitude value from the XML string
+    Paremeters: A string in XML format
+    Returns: String with the latitude value from the XML string
+     */
     public String getLatitude(String weatherData) {
 
         String name = null;
@@ -79,6 +85,13 @@ public class XMLParser_Station {
         return name;
     }
 
+    /*
+    Name: getLongitude
+    Description: This method will parse an XML string into Java objects and get the value of the
+    longitude value from the XML string
+    Paremeters: A string in XML format
+    Returns: String with the longitude value from the XML string
+     */
     public String getLongitude(String weatherData) {
 
         String name = null;
@@ -91,7 +104,13 @@ public class XMLParser_Station {
         return name;
     }
 
-
+    /*
+    Name: getStation
+    Description: This method will parse an XML string into Java objects and get the value of the
+    station value from the XML string
+    Paremeters: A string in XML format
+    Returns: String with the station id value from the XML string given the coordinates of the location
+     */
     public String getStation(String weatherData) {
 
         String name = null;
@@ -103,12 +122,6 @@ public class XMLParser_Station {
         }
         return name;
     }
-
-
-
-
-
-
 
     /////////////////////////////////////////////////////////////
     // Add methods as needed for addition data retrieval from XML

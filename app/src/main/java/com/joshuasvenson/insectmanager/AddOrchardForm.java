@@ -21,7 +21,7 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
 
 public class AddOrchardForm extends AppCompatActivity {
 
-    JSONParser1 xml = new JSONParser1();
+    XMLParser1 xml = new XMLParser1();
     XMLParser_Station xml2 = new XMLParser_Station();
 
     Button SubmitButton;
