@@ -12,6 +12,13 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*
+Name: XMLParser
+Description: This class provides the code for fetching data from the API server Weather underground correponding to
+current conditions of the weather according to the coordinates values, latitude and longitude, for each day
+starting from the start date given in the API call.
+Layout File: No activity
+ */
 public class XMLParser {
 
     HttpURLConnection conn;
@@ -60,19 +67,14 @@ public class XMLParser {
         }
         return weatherData;
     }
-    
-    public String getConditions(String weatherData) {
 
-        String conditions = null;
-
-        Pattern p = Pattern.compile("<weather>(.*?)</weather>");
-        Matcher m = p.matcher(weatherData);
-        if (m.find()) {
-            conditions = m.toMatchResult().group(1);
-        }
-        return conditions;
-    }
-
+    /*
+    Name: getMaxTemp
+    Description: This method will parse an XML string into Java objects and get the value of the
+    maximum temperature in fahrenheit from the XML string
+    Paremeters: A string in XML format
+    Returns: String with the maximum temperature value from the XML string
+    */
     public String getMaxTemp(String weatherData) {
 
         String maxTemp = null;
@@ -85,6 +87,13 @@ public class XMLParser {
         return maxTemp;
     }
 
+    /*
+    Name: getMinTemp
+    Description: This method will parse an XML string into Java objects and get the value of the
+    minimum temperature in fahrenheit of a specific day from the XML string
+    Paremeters: A string in XML format
+    Returns: String with the minimum temperature value from the XML string
+    */
     public String getMinTemp(String weatherData) {
 
         String minTemp = null;

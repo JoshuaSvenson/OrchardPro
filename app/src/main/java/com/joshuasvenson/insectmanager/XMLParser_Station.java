@@ -18,6 +18,12 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*
+Name: XMLParser_Station
+Description: This class provides the code for fetching data from the API server Weather underground correponding to
+current conditions of the weather according to the value of the station in the specific location of the orchard.
+Layout File: No activity
+ */
 public class XMLParser_Station {
 
     // Our group's API Key here: http://www.wunderground.com/weather/api
@@ -26,9 +32,12 @@ public class XMLParser_Station {
     //constructor
     public XMLParser_Station() {}
 
-    //method that will get the XML string from the web after the API call
-    //Parameter: weather station given by the user
-    //Returns a string which is all the XML string from the API call
+    /*
+    Name: getWeatherData
+    Description: Fecth data from web server though API call according to coordinates values
+    Parameters: String station value
+    Returns: String, XML string returned from the API call web server
+    */
     public String getWeatherData(String station) {
 
         String url = "http://api.wunderground.com/api/" + API_KEY

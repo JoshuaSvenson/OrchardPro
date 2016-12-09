@@ -119,7 +119,7 @@ public class Weather1 extends AppCompatActivity {
 
         protected String doInBackground(Void... params) {
 
-
+            //Assign String weatherData to the XML string to be returned after the API call
             String weatherData = gw.getWeatherData(lat, lon);
 
             return weatherData;
@@ -127,6 +127,7 @@ public class Weather1 extends AppCompatActivity {
 
         protected void onPostExecute(String weatherData) {
 
+            // Set textiews to their references in the corresponding xml file weather1.xml
             city =(TextView)findViewById(R.id.city_field);
             date=(TextView)findViewById(R.id.updated_field);
             details = (TextView) findViewById(R.id.details_field);
@@ -138,9 +139,11 @@ public class Weather1 extends AppCompatActivity {
             precipToday = (TextView)  findViewById(R.id.preciptoday_field);
             station = (TextView) findViewById(R.id.weather_station);
 
+            //initializes date object
             DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
             Date dateobj = new Date();
 
+            //Assign returning strings from the parsing done in XMLParser1 to string values in this class
             String name = gw.getName(weatherData);
             String conditions = gw.getConditions(weatherData);
             String humidity_string = gw.getHumidity(weatherData);
@@ -153,6 +156,7 @@ public class Weather1 extends AppCompatActivity {
 
             Station = w_station;
 
+            //Set texts in textviews in the screen
             city.setText(name);
             date.setText(df.format(dateobj));
             details.setText(conditions);
