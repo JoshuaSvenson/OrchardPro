@@ -20,8 +20,15 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
  * Created by anaso_000 on 10/9/2016.
  */
 
+/*
+Name: AppleMagot
+Description: This class provides the code for the AppleMagot screen and activity of the app and
+manages the button clicks and info to be displayehd in the textviews.
+Layout File: apple_magot.xml
+ */
 public class AppleMagot extends AppCompatActivity {
 
+    //Initializes Textviews of activity
     TextView description;
     TextView biofix_info;
     TextView traps;
@@ -30,8 +37,15 @@ public class AppleMagot extends AppCompatActivity {
     String insectKey = "2";
 
     ViewPager viewPager;
+
     CustomSwipeAdapter adapter;
 
+    /*
+    Name: onCreate
+    Description: Creates activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,14 +108,17 @@ public class AppleMagot extends AppCompatActivity {
             biofix_row_cursor.moveToNext();
             degree_day_cursor.moveToNext();
         }
+
         biofix_row_cursor.close();
         degree_day_cursor.close();
 
+        //Set the textviews to their references in the corresponding xml file (apple_magot.xml)
         description = (TextView) findViewById(R.id.appleMaggotDescription);
         biofix_info = (TextView) findViewById(R.id.appleMaggotBiofix);
         traps = (TextView) findViewById(R.id.appleMaggotTraps);
         spray_timing = (TextView) findViewById(R.id.appleMaggotSprayTiming);
 
+        //set text for the description textview of the activity
         description.setText("The apple maggot larva is a typical fly larva which looks like a creamy white cylindrical " +
         "maggot about 10mm long. Adult apple maggots are slightly smaller than house flys and are black with white bands. " +
         "Apple maggot eggs get laid underneath the skin of the fruit where the larvae hatch and develop inside. " +
@@ -110,14 +127,17 @@ public class AppleMagot extends AppCompatActivity {
         "misshapen and cause the fruit to drop prematurely. Small dimples in the fruit may be an indication " +
         "of eggs laid underneath the skin.");
 
+        //set text for the biofix_info textview in the activity
         biofix_info.setText("Apple maggot pupae overwinter underground and will energe as adults the following summer. " +
         "As a result, Biofix is set as January 1.");
 
+        //set text for the traps textview in the activity
         traps.setText("An apple maggot trap consists of a red sphere coated with TangleFoot. The sticky TangleFoot " +
         "on the red sphere is designed to trap adult females attemping to lay eggs. These traps should be placed " +
         "in the tree canopy just as trees finish blossoming. Traps should be placed high in the brightest " +
         "areas of the tree with one trap for every 100-150 apples.");
 
+        //set text for the spray_timing textview in the activity
         spray_timing.setText("Spraying should begin within a few days of an apple maggot being caught in the trap " +
                 " or when apple maggots begin emerging from the ground around 900 degree days " +
                 "(base 50" + (char) 0x00B0 + "F). Check pesticide label for spray interval, but generally " +
@@ -125,10 +145,6 @@ public class AppleMagot extends AppCompatActivity {
                 "being caught in traps.");
 
     }
-
-
-
-
 
     /*
     Name: onCreateOptionsMenu

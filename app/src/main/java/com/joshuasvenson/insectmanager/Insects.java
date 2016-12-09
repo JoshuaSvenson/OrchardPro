@@ -10,20 +10,36 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+/*
+Name: Insects
+Description: This class provides the code for the Insects screen and activity of the app and
+manages the button clicks and info to be displayehd in the textviews.
+Layout File: activity_insects.xml
+ */
 public class Insects extends AppCompatActivity  {
+    //Initializes listview in activity
     ListView listView;
+
     String insects[];
 
+    /*
+    Name: onCreate
+    Description: Creates activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insects);
 
-
+        //Set listview to its reference in the corresponding xml file (activity_insects.xml)
         listView = (ListView)findViewById(R.id.listView);
 
+        // Initializes the array of strings of the insects that will be inserted into the listview
         String[] insects = {"Apple Maggot", "Rosy Apple Aphid", "Codling Moth", "Plum Curculio", "European Red Mites"};
 
+        //Initializes the array of the images
         Integer insectImages[] = {R.drawable.apple_maggot_list_view,
                 R.drawable.rosy_apple_aphid_list_view,
                 R.drawable.codling_moth_list_view,
@@ -36,6 +52,8 @@ public class Insects extends AppCompatActivity  {
 
         listView.setAdapter(adapter);
 
+        //Set Click listener for the listview in the screen, and create an intent for each different position
+        //clicked by the user.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
@@ -64,8 +82,6 @@ public class Insects extends AppCompatActivity  {
             }
         });
     }
-
-
 
     /*
     Name: onCreateOptionsMenu

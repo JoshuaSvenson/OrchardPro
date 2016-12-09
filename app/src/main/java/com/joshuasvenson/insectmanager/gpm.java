@@ -15,18 +15,30 @@ import android.widget.TextView;
  * Created by anaso_000 on 11/22/2016.
  */
 
+/*
+Name: gpm
+Description: This class provides the code for the gpm screen and activity of the app and
+manages the button clicks and info to be displayed.
+Layout File: gpm.xml
+ */
 public class gpm extends AppCompatActivity {
 
+    //Initializes edittexts in the xml file
     EditText gpa;
     EditText W;
     EditText mph;
-    Button Save;
-    TextView gpm;
 
     EditText GPA;
     EditText W2;
     EditText MPH;
+
+    //Initializes the textview in screen
+    TextView gpm;
+
     TextView GPM;
+
+    //Initializes the button in screen
+    Button Save;
 
     double gallons_acre;
     double spacing;
@@ -40,30 +52,44 @@ public class gpm extends AppCompatActivity {
 
     static String  gallons_minute ="0";
 
+    /*
+    Name: onCreate
+    Description: Creates activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gpm);
 
+        //Set the Edittexts  and textviews to their references in the corresponding xml file (content_main.xml)
         gpa = (EditText) findViewById(R.id.addOrchardForm_gpa);
         mph = (EditText) findViewById(R.id.addOrchardForm_mph);
         W = (EditText) findViewById(R.id.addOrchardForm_W);
         Save = (Button) findViewById(R.id.addOrchardForm_Submit);
         gpm = (TextView) findViewById(R.id.addOrchardForm_gpm);
 
-
         GPA = (EditText) findViewById(R.id.addOrchardForm_GPA);
         MPH = (EditText) findViewById(R.id.addOrchardForm_MPH);
         W2 = (EditText) findViewById(R.id.addOrchardForm_W2);
         GPM = (TextView) findViewById(R.id.addOrchardForm_GPM);
 
+        //Add listener to the button
         addListenerOnButton();
 
     }
 
+    /*
+    Name: addListenerOnButton
+    Description: Adds listeners on the button SAVE on the page and provides functionality when the button is clicked
+    Parameters: None
+    Returns: void
+     */
     private void addListenerOnButton() {
         final Context context = this;
 
+        //Set listener for the Save button
         Save.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -87,18 +113,25 @@ public class gpm extends AppCompatActivity {
         });
     }
 
-
+    /*
+    Name: getGpm
+    Description: get Gpm value
+    Parameters: None
+    Returns: String, gpm value
+     */
     public static String getGpm(){
         return gallons_minute;
     }
 
+    /*
+    Name: getGpm2
+    Description: get Gpm value
+    Parameters: None
+    Returns: String, gpm value
+     */
     public static String getGpm2(){
         return gallons_minute2;
     }
-
-
-
-
 
     /*
     Name: onCreateOptionsMenu

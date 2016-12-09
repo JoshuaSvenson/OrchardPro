@@ -14,19 +14,36 @@ import android.widget.ListView;
  * Created by anaso_000 on 10/9/2016.
  */
 
+/*
+Name: Diseases
+Description: This class provides the code for the Insects screen and activity of the app and
+manages the button clicks and info to be displayehd in the textviews.
+Layout File: activity_diseases.xml
+ */
 public class Diseases extends AppCompatActivity {
+    //Initializes listview in the screen
     ListView listView;
+
     String diseases[];
 
+    /*
+    Name: onCreate
+    Description: Creates activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diseases);
 
+        //Set listview to its reference in the corresponding xml file (activity_diseases.xml)
         listView = (ListView)findViewById(R.id.listView);
 
+        // Initializes the array of strings of the diseases that will be inserted into the listview
         String[] diseases = {"Apple Scab", "Powdery Mildew", "Black Rot", "Collar Rot", "Fire Blight"};
 
+        //Initializes the array of the images
         Integer diseaseImages[] = {R.drawable.apple_scab_list_view,
                 R.drawable.powdery_mildew_list_view,
                 R.drawable.black_rot_list_view,
@@ -37,6 +54,8 @@ public class Diseases extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+        //Set Click listener for the listview in the screen, and create an intent for each different position
+        //clicked by the user.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
