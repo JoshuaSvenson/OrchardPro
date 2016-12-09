@@ -27,7 +27,11 @@ import java.util.List;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
-
+/*
+Name: BioFix
+Description: This class provides the code for page where users add a biofix for an insect
+Layout File: activity_bio_fix.xml
+ */
 public class BioFix extends AppCompatActivity {
 
     Spinner insectSpinner;

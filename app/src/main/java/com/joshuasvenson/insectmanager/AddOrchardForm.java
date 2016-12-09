@@ -19,6 +19,11 @@ import android.widget.Toast;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/*
+Name: AddOrchardForm
+Description: This class provides the code for the form where users add an orchard
+Layout File: activity_add_orchard_form.xml
+ */
 public class AddOrchardForm extends AppCompatActivity {
 
     JSONParser1 xml = new JSONParser1();
@@ -108,10 +113,6 @@ public class AddOrchardForm extends AppCompatActivity {
 
         }
     }
-
-
-
-
 
     public class autofillCoordinates extends AsyncTask<Void, Void, String> {
 

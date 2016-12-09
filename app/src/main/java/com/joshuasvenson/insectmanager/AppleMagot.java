@@ -16,10 +16,11 @@ import android.widget.TextView;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
-/**
- * Created by anaso_000 on 10/9/2016.
+/*
+Name: AppleMagot
+Description: This class provides the code for the Apple Maggot Insect page
+Layout File: apple_magot.xml (magot should be spelled with two g's)
  */
-
 public class AppleMagot extends AppCompatActivity {
 
     TextView description;

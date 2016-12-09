@@ -9,10 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-/**
- * Created by anaso_000 on 10/9/2016.
+/*
+Name: BlackRot
+Description: This class provides the code for the Black Rot tab in the Diseases page
+Layout File: black_rot.xml
  */
-
 public class BlackRot extends AppCompatActivity {
 
     TextView description;

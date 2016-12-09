@@ -22,6 +22,11 @@ import java.io.ByteArrayOutputStream;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/*
+Name: AllensOrchard
+Description: This class provides the code for the orchard the user creates
+Layout File: activity_allens_orchard.xml
+ */
 public class AllensOrchard extends AppCompatActivity {
     Button deleteButton;
 

@@ -53,19 +53,19 @@
             android:label = "Add Orchard"/>
         <activity
             android:name=".AppleScab"
-            android:label="AppleScab" />
+            android:label="Apple Scab" />
         <activity
             android:name=".FireBlight"
-            android:label="FireBlight" />
+            android:label="Fire Blight" />
         <activity
             android:name=".BlackRot"
-            android:label="BlackRot" />
+            android:label="Black Rot" />
         <activity
             android:name=".CollarRot"
-            android:label="CollarRot" />
+            android:label="Collar Rot" />
         <activity
             android:name=".PowderyMildew"
-            android:label="PowderyMildew" />
+            android:label="Powdery Mildew" />
         <activity
             android:name=".History"
             android:label= "Spray Schedule" />
@@ -88,7 +88,6 @@
             android:label="Settings Toolbar"/>
         <activity android:name=".gpm"
             android:label="Calculate GPM"/>
-        <activity android:name=".CalculateDDBase"></activity>
 
     </application>
 

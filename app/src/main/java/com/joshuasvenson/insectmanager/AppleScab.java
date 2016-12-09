@@ -9,10 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-/**
- * Created by anaso_000 on 10/9/2016.
+/*
+Name: AppleScab
+Description: This class provides the code for the Apple Scab tab ins the Diseases page
+Layout File: apple_scab.xml
  */
-
 public class AppleScab extends AppCompatActivity {
 
     TextView description;

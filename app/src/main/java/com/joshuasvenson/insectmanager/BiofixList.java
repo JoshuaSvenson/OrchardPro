@@ -18,6 +18,11 @@ import android.widget.TextView;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/*
+Name: BiofixList
+Description: This class provides the code for the page that lists all of the user's biofix dates
+Layout File: biofix_list.xml
+ */
 public class BiofixList extends AppCompatActivity {
 
     Button AddBiofixButton;
