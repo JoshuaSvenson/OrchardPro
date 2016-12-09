@@ -75,15 +75,6 @@ public class Home extends AppCompatActivity {
         return true;
     }
 
-    /*
-    Name: onOptionsItemSelected
-    Description: This hook is called whenever an item in your options menu is selected. The default implementation
-                simply returns false to have the normal processing happen (calling the item's Runnable or sending
-                a message to its Handler as appropriate). You can use this method for any items for which you would
-                like to do processing without those other facilities.
-    Parameters: MenuItem item - The menu item that was selected.
-    Returns: boolean - Return false to allow normal menu processing to proceed, true to consume it here.
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

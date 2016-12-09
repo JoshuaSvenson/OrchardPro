@@ -16,34 +16,51 @@ import android.widget.TextView;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/**
+ * Created by anaso_000 on 10/9/2016.
+ */
+
 /*
 Name: AppleMagot
-Description: This class provides the code for the Apple Maggot Insect page
-Layout File: apple_magot.xml (magot should be spelled with two g's)
+Description: This class provides the code for the AppleMagot screen and activity of the app and
+manages the button clicks and info to be displayehd in the textviews.
+Layout File: apple_magot.xml
  */
 public class AppleMagot extends AppCompatActivity {
 
+    //Initializes Textviews of activity
     TextView description;
     TextView biofix_info;
     TextView traps;
     TextView spray_timing;
 
+    //Apple maggot is second insect in table
     String insectKey = "2";
 
     ViewPager viewPager;
+
     CustomSwipeAdapter adapter;
 
+    /*
+    Name: onCreate
+    Description: Creates activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.apple_magot);
 
+        //Sets the viewpager so that sliding pictures will work
         viewPager = (ViewPager)findViewById(R.id.apple_maggot_view_pager);
         adapter = new CustomSwipeAdapter(this, insectKey, "insect");
         viewPager.setAdapter(adapter);
 
+        //The table that shows insect risk
         TableLayout table = (TableLayout) findViewById(R.id.appleMagotTable);
 
+        //Get information to fill out insect risk table
         Cursor biofix_row_cursor = myDb.GetInsectBiofix(insectKey);
         Cursor degree_day_cursor = myDb.GetAllDegreeDaysForInsects(insectKey);
         int biofixCount = biofix_row_cursor.getCount();
@@ -51,6 +68,8 @@ public class AppleMagot extends AppCompatActivity {
         biofix_row_cursor.moveToFirst();
         degree_day_cursor.moveToFirst();
 
+        //Adds an entry for each biofix. If one orchard has multiple biofixes, then there will be two
+        //entries for that orchard.
         for(int i =0; i < biofixCount; i++){
             TableRow row = new TableRow(findViewById(R.id.appleMagotTableRow).getContext());
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -59,22 +78,31 @@ public class AppleMagot extends AppCompatActivity {
             TextView orchard = new TextView(findViewById(R.id.appleMaggotDescription).getContext());
             TextView risk = new TextView(findViewById(R.id.appleMaggotDescription).getContext());
 
+            //Get the degree days for when insect is at risk
             double sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(8)));
+            //get the current degree day accumulations
             double accumulatedDegreeDay = Double.parseDouble(degree_day_cursor.getString(1));
 
+            //Add orchard name
             orchard.setText(myDb.GetOrchardName(Integer.parseInt(biofix_row_cursor.getString(9))) + " ");
             orchard.setTextColor(Color.parseColor("#000000"));
 
+            //Risk is High if accumulated degree days is greater than the risk threshold
             if(accumulatedDegreeDay >= sprayDegreeDay){
                 risk.setText("High" + " ");
+                //Red
                 risk.setTextColor(Color.parseColor("#BB0000"));
             }
+            //Risk is Medium if accumulated degree days is within 100 of the risk threshold
             else if(accumulatedDegreeDay >= sprayDegreeDay - 100){
                 risk.setText("Medium" + " ");
+                //Yellow
                 risk.setTextColor(Color.parseColor("#CCCC00"));
             }
+            //Risk is Low if accumulated degree days is lower than the risk threshold minus 100
             else{
                 risk.setText("Low" + " ");
+                //Green
                 risk.setTextColor(Color.parseColor("#00BB00"));
             }
 
@@ -82,27 +110,32 @@ public class AppleMagot extends AppCompatActivity {
             orchard.setGravity(Gravity.CENTER);
             orchard.setBackgroundResource(R.color.backgroundColor);
 
-
             risk.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 0.4f));
             risk.setGravity(Gravity.CENTER);
             risk.setBackgroundResource(R.color.backgroundColor);
 
+            //add view to the row
             row.addView(orchard);
             row.addView(risk);
 
+            //add row to the table
             table.addView(row, i);
 
+            //move to next entry
             biofix_row_cursor.moveToNext();
             degree_day_cursor.moveToNext();
         }
+
         biofix_row_cursor.close();
         degree_day_cursor.close();
 
+        //Set the textviews to their references in the corresponding xml file (apple_magot.xml)
         description = (TextView) findViewById(R.id.appleMaggotDescription);
         biofix_info = (TextView) findViewById(R.id.appleMaggotBiofix);
         traps = (TextView) findViewById(R.id.appleMaggotTraps);
         spray_timing = (TextView) findViewById(R.id.appleMaggotSprayTiming);
 
+        //set text for the description textview of the activity
         description.setText("The apple maggot larva is a typical fly larva which looks like a creamy white cylindrical " +
         "maggot about 10mm long. Adult apple maggots are slightly smaller than house flys and are black with white bands. " +
         "Apple maggot eggs get laid underneath the skin of the fruit where the larvae hatch and develop inside. " +
@@ -111,14 +144,17 @@ public class AppleMagot extends AppCompatActivity {
         "misshapen and cause the fruit to drop prematurely. Small dimples in the fruit may be an indication " +
         "of eggs laid underneath the skin.");
 
+        //set text for the biofix_info textview in the activity
         biofix_info.setText("Apple maggot pupae overwinter underground and will energe as adults the following summer. " +
         "As a result, Biofix is set as January 1.");
 
+        //set text for the traps textview in the activity
         traps.setText("An apple maggot trap consists of a red sphere coated with TangleFoot. The sticky TangleFoot " +
         "on the red sphere is designed to trap adult females attemping to lay eggs. These traps should be placed " +
         "in the tree canopy just as trees finish blossoming. Traps should be placed high in the brightest " +
         "areas of the tree with one trap for every 100-150 apples.");
 
+        //set text for the spray_timing textview in the activity
         spray_timing.setText("Spraying should begin within a few days of an apple maggot being caught in the trap " +
                 " or when apple maggots begin emerging from the ground around 900 degree days " +
                 "(base 50" + (char) 0x00B0 + "F). Check pesticide label for spray interval, but generally " +
@@ -126,10 +162,6 @@ public class AppleMagot extends AppCompatActivity {
                 "being caught in traps.");
 
     }
-
-
-
-
 
     /*
     Name: onCreateOptionsMenu

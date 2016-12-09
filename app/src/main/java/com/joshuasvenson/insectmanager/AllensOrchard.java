@@ -28,8 +28,9 @@ Description: This class provides the code for the orchard the user creates
 Layout File: activity_allens_orchard.xml
  */
 public class AllensOrchard extends AppCompatActivity {
-    Button deleteButton;
 
+    //Initialize variables
+    Button deleteButton;
     Button SprayScheduleButton;
     Button CalculationsButton;
     Button BiofixDataButton;
@@ -47,27 +48,37 @@ public class AllensOrchard extends AppCompatActivity {
 
     ImageView iv;
 
+
+    /*
+    Name: onCreate
+    Description: Called when the activity gets created.
+    */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allens_orchard);
 
+        //Find the image view for the image that the user can optionally add
         iv = (ImageView) findViewById(R.id.imageView1);
 
         orchardName = (TextView)findViewById(R.id.ScreenTitle);
 
+        //Get the name of the current orchard from value passed from previous activity
         name = getIntent().getExtras().get("index").toString();
         Cursor cursor = myDb.query_row(name);
         cursor.moveToFirst();
 
         setTitle(name);
 
+        //Get the orchard key. Currently the orchard key is retrieved from the orchard name. This
+        //could cause problems as if you add two orchards with the same name, which key do you use?
         orchard_key = cursor.getString(0);
         orchardName.setText(String.valueOf(cursor.getString(1)));
 
         cursor.close();
 
+        //Get image from database if the is an image available and set it
         byte[] image2 = myDb.GetImage(orchard_key);
         if(image2 != null){
             bitmap = getImage(image2);
@@ -77,11 +88,25 @@ public class AllensOrchard extends AppCompatActivity {
         addListenerOnButton();
     }
 
+    /*
+    Name: btnClick
+    Description:
+    Parameters: View v
+    Returns: void
+     */
     public void btnClick (View v){
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, SELECTED_PICTURE);
     }
 
+    /*
+    Name: onActivityResult
+    Description:
+    Parameters: int requestCode -
+                int resultCode -
+                Intent data -
+    Return: void
+     */
     /*!!!!!!!!!!!!!!*/@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -124,7 +149,6 @@ public class AllensOrchard extends AppCompatActivity {
 
     }
 
-
     // convert from bitmap to byte array
     public static byte[] getBytes(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -137,6 +161,12 @@ public class AllensOrchard extends AppCompatActivity {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
+    /*
+    Name: addListenerOnButton
+    Description: add listeners on all of the buttons in the activity
+    Parameters: None
+    Returns: void
+     */
     public void addListenerOnButton() {
         final Context context = this;
 
@@ -147,83 +177,95 @@ public class AllensOrchard extends AppCompatActivity {
         SettingsButton = (Button) findViewById(R.id.OrchardSettingsButton);
         deleteButton = (Button) findViewById(R.id.DeleteButton);
 
+        //Set listener on Spray Schedule button
         SprayScheduleButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
+                //History class should probably be renamed to something like SpraySchedule
                 Intent intent = new Intent(context, History.class);
+                //pass the orchard key to the next activity
                 intent.putExtra("orchard_key", orchard_key);
                 startActivity(intent);
             }
 
         });
 
+        //Set listener on Calculations button
         CalculationsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(context, Calculations.class);
+                //pass the orchard key to the next activity
                 intent.putExtra("orchard_key", orchard_key);
                 startActivity(intent);
             }
 
         });
 
+        //Set listener on Biofix button
         BiofixDataButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(context, BiofixList.class);
+                //pass the orchard key to the next activity
                 intent.putExtra("orchard_key", orchard_key);
                 startActivity(intent);
             }
 
         });
 
+        //Set listener on Weather button
         WeatherButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(context, OrchardWeather.class);
+                //pass the orchard key to the next activity
                 intent.putExtra("orchard_key", orchard_key);
                 startActivity(intent);
             }
 
         });
 
+        //Set listener on Settings button
         SettingsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(context, OrchardSettings.class);
+                //pass the orchard key to the next activity
                 intent.putExtra("orchard_key", orchard_key);
                 startActivity(intent);
             }
 
         });
 
+        //Set listener on Delete button
         deleteButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
+                //Delete current orchard from database
                 myDb.deleteOrchardData(orchard_key);
 
+                //Go back to orchards homepage
                 Intent intent = new Intent(context, Orchard.class);
+                //clears activity so you can't go back to the page (since you deleted it)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
 
         });
     }
-
-
-
 
     /*
     Name: onCreateOptionsMenu
@@ -282,7 +324,6 @@ public class AllensOrchard extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

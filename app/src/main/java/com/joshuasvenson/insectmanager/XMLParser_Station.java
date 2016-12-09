@@ -18,13 +18,26 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*
+Name: XMLParser_Station
+Description: This class provides the code for fetching data from the API server Weather underground correponding to
+current conditions of the weather according to the value of the station in the specific location of the orchard.
+Layout File: No activity
+ */
 public class XMLParser_Station {
 
-    // Get you own API Key here: http://www.wunderground.com/weather/api
+    // Our group's API Key here: http://www.wunderground.com/weather/api
     static final String API_KEY = "61ed0556abc8b758";
 
+    //constructor
     public XMLParser_Station() {}
 
+    /*
+    Name: getWeatherData
+    Description: Fecth data from web server though API call according to coordinates values
+    Parameters: String station value
+    Returns: String, XML string returned from the API call web server
+    */
     public String getWeatherData(String station) {
 
         String url = "http://api.wunderground.com/api/" + API_KEY
@@ -62,6 +75,13 @@ public class XMLParser_Station {
         return weatherData;
     }
 
+    /*
+    Name: getLatitude
+    Description: This method will parse an XML string into Java objects and get the value of the
+    latitude value from the XML string
+    Paremeters: A string in XML format
+    Returns: String with the latitude value from the XML string
+     */
     public String getLatitude(String weatherData) {
 
         String name = null;
@@ -74,6 +94,13 @@ public class XMLParser_Station {
         return name;
     }
 
+    /*
+    Name: getLongitude
+    Description: This method will parse an XML string into Java objects and get the value of the
+    longitude value from the XML string
+    Paremeters: A string in XML format
+    Returns: String with the longitude value from the XML string
+     */
     public String getLongitude(String weatherData) {
 
         String name = null;
@@ -86,7 +113,13 @@ public class XMLParser_Station {
         return name;
     }
 
-
+    /*
+    Name: getStation
+    Description: This method will parse an XML string into Java objects and get the value of the
+    station value from the XML string
+    Paremeters: A string in XML format
+    Returns: String with the station id value from the XML string given the coordinates of the location
+     */
     public String getStation(String weatherData) {
 
         String name = null;
@@ -98,12 +131,6 @@ public class XMLParser_Station {
         }
         return name;
     }
-
-
-
-
-
-
 
     /////////////////////////////////////////////////////////////
     // Add methods as needed for addition data retrieval from XML

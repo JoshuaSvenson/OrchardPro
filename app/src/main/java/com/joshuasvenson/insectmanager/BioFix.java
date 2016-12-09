@@ -40,7 +40,7 @@ public class BioFix extends AppCompatActivity {
 
     String orchardKey;
 
-    JSONParser gw = new JSONParser();
+    XMLParser gw = new XMLParser();
     String lat;
     String lon;
     List<Date> dates = new ArrayList<Date>();
@@ -64,29 +64,12 @@ public class BioFix extends AppCompatActivity {
         addListenerOnButton();
     }
 
-    /*public void addItemsOnOrchardSpinner() {
-        final Context context = this;
-
-        orchardSpinner = (Spinner) findViewById(R.id.biofix_orchard_spinner);
-
-        List<String> list = new ArrayList<String>();
-
-        Cursor cursor = myDb.query_names();
-        cursor.moveToFirst();
-
-        for(int i=0; i<cursor.getCount();i++){
-            list.add(String.valueOf(cursor.getString(0)));
-
-            if(i!=cursor.getCount()-1)
-                cursor.moveToNext();
-        }
-
-        cursor.close();
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        orchardSpinner.setAdapter(dataAdapter);
-    }*/
-
+    /*
+    Name: addItemsOnInsectSpinner
+    Description: adds insect to the spinner for when users try to add a biofix
+    Parameters: None
+    Returns: void
+     */
     public void addItemsOnInsectSpinner() {
         final Context context = this;
 
@@ -94,10 +77,11 @@ public class BioFix extends AppCompatActivity {
 
         List<String> insect_list = new ArrayList<String>();
 
+        //Get all insect names in insect table
         Cursor cursor = myDb.GetInsectNames();
         cursor.moveToFirst();
-        //insect_list.add(String.valueOf(cursor.getCount()));
         for(int i=0; i<cursor.getCount();i++){
+            //add insect name to the list
             insect_list.add(String.valueOf(cursor.getString(0)));
 
             if(i!=cursor.getCount()-1)
@@ -106,11 +90,18 @@ public class BioFix extends AppCompatActivity {
 
         cursor.close();
 
+        //Set adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, insect_list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         insectSpinner.setAdapter(dataAdapter);
     }
 
+    /*
+    Name: addListenerOnButton
+    Description: Adds listeners on all of the buttons on the page and provides functionality when each button is clicked
+    Parameters: None
+    Returns: void
+     */
     public void addListenerOnButton(){
         final Context context = this;
 
@@ -121,8 +112,10 @@ public class BioFix extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
+                //Get the orchard key from value passed
                 orchardKey = getIntent().getExtras().getString("orchard_key");
 
+                //Get insect id
                 int insectID = insectSpinner.getSelectedItemPosition() + 1;
 
                 datePicker = (DatePicker) findViewById(R.id.biofix_datePicker);
@@ -172,6 +165,14 @@ public class BioFix extends AppCompatActivity {
         });
     }
 
+    /*
+    Name: updateDegreeDays
+    Description: updates the degree days for newly inserted biofix if needed
+    Parameters: String biofix_day:
+                String biofix_month:
+                String biofix_year:
+    Returns: void
+     */
     protected void updateDegreeDays(String biofix_day, String biofix_month, String biofix_year){
 
         DecimalFormat two_digit_formatter = new DecimalFormat("00");
@@ -298,9 +299,6 @@ public class BioFix extends AppCompatActivity {
         }
     }
 
-
-
-
     /*
     Name: onCreateOptionsMenu
     Description: Initialize the contents of the Activity's standard options menu.
@@ -358,7 +356,6 @@ public class BioFix extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

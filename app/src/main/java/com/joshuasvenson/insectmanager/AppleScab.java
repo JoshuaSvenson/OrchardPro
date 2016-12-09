@@ -18,9 +18,9 @@ public class AppleScab extends AppCompatActivity {
 
     TextView description;
     TextView biofix_info;
-    TextView traps;
     TextView spray_timing;
 
+    //Diseases are not in the database, this is used to get right pictures
     String diseaseKey = "2";
 
     ViewPager viewPager;
@@ -31,6 +31,7 @@ public class AppleScab extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.apple_scab);
 
+        //Sets the viewpager so that sliding pictures will work
         viewPager = (ViewPager)findViewById(R.id.apple_scab_view_pager);
         adapter = new CustomSwipeAdapter(this, diseaseKey, "disease");
         viewPager.setAdapter(adapter);
@@ -39,6 +40,7 @@ public class AppleScab extends AppCompatActivity {
         biofix_info = (TextView) findViewById(R.id.appleScabBiofix);
         spray_timing = (TextView) findViewById(R.id.appleScabSprayTiming);
 
+        //Description of disease
         description.setText("A very common disease and one of the most aesthetically damaging " +
                 "diseases, its main symptoms includes leaf and fruit spots. Very susceptible trees" +
                 " become defoliated by mid-summer, which weakens the trees over time." +
@@ -47,6 +49,7 @@ public class AppleScab extends AppCompatActivity {
                 "Fruits and the undersides of leaves are especially susceptible. " +
                 "The disease rarely kills its host, but can significantly reduce fruit yields and fruit quality.");
 
+        //Biofix info for disease
         biofix_info.setText("Management of apple scab on susceptible trees is focused on the prevention" +
                 "of primary infection by ascospores in the spring. Early infection of trees may result " +
                 "in poor fruit set, and will result in more secondary inoculum being produced throughout " +
@@ -54,6 +57,7 @@ public class AppleScab extends AppCompatActivity {
                 "release of primary inoculum. Later sprays are often targeted at other fungal diseases, " +
                 "in addition to scab, but also are effective against apple scab secondary inoculum. ");
 
+        //spray timing for disease
         spray_timing.setText("Fungicides must be applied preventively to successfully manage apple scab. " +
                 "Because spores are released so early in the growing season, fungicide sprays must begin when " +
                 "the first green leaf tips emerge in spring. Sprays should be repeated until petal drop for " +
@@ -68,9 +72,6 @@ public class AppleScab extends AppCompatActivity {
                 "will release more scab spores all summer long.");
 
     }
-
-
-
 
     /*
     Name: onCreateOptionsMenu
@@ -129,7 +130,6 @@ public class AppleScab extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

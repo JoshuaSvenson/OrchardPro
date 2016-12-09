@@ -20,6 +20,12 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
  * Created by anaso_000 on 10/9/2016.
  */
 
+/*
+Name: CodlingMoth
+Description: This class provides the code for the CodlingMoth screen and activity of the app and
+manages the button clicks and info to be displayehd in the textviews.
+Layout File: codling_moth.xml
+ */
 public class CodlingMoth extends AppCompatActivity {
 
     TextView description;
@@ -27,22 +33,32 @@ public class CodlingMoth extends AppCompatActivity {
     TextView traps;
     TextView spray_timing;
 
+    //Codling Moth is first insect in table
     String insectKey = "1";
 
     ViewPager viewPager;
     CustomSwipeAdapter adapter;
 
+    /*
+    Name: onCreate
+    Description: Creates activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.codling_moth);
 
+        //Sets the viewpager so that sliding pictures will work
         viewPager = (ViewPager)findViewById(R.id.codling_moth_view_pager);
         adapter = new CustomSwipeAdapter(this, insectKey, "insect");
         viewPager.setAdapter(adapter);
 
+        //The table that shows insect risk
         TableLayout table = (TableLayout) findViewById(R.id.codlingMothTable);
 
+        //Get information to fill out insect risk table
         Cursor biofix_row_cursor = myDb.GetInsectBiofix(insectKey);
         Cursor degree_day_cursor = myDb.GetAllDegreeDaysForInsects(insectKey);
         int biofixCount = biofix_row_cursor.getCount();
@@ -50,6 +66,8 @@ public class CodlingMoth extends AppCompatActivity {
         biofix_row_cursor.moveToFirst();
         degree_day_cursor.moveToFirst();
 
+        //Adds an entry for each biofix. If one orchard has multiple biofixes, then there will be two
+        //entries for that orchard.
         for(int i =0; i < biofixCount; i++){
             TableRow row = new TableRow(findViewById(R.id.codlingMothTableRow).getContext());
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -58,22 +76,31 @@ public class CodlingMoth extends AppCompatActivity {
             TextView orchard = new TextView(findViewById(R.id.codlingMothDescription).getContext());
             TextView risk = new TextView(findViewById(R.id.codlingMothDescription).getContext());
 
+            //Get the degree days for when insect is at risk
             double sprayDegreeDay = myDb.GetInsectSprayDay(Integer.parseInt(biofix_row_cursor.getString(8)));
+            //get the current degree day accumulations
             double accumulatedDegreeDay = Double.parseDouble(degree_day_cursor.getString(1));
 
+            //Add orchard name
             orchard.setText(myDb.GetOrchardName(Integer.parseInt(biofix_row_cursor.getString(9))) + " ");
             orchard.setTextColor(Color.parseColor("#000000"));
 
+            //Risk is High if accumulated degree days is greater than the risk threshold
             if(accumulatedDegreeDay >= sprayDegreeDay){
                 risk.setText("High" + " ");
+                //Red
                 risk.setTextColor(Color.parseColor("#BB0000"));
             }
+            //Risk is Medium if accumulated degree days is within 100 of the risk threshold
             else if(accumulatedDegreeDay >= sprayDegreeDay - 100){
                 risk.setText("Medium" + " ");
+                //Yellow
                 risk.setTextColor(Color.parseColor("#CCCC00"));
             }
+            //Risk is Low if accumulated degree days is lower than the risk threshold minus 100
             else{
                 risk.setText("Low" + " ");
+                //Green
                 risk.setTextColor(Color.parseColor("#00BB00"));
             }
 
@@ -85,22 +112,27 @@ public class CodlingMoth extends AppCompatActivity {
             risk.setGravity(Gravity.CENTER);
             risk.setBackgroundResource(R.color.backgroundColor);
 
+            //add view to the row
             row.addView(orchard);
             row.addView(risk);
 
+            //add row to the table
             table.addView(row, i);
 
+            //move to the next entry
             biofix_row_cursor.moveToNext();
             degree_day_cursor.moveToNext();
         }
         biofix_row_cursor.close();
         degree_day_cursor.close();
 
+        //Set the textviews to their references in the corresponding xml file (codling_moth.xml)
         description = (TextView) findViewById(R.id.codlingMothDescription);
         biofix_info = (TextView) findViewById(R.id.codlingMothBiofix);
         traps = (TextView) findViewById(R.id.codlingMothTraps);
         spray_timing = (TextView) findViewById(R.id.codlingMothSprayTiming);
 
+        //set text for the description textview of the activity
         description.setText("The adult codling moth is greyish with light grey and copper stripes on its wings. Its " +
                 "wingspan is 17 mm on average. Codling moth larvae can be 1/2 - 3/4 inchs long with a pinkish body and " +
                 "a brownish head. Codling moth eggs get laid on the surface of the fruit or leaves and, once hatched, " +
@@ -110,27 +142,25 @@ public class CodlingMoth extends AppCompatActivity {
                 "most visible sign of this will be a brown hole in the fruit and brown frass may be extruding from it. " +
                 "These deep tunnels will eventually cause the fruit to rot.");
 
+        //set text for the biofix textview of the activity
         biofix_info.setText("Codling moth biofix is set at the first sustained trap catch. A 'sustained' catch is " +
                 "a continual period of moth activity. If one or two moths are trapped followed by a period of no " +
                 "captures, then those early captures are ignored.");
 
+        //set text for the traps textview of the activity
         traps.setText("Codling moth pheremone traps are used to determine peak flight times of the moth. These traps " +
                 "attract male moths by containing pheremones female moths use to attract mates. These traps have " +
                 "plastic tops and sticky bottoms and are hung by a wire. These traps should be hung at eye level with one for " +
                 "every 10 acres of trees. Traps should be set out during pink stage of bud development and should " +
                 "be replaced about every month.");
 
+        //set text for the spray timing textview of the activity
         spray_timing.setText("Codling moth eggs will begin to hatch around 250 degree days (base 50" + (char) 0x00B0 +
                 "F). It is at this time spraying should begin. If after the first spray more than 10 moths are being " +
                 "caught per trap per week, a second spray may be necessary. Around 1000 degree days is when the " +
                 "first generation of moth begin to fly. This should be the second biofix. Second generation egg " +
                 "hatch occurs around 1300 degree days and is when the next round of spraying should occur.");
-
     }
-
-
-
-
 
     /*
     Name: onCreateOptionsMenu
@@ -189,7 +219,6 @@ public class CodlingMoth extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

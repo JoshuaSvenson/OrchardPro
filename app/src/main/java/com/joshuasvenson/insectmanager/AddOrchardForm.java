@@ -21,12 +21,13 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
 
 /*
 Name: AddOrchardForm
-Description: This class provides the code for the form where users add an orchard
+Description: This activity provides the development of the form for adding a new orchard. Save the specifications
+of the orchard into the database.
 Layout File: activity_add_orchard_form.xml
  */
 public class AddOrchardForm extends AppCompatActivity {
 
-    JSONParser1 xml = new JSONParser1();
+    XMLParser1 xml = new XMLParser1();
     XMLParser_Station xml2 = new XMLParser_Station();
 
     Button SubmitButton;
@@ -49,13 +50,21 @@ public class AddOrchardForm extends AppCompatActivity {
     String Otherlongitude;
     String Otherstation;
 
+    /*
+    Name: onCreate
+    Description: creates the activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_orchard_form);
 
+        //Creates listener on button
         addListenerOnButton();
 
+        //Set Edittexts to their references in the corresponding xml file
         mOrchardName = (EditText)findViewById(R.id.addOrchardForm_Name);
         mOrchardLatitude = (EditText)findViewById(R.id.addOrchardForm_Latitude);
         mOrchardLongitude = (EditText)findViewById(R.id.addOrchardForm_Longitude);
@@ -70,8 +79,13 @@ public class AddOrchardForm extends AppCompatActivity {
 
     }
 
-
-
+    /*
+    Name: getCoordinates
+    Description: after user presses autofill button, this method will get the coordinates of the current
+    location of the device, returning latitude and longitude values of the current device's location
+    Parameters: none
+    Returns: void
+     */
     private void getCoordinates(){
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -97,6 +111,12 @@ public class AddOrchardForm extends AppCompatActivity {
         new letsGetWeather().execute();
     }
 
+    /*
+    Name: letsGetWeather
+    Description: This class provides newtwork operation to fecth data from the Api web server according to
+    coordinates
+    Extends: Asynctask class for network operations
+     */
     public class letsGetWeather extends AsyncTask<Void, Void, String> {
 
         protected String doInBackground(Void... params) {
@@ -114,6 +134,12 @@ public class AddOrchardForm extends AppCompatActivity {
         }
     }
 
+    /*
+    Name: autofillCoordinates
+    Description: This class provides network operations to fetch data from the Api web server according to the
+    station value of the orchard's location
+    Extends: AsyncTask class
+    */
     public class autofillCoordinates extends AsyncTask<Void, Void, String> {
 
         protected String doInBackground(Void... params) {
@@ -132,6 +158,12 @@ public class AddOrchardForm extends AppCompatActivity {
         }
     }
 
+    /*
+    Name: autofillStation
+    Description: This class provides network operations to fetch data from the Api web server according to the
+    coordinates values.
+    Extends: AsyncTask class
+    */
     public class autofillStation extends AsyncTask<Void, Void, String> {
 
         protected String doInBackground(Void... params) {
@@ -149,7 +181,7 @@ public class AddOrchardForm extends AppCompatActivity {
         }
     }
 
-
+    //Adds listener on buttons
     public void addListenerOnButton(){
         final Context context = this;
 
@@ -157,7 +189,7 @@ public class AddOrchardForm extends AppCompatActivity {
         UseCurrentLocation = (Button) findViewById(R.id.use_curent_location);
         autofill = (Button) findViewById(R.id.autofill);
 
-
+        // Adds listener on UseCurrentLocation button
         UseCurrentLocation.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View arg0){
@@ -167,6 +199,7 @@ public class AddOrchardForm extends AppCompatActivity {
             }
         });
 
+        //Adds listener on autofill button
         autofill.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0){
@@ -188,12 +221,11 @@ public class AddOrchardForm extends AppCompatActivity {
             }
         });
 
-
+        //Adds listener on submitButton
         SubmitButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                //mChildRef.child("name").setValue(mOrchardName.getText().toString());
                 if(mOrchardLatitude.getText().toString() == ""){
                     mOrchardLatitude.setText("0");
                 }
@@ -212,13 +244,8 @@ public class AddOrchardForm extends AppCompatActivity {
                 if(mOrchardDensity.getText().toString() == ""){
                     mOrchardDensity.setText("0");
                 }
-                /*mChildRef.child("latitude").setValue(Double.parseDouble(mOrchardLatitude.getText().toString()));
-                mChildRef.child("longitude").setValue(Double.parseDouble(mOrchardLongitude.getText().toString()));
-                mChildRef.child("tree_row_spacing").setValue(Double.parseDouble(mOrchardTreeRowSpacing.getText().toString()));
-                mChildRef.child("cross_row_spread").setValue(Double.parseDouble(mOrchardCrossRowSpread.getText().toString()));
-                mChildRef.child("plant_height").setValue(Double.parseDouble(mOrchardPlantHeight.getText().toString()));
-                mChildRef.child("density_factor").setValue(Double.parseDouble(mOrchardDensity.getText().toString()));*/
 
+                // calls the createOrchard method which places an orchard into the database
                 boolean isInserted = myDb.createOrchard(mOrchardName.getText().toString(),
                         Double.parseDouble(mOrchardLatitude.getText().toString()),
                         Double.parseDouble(mOrchardLongitude.getText().toString()),
@@ -229,7 +256,7 @@ public class AddOrchardForm extends AppCompatActivity {
                         Double.parseDouble(mOrchardDensity.getText().toString()),
                         null);
 
-
+                //Checks if orchard was successfully added to the database
                 if(isInserted == true){
                     Toast.makeText(AddOrchardForm.this, "Data Inserted " +mOrchardName.getText().toString(),Toast.LENGTH_LONG).show();
                 }
@@ -237,6 +264,7 @@ public class AddOrchardForm extends AppCompatActivity {
                     Toast.makeText(AddOrchardForm.this, "Error Inserting",Toast.LENGTH_LONG).show();
                 }
 
+                //Returns to the orchard class (the screen listing all the orchards)
                 Intent intent = new Intent(context, Orchard.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -244,26 +272,6 @@ public class AddOrchardForm extends AppCompatActivity {
 
         });
     }
-
-    /*@Override
-    protected void onStart() {
-        super.onStart();
-
-        mChildRef.child("name").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String text = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }*/
-
-
-
 
     /*
     Name: onCreateOptionsMenu
@@ -296,7 +304,7 @@ public class AddOrchardForm extends AppCompatActivity {
         int id = item.getItemId();
         final Context context = this;
 
-        //noinspection SimplifiableIfStatement
+        //When the user selects one of the options, go to that class
         if (id == R.id.Home_bar) {
             Intent intent = new Intent(context, Home.class);
             startActivity(intent);
@@ -322,7 +330,6 @@ public class AddOrchardForm extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

@@ -75,18 +75,25 @@
         <activity
             android:name=".BioFix"
             android:label="Biofix" />
-        <activity android:name=".BiofixList"
+        <activity
+            android:name=".BiofixList"
             android:label="Add Biofix"/>
-        <activity android:name=".SpraySchedule" />
-        <activity android:name=".Calculations"
+        <activity
+            android:name=".SpraySchedule" />
+        <activity
+            android:name=".Calculations"
             android:label="Calculations"/>
-        <activity android:name=".OrchardWeather"
+        <activity
+            android:name=".OrchardWeather"
             android:label="My Orchard's Weather"/>
-        <activity android:name=".OrchardSettings"
+        <activity
+            android:name=".OrchardSettings"
             android:label="Orchard Settings"/>
-        <activity android:name=".SettingsToolbar"
+        <activity
+            android:name=".SettingsToolbar"
             android:label="Settings Toolbar"/>
-        <activity android:name=".gpm"
+        <activity
+            android:name=".gpm"
             android:label="Calculate GPM"/>
 
     </application>

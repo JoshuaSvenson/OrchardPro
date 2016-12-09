@@ -22,30 +22,44 @@ import java.util.Date;
  * Created by anaso_000 on 10/18/2016.
  */
 
+/*
+Name: Weather1
+Description: This class provides the code for the screen that displays the current conditions of the current
+location of the device, and will manage the Api call and how to gather the data collected from the call, and
+display this data in the textviews set on this screen named as Local Weather from the Local weather button in
+the homepage
+Layout File: weather1.xml
+ */
 public class Weather1 extends AppCompatActivity {
 
-    JSONParser1 gw = new JSONParser1();
+    //create a XMLParser object in order to obtain data from the API web
+    XMLParser1 gw = new XMLParser1();
 
     //String lat = "41.66";
     //String lon = "-91.53";
 
     public static String lat;
     public static String lon;
-
     public static String Station;
 
+    //Initializes all the textviews on the screen that will display specific info about the current weather's conditions
     TextView city, date, temperature, details, humidity, pressure, feelslike, precip1hr, precipToday, station;
 
+    /*
+    Name: onCreate
+    Description: Creates the activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weather1);
 
+        //Get coordinates from GPS of device, set these values to the latitude and longitude variables
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
         String provider = locationManager.getBestProvider(new Criteria(), true);
-
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -59,22 +73,41 @@ public class Weather1 extends AppCompatActivity {
         Location location = locationManager.getLastKnownLocation(provider);
         double c = location.getLatitude();
         double d = location.getLongitude();
-
+        //Initializes variables of the activities to the values of latitude and longitude obtained from the GPS location
         lat = Double.toString(c);
         lon = Double.toString(d);
 
+        // Call method in class for starting the Asynctask to start network operations on another thread
         new letsGetWeather().execute();
 
     }
 
+    /*
+    Name: getLatitude
+    Description: get value of Latitude
+    Parameters: void
+    Returns: String, latitude value
+     */
     public static String getLatitude(){
         return lat;
     }
 
+    /*
+    Name: getLongitude
+    Description: get value of Longitude
+    Parameters: void
+    Returns: String, longitude value
+     */
     public static String getLongitude(){
         return lon;
     }
 
+    /*
+    Name: getStation
+    Description: get value of Station
+    Parameters: void
+    Returns: String, station value
+     */
     public static String getStation(){
         return Station;
     }
@@ -86,7 +119,7 @@ public class Weather1 extends AppCompatActivity {
 
         protected String doInBackground(Void... params) {
 
-
+            //Assign String weatherData to the XML string to be returned after the API call
             String weatherData = gw.getWeatherData(lat, lon);
 
             return weatherData;
@@ -94,6 +127,7 @@ public class Weather1 extends AppCompatActivity {
 
         protected void onPostExecute(String weatherData) {
 
+            // Set textiews to their references in the corresponding xml file weather1.xml
             city =(TextView)findViewById(R.id.city_field);
             date=(TextView)findViewById(R.id.updated_field);
             details = (TextView) findViewById(R.id.details_field);
@@ -105,9 +139,11 @@ public class Weather1 extends AppCompatActivity {
             precipToday = (TextView)  findViewById(R.id.preciptoday_field);
             station = (TextView) findViewById(R.id.weather_station);
 
+            //initializes date object
             DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
             Date dateobj = new Date();
 
+            //Assign returning strings from the parsing done in XMLParser1 to string values in this class
             String name = gw.getName(weatherData);
             String conditions = gw.getConditions(weatherData);
             String humidity_string = gw.getHumidity(weatherData);
@@ -120,6 +156,7 @@ public class Weather1 extends AppCompatActivity {
 
             Station = w_station;
 
+            //Set texts in textviews in the screen
             city.setText(name);
             date.setText(df.format(dateobj));
             details.setText(conditions);
@@ -133,8 +170,6 @@ public class Weather1 extends AppCompatActivity {
 
         }
     }
-
-
 
 
     /*
@@ -194,7 +229,6 @@ public class Weather1 extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

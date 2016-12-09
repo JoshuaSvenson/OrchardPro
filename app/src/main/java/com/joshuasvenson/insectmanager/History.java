@@ -24,7 +24,12 @@ import java.util.List;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
-
+/*
+Name: History
+Description: This activity does the calculations for obtaining the degree days from the biofix date to the date
+of the device, save this information into the database.
+Layout File: spray_schedule.xml
+ */
 public class History extends AppCompatActivity{
 
     HashMap<String, List<String>> Risk_category;
@@ -34,7 +39,7 @@ public class History extends AppCompatActivity{
 
     String orchardKey;
 
-    JSONParser gw = new JSONParser();
+    XMLParser gw = new XMLParser();
 
     String lat = "41.66";
     String lon = "-91.53";
