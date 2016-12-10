@@ -12,9 +12,15 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
  * Created by Joshua on 10/13/2016.
  */
 
+/*
+Name: DatabaseHelper
+Description: This class provides the code for the Database functions
+Layout File: none
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "orchard.db";
 
+    //Orchard Table
     public static final String ORCHARD_TABLE = "orchard_table";
     public static final String ORCHARD_ID = "ID";
     public static final String ORCHARD_NAME = "NAME";
@@ -27,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String ORCHARD_TRS = "TREE_ROW_SPACING";
     public static final String ORCHARD_KEY_IMAGE = "IMAGE_DATA";
 
+    //Biofix Table
     public static final String BIOFIX_TABLE = "biofix_table";
     public static final String BIOFIX_ID = "BIOFIX_ID";
     public static final String BIOFIX_DATE_DAY = "BIOFIX_DATE_DAY";
@@ -39,6 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String BIOFIX_INSECT_FOREIGN_KEY = "BIOFIX_INSECT_FOREIGN_KEY";
     public static final String BIOFIX_ORCHARD_FOREIGN_KEY = "BIOFIX_ORCHARD_FOREIGN_KEY";
 
+    //Insect Table
     public static final String INSECT_TABLE = "insect_table";
     public static final String INSECT_ID = "INSECT_ID";
     public static final String INSECT_NAME = "INSECT_NAME";
@@ -46,6 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String INSECT_HIGH_THRESH = "INSECT_HIGH_THRESH";
     public static final String INSECT_FIRST_DD = "INSECT_FIRST_DD";
 
+    //Settings Table
     public static final String SETTINGS_TABLE = "settings_table";
     public static final String SETTINGS_DATE_DAY = "SETTINGS_DATE_DAY";
     public static final String SETTINGS_DATE_MONTH = "SETTINGS_DATE_MONTH";
@@ -54,8 +63,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
+    /*
+    Name: onCreate
+    Description: Creates the activity
+    Parameters: SQLiteDatabase db
+    Returns: void
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //create orchard table
         db.execSQL("create table " +ORCHARD_TABLE +
                 "(ID INTEGER PRIMARY KEY, " +
                 "NAME TEXT," +
@@ -67,6 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "TREE_ROW_SPACING DOUBLE," +
                 "WEATHER_STATION TEXT," +
                 "IMAGE_DATA BLOB)");
+        //create biofix table
         db.execSQL("create table " +BIOFIX_TABLE +
                 "(BIOFIX_ID INTEGER PRIMARY KEY, " +
                 "BIOFIX_DATE_DAY INTEGER," +
@@ -78,22 +95,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "BIOFIX_LAST_UPDATE_YEAR INTEGER," +
                 "BIOFIX_INSECT_FOREIGN_KEY INTEGER," +
                 "BIOFIX_ORCHARD_FOREIGN_KEY INTEGER)");
+        //create insect table
         db.execSQL("create table " +INSECT_TABLE +
                 "(INSECT_ID INTEGER PRIMARY KEY, " +
                 "INSECT_NAME TEXT," +
                 "INSECT_LOW_THRESH DOUBLE," +
                 "INSECT_HIGH_THRESH DOUBLE," +
                 "INSECT_FIRST_DD)");
+        //create settings table
         db.execSQL("create table " +SETTINGS_TABLE +
                 "(SETTINGS_ID INTEGER, " +
                 "SETTINGS_DATE_DAY INTEGER, " +
                 "SETTINGS_DATE_MONTH INTEGER, " +
                 "SETTINGS_DATE_YEAR INTEGER)");
-        /*createInsect("Codling Moth", 50.0, 88.0, 225.0);
-        createInsect("Apple Maggot", 50.0, -1, 1000.0);
-        createInsect("Rosy Apple Aphid", 40.0, -1, 200.0);*/
     }
 
+    /*
+    Name: onUpgrade
+    Description: Drops all tables effectively resetting the databse
+    Parameters: SQLiteDatabase db:
+                int oldVersion:
+                int newVersion:
+    Returns: void
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " +ORCHARD_TABLE);
@@ -103,20 +127,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //Used in AddOrchard.java which isn't currently used
-    public boolean insertData2(String col, String row, String str_val, double double_val){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        if(str_val != null){
-            contentValues.put(col, str_val);
-        }
-        else {
-            contentValues.put(col, double_val);
-        }
-        db.rawQuery("update " + ORCHARD_TABLE + "set " + col + "= " + str_val + "where " + col + "= NULL", null);
-        return true;
-    }
-
+    /*
+    Name: createOrchard
+    Description: creates row for new orchard in database
+    Parameters: the values for the orchard
+    Returns: boolean
+     */
     public boolean createOrchard(String name, double latitude, double longitude, String stationID, double trs, double crs, double plantHeight, double density, byte[] image){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -136,6 +152,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    /*
+    Name: createBiofix
+    Description: creates row for new biofix in database
+    Parameters: the values for the biofix
+    Returns: long - representing successful entry
+     */
     public long createBiofix(String date_day, String date_month, String date_year, int degree_days,
                                 String last_update_day, String last_update_month, String last_update_year,
                                 int orchard_key, int insect_key){
@@ -157,6 +179,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return result;
     }
 
+    /*
+    Name: createInsect
+    Description: creates row for new insect in database
+    Parameters: the values for the insect
+    Returns: boolean - representing successful entry
+     */
     public boolean createInsect(String name, double low_temp, double high_temp, double first_DD){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -181,6 +209,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    /*
+    Name: createSettings
+    Description: creates row for new setting in database
+    Parameters: the values for the setting
+    Returns: boolean - representing successful entry
+     */
     public boolean createSettings(int day, int month, int year){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -197,6 +231,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    /*
+    Name: query_row
+    Description: gets information from orchard table from the name of orchard
+    Parameters: String orchardName: the name of the orchard
+    Returns: Cursor pointing to the row that was retrieved
+     */
     public Cursor query_row(String orchardName){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select * from " +ORCHARD_TABLE + " where NAME = ?", new String[] {orchardName});
@@ -207,6 +247,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Multiple Table Functions
     ////////////////////////////////////////////////////////////////
 
+    /*
+    Name: deleteOrchardData
+    Description: Deletes orchard data including biofixes
+    Parameters: String orchardKey: the key of the orchard to delete
+    Returns: void
+     */
     public void deleteOrchardData(String orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from " +ORCHARD_TABLE + " where ID = ?", new String[] {orchardKey});
@@ -217,6 +263,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Orchard Table Functions
     ////////////////////////////////////////////////////////////////
 
+    /*
+    Name: GetImage
+    Description: Gets image data from orchard table from orchard key
+    Parameters: String orchardKey: the key of the orchard to get image for
+    Returns: byte array of the image
+     */
     public byte[] GetImage (String orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select IMAGE_DATA from " + ORCHARD_TABLE + " where ID = ?", new String[] {orchardKey});
@@ -224,6 +276,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result.getBlob(0);
     }
 
+    /*
+    Name: addImage
+    Description: adds image to the database for given orchard
+    Parameters: String orchardKey: the key of the orchard to add image for
+                byte[] image: the image to insert
+    Returns: void
+     */
     public void addImage (String orchardKey, byte[] image){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -231,18 +290,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.update(ORCHARD_TABLE, cv, "ID=" + orchardKey, null);
     }
+
+    /*
+    Name: GetOrchardSettings
+    Description: Get all entries from requested orchard
+    Parameters: String orchardKey: the key of the orchard to get data for
+    Returns: Cursor to the row containing all data
+     */
     public Cursor GetOrchardSettings(String orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select * from " +ORCHARD_TABLE + " where ID = ?", new String[] {orchardKey});
         return result;
     }
 
+    /*
+    Name: getAllNameData
+    Description: Gets all orchard names from orchard table
+    Parameters: none
+    Returns: Cursor to all rows which contain name data of all orchards
+     */
     public Cursor getAllNameData() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select NAME from " +ORCHARD_TABLE, null);
         return result;
     }
 
+    /*
+    Name: GetOrchardName
+    Description: Gets the name of an orchard given a key
+    Parameters: String orchardKey: the key of the orchard to get name for
+    Returns: String -  the name of the orchard
+     */
     public String GetOrchardName(int orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select NAME from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
@@ -250,6 +328,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return String.valueOf(result.getString(0));
     }
 
+    /*
+    Name: GetOrchardLatitude
+    Description: Gets the latitude of an orchard given a key
+    Parameters: String orchardKey: the key of the orchard to get latitude for
+    Returns: String -  the latitude of the orchard
+     */
     public String GetOrchardLatitude(int orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select LATITUDE from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
@@ -257,6 +341,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return String.valueOf(result.getString(0));
     }
 
+    /*
+    Name: GetOrchardLongitude
+    Description: Gets the Longitude of an orchard given a key
+    Parameters: String orchardKey: the key of the orchard to get Longitude for
+    Returns: String -  the Longitude of the orchard
+     */
     public String GetOrchardLongitude(int orchardKey){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select LONGITUDE from " +ORCHARD_TABLE + " where ID = "+orchardKey, null);
@@ -264,6 +354,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return String.valueOf(result.getString(0));
     }
 
+    /*
+    Name: updateData
+    Description: update all orchard settings data
+    Parameters: all data for orchard to update
+    Returns: boolean representing successful update
+     */
     public boolean updateData(String orchardKey, String name, String latitude, String longitude, String station, String trs, String crs, String plantHeight, String density) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

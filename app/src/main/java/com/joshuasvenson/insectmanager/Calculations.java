@@ -15,6 +15,11 @@ import android.widget.TextView;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/*
+Name: Calculations
+Description: This class provides the code for the Calculations Page
+Layout File: calculations.xml
+ */
 public class Calculations extends AppCompatActivity {
 
     double tree_row_volume;
@@ -104,11 +109,6 @@ public class Calculations extends AppCompatActivity {
         tree_row_volume_gallonage_per_acre = (cftrva*density)/1000;
         return tree_row_volume_gallonage_per_acre;
     }
-
-
-
-
-
 
     /*
     Name: onCreateOptionsMenu

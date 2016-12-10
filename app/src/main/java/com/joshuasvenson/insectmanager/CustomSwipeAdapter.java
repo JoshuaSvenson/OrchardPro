@@ -12,8 +12,14 @@ import android.widget.LinearLayout;
  * Created by Joshua on 11/13/2016.
  */
 
+/*
+Name: CustomSwipeAdapter
+Description: This class provides the code for the images in the insects and diseases tab that allows you to swipe across pictures
+Layout File: swipe_layout.xml
+ */
 public class CustomSwipeAdapter extends PagerAdapter {
 
+    //All of the image resources for each insect/disease
     private int[] image_resources;
     private int[] apple_maggot_resources = {R.drawable.apple_maggot_damage,
             R.drawable.apple_maggot, R.drawable.apple_maggot_eggs, R.drawable.apple_maggot_trap};
@@ -39,9 +45,18 @@ public class CustomSwipeAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
 
+    /*
+    Name: CustomSwipeAdapter
+    Description: Adds images to adapter
+    Parameters: Context ctx:
+                String key: key of insect/disease
+                String type: either insect or disease
+    return void
+    */
     public CustomSwipeAdapter(Context ctx, String key, String type){
         context = ctx;
 
+        //If insect
         if(type == "insect") {
             if (key == "1") {
                 image_resources = codling_moth_resources;
@@ -55,6 +70,7 @@ public class CustomSwipeAdapter extends PagerAdapter {
                 image_resources = european_red_mites_resources;
             }
         }
+        //If disease
         else if (type == "disease"){
             if(key == "1"){
                 image_resources = fire_blight_resources;

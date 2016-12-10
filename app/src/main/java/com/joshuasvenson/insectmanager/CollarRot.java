@@ -13,6 +13,11 @@ import android.widget.TextView;
  * Created by anaso_000 on 10/9/2016.
  */
 
+/*
+Name: CollarRot
+Description: This class provides the code for the Collar Rot page in the Diseases tab
+Layout File: collar_rot.xml.xml
+ */
 public class CollarRot extends AppCompatActivity {
 
     TextView description;

@@ -39,12 +39,7 @@ Layout File: orchards_main.xml
 public class Orchard extends AppCompatActivity {
 
     Button AddOrchardButton;
-    Button CurrentLocationConditionsButton;
-
-    static DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    static DatabaseReference mChildRef;
-
-    static DatabaseReference orchardArray[] = new DatabaseReference[3];
+    Button DeleteAllOrchardsButton;
 
     static ArrayList<String> list = new ArrayList<String>();
 
@@ -53,6 +48,12 @@ public class Orchard extends AppCompatActivity {
 
     static int OrchardCount = 0;
 
+    /*
+    Name: onCreate
+    Description: Creates the activity
+    Parameters: Bundle savedInstanceState
+    Returns: void
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +65,7 @@ public class Orchard extends AppCompatActivity {
         addListenerOnButton();
         list_adapter = new MyListAdapter(this, R.layout.orchard_listview, list);
 
+        //Add buttons for all orchards in database
         Cursor res = myDb.getAllNameData();
         list.clear();
         if(res.getCount() > 0){
@@ -79,19 +81,23 @@ public class Orchard extends AppCompatActivity {
         lv.setAdapter(list_adapter);
     }
 
+    /*
+    Name: addListenerOnButton
+    Description: Adds listeners on all of the buttons on the page and provides functionality when each button is clicked
+    Parameters: None
+    Returns: void
+     */
     public void addListenerOnButton(){
         final Context context = this;
 
         AddOrchardButton = (Button) findViewById(R.id.addOrchardButton);
-        CurrentLocationConditionsButton = (Button) findViewById(R.id.orchardsCurrentWeatherButton);
-        //NewOrchardButton = (Button) findViewById(R.id.AllenButton);
+        DeleteAllOrchardsButton = (Button) findViewById(R.id.orchardsCurrentWeatherButton);
 
+        //Add listener for add orchard button
         AddOrchardButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                mChildRef = mRootRef.push();
-                orchardArray[0] = mChildRef;
 
                 Intent intent = new Intent(context, AddOrchardForm.class);
                 startActivity(intent);
@@ -99,10 +105,12 @@ public class Orchard extends AppCompatActivity {
 
         });
 
-        CurrentLocationConditionsButton.setOnClickListener(new OnClickListener() {
+        //Add listener for deleting all ochards button
+        DeleteAllOrchardsButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
+                //Deletes all data in database. This is okay because insects will repopulate itself from the Home class
                 myDb.onUpgrade(myDb.getWritableDatabase(), 1, 2);
                 Intent intent = new Intent(context, Orchard.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -113,26 +121,10 @@ public class Orchard extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if(orchardArray[0] != null) {
-            orchardArray[0].child("name").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    /*String text = dataSnapshot.getValue(String.class);
-                    NewOrchardButton.setText(text);*/
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-        }
-    }
-
+    /*
+    Name: MyListAdapter
+    Description: A custom adapter for the list that contains the orchards
+     */
     private class MyListAdapter extends ArrayAdapter<String> {
         private int layout;
         private List<String> objects;
@@ -142,6 +134,14 @@ public class Orchard extends AppCompatActivity {
             this.objects = objects;
         }
 
+        /*
+        Name: getView
+        Description: populate the list with the orchards in database
+        Parameters: final int position: the position in the list
+                    View convertView:
+                    ViewGroup parent:
+        Returns: View
+        */
         @NonNull
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
@@ -151,6 +151,7 @@ public class Orchard extends AppCompatActivity {
                 convertView = inflater.inflate(layout, parent, false);
                 ViewHolder viewHolder = new ViewHolder();
                 viewHolder.button = (Button) convertView.findViewById((R.id.NewOrchardButton));
+                //When the orchard button is clicked, create activity for that orchard
                 viewHolder.button.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -161,9 +162,11 @@ public class Orchard extends AppCompatActivity {
                 });
                 convertView.setTag(viewHolder);
 
+                //Get names of all orchards in database
                 Cursor res = myDb.getAllNameData();
                 boolean IsMoved = res.moveToPosition(position);
                 if(IsMoved)
+                    //Set orchard name text
                     viewHolder.button.setText(res.getString(0));
             }
             else{
@@ -191,9 +194,6 @@ public class Orchard extends AppCompatActivity {
     public class ViewHolder {
         Button button;
     }
-
-
-
 
     /*
     Name: onCreateOptionsMenu
