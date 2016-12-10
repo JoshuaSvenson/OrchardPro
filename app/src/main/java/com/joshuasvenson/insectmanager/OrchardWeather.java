@@ -66,6 +66,7 @@ public class OrchardWeather extends AppCompatActivity {
 
         protected void onPostExecute(String weatherData) {
 
+            //set textiews to their references in the layout file
             city =(TextView)findViewById(R.id.city_field);
             date=(TextView)findViewById(R.id.updated_field);
             details = (TextView) findViewById(R.id.details_field);
