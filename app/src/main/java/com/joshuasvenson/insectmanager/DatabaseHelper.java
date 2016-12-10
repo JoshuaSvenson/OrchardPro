@@ -381,7 +381,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetOrchardBiofix
-    Description:
+    Description: Get all biofix data for given orchard
     Parameters: The key of the orchard that we want biofix data for
     Return Value: A Cursor to all rows from biofix table where orchard key is equal to the parameter
      */
@@ -393,7 +393,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetInsectBiofix
-    Description:
+    Description: Get all biofix data for given insect
     Parameters: The key of the insect that we want biofix data for
     Return Value: A Cursor to all rows from biofix table where insect key is equal to the parameter
      */
@@ -405,7 +405,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetAllDegreeDaysForOrchard
-    Description:
+    Description: Get insect key and degree days for given orchard
     Parameters: The key of the orchard that we want accumulated degree days for
     Return Value: A Cursor to all
      */
@@ -417,7 +417,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetAllDegreeDaysForInsect
-    Description:
+    Description: Get insect key and degree days for given insect
     Parameters: The key of the insect that we want accumulated degree days for
     Return Value: A Cursor to all
      */
@@ -429,8 +429,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetBiofixDate
-    Description:
-    Parameters:
+    Description: Get the date of the biofix for orchard
+    Parameters: String orchardKey: the key of the orchard we want biofix date for
     Return Value: A Cursor to all
      */
     public Cursor GetBiofixDate(String orchardKey){
@@ -443,9 +443,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: SetDegreeDay
-    Description:
-    Parameters:
-    Return Value:
+    Description: sets degree day in biofix table and updates date
+    Parameters: String biofixID:
+                double degree_days:
+    Return Value: boolean representing successful update
      */
     public boolean SetDegreeDay(String biofixID, double degree_days){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -463,6 +464,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         degree_days += old_degree_days;
 
+        //Update date last updated
         ContentValues contentValues = new ContentValues();
         contentValues.put("BIOFIX_DEGREE_DAYS", degree_days);
         contentValues.put("BIOFIX_LAST_UPDATE_DAY", setDay);
@@ -472,6 +474,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    /*
+    Name: GetDegreeDay
+    Description: gets degree day in biofix table for specific biofix ID
+    Parameters: String biofixID: ID of degree days to get
+    Return Value: String of degree days value
+     */
     public String GetDegreeDay(String biofixID){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -482,6 +490,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result.getString(0);
     }
 
+    /*
+    Name: GetBiofx
+    Description: Gets specific biofix given its ID
+    Parameters: String biofixID: ID of biofix to get
+    Return Value: Cursor to the biofix retrieved
+     */
     public Cursor GetBiofix(String biofixID){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -492,6 +506,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    /*
+    Name: deleteBiofixData
+    Description: deletes row of given biofix ID
+    Parameters: String biofixID: ID of biofix to delete
+    Return Value: void
+     */
     public void deleteBiofixData(String biofixID){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from " +BIOFIX_TABLE + " where BIOFIX_ID = ?", new String[] {biofixID});
@@ -503,7 +523,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetInsectNames
-    Description:
+    Description: Get name of all insects in table
     Parameters: None
     Return Value: A Cursor to all columns containing only names of insects
      */
@@ -515,7 +535,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetInsectName
-    Description:
+    Description: Get name of insect given insect key
     Parameters: int insectKey
     Return Value: A String of the name of the insect
      */
@@ -528,7 +548,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetInsectSprayDay
-    Description:
+    Description: Get degree days for when specific insect is at risk to the orchard
     Parameters: int insectKey
     Return Value: An integer of the degree day value the insect needs to be sprayed at
      */
@@ -542,9 +562,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetInsectLowerThreshTemp
-    Description:
+    Description: Get lower temperature threshold for particular insect
     Parameters: int insectKey
-    Return Value:
+    Return Value: int of temperature
      */
     public int GetInsectLowerThreshTemp(String insectKey){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -560,7 +580,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: GetSettingDate
-    Description:
+    Description: Get the current set date
     Parameters: None
     Return Value: A string of the date set in settings
      */
@@ -573,7 +593,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /*
     Name: SetSettingDate
-    Description:
+    Description: set the date you want the app to think it is
     Parameters: String date
     Return Value: boolean
      */

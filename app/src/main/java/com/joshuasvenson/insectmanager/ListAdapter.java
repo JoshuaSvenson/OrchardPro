@@ -11,6 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/*
+Name: ListAdapter
+Description: This class provides the code for a custom ListAdapter used in BiofixLIst
+Layout File: listview.xml
+ */
 public class ListAdapter extends ArrayAdapter<String> {
 
     private final Activity Context;

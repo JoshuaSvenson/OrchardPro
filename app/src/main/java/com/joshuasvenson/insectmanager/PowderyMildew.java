@@ -13,6 +13,11 @@ import android.widget.TextView;
  * Created by anaso_000 on 10/9/2016.
  */
 
+/*
+Name: PowderyMildew
+Description: This class provides the code for the Powdery Mildew page in the Diseases page
+Layout File: powdery_mildew.xml
+ */
 public class PowderyMildew extends AppCompatActivity {
 
     TextView description;

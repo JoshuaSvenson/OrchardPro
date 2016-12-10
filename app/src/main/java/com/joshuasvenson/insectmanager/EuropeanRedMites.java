@@ -20,6 +20,11 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
  * Created by anaso_000 on 10/9/2016.
  */
 
+/*
+Name: EuropeanRedMites
+Description: This class provides the code for the European Red mites page in Insects page
+Layout File: european_redmites.xml
+ */
 public class EuropeanRedMites extends AppCompatActivity {
 
     TextView description;

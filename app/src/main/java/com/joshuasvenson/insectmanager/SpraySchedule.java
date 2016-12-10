@@ -17,6 +17,11 @@ import java.util.List;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/*
+Name: SpraySchedule
+Description: This class is not currently being used. History.class contains the implementation that this class was originally going to provide.
+Layout File: spray_schedule.xml
+ */
 public class SpraySchedule extends AppCompatActivity {;
 
     HashMap<String, List<String>> Risk_category;
@@ -29,7 +34,6 @@ public class SpraySchedule extends AppCompatActivity {;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.spray_schedule);
 
         orchardKey = getIntent().getExtras().get("orchard_key").toString();
 

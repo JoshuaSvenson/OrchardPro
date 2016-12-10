@@ -13,6 +13,11 @@ import android.widget.TextView;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/*
+Name: OrchardSettings
+Description: This class provides the code for the page where users can change orchard settings
+Layout File: orchard_settings.xml
+ */
 public class OrchardSettings extends AppCompatActivity {
 
     TextView orchardName;

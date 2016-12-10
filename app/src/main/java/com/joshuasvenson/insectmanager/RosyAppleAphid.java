@@ -20,6 +20,11 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
  * Created by anaso_000 on 10/9/2016.
  */
 
+/*
+Name: RosyAppleAphid
+Description: This class provides the code for the Rosy Apple Aphids page in Insects page
+Layout File: rosy_apple_aphid.xml
+ */
 public class RosyAppleAphid extends AppCompatActivity {
 
     TextView description;

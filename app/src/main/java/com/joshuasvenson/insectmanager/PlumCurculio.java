@@ -20,6 +20,11 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
  * Created by anaso_000 on 10/9/2016.
  */
 
+/*
+Name: PlumCurculio
+Description: This class provides the code for the Plum Curculio page in Insects page
+Layout File: plum_curculio.xml
+ */
 public class PlumCurculio extends AppCompatActivity {
 
     TextView description;

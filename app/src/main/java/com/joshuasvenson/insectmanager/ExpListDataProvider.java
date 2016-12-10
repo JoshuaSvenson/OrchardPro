@@ -14,6 +14,11 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
  * Created by Joshua on 11/6/2016.
  */
 
+/*
+Name: ExpListDataProvider
+Description: This class provides the code for the Spray Schedule list where risks are displayed
+Layout File: None
+ */
 public class ExpListDataProvider {
 
     public static HashMap<String, List<String>> getInfo(String orchard_key)

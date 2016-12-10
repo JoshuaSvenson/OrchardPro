@@ -16,6 +16,11 @@ import java.util.Map;
  * Created by sunsh_000 on 10/20/2016.
  */
 
+/*
+Name: MyExpListAdapter
+Description: This class provides the code for the custom expandable list adapter used in spray schedule to display risks
+Layout File: list_parent.xml, list_child.xml
+ */
 public class MyExListAdapter extends BaseExpandableListAdapter
 {
     private Context context;

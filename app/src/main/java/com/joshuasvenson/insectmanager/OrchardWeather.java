@@ -16,6 +16,11 @@ import java.util.Date;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/*
+Name: OrchardWeather
+Description: This class provides the code for the page where users can see the current weather at their orchard
+Layout File: orchard_weather.xml
+ */
 public class OrchardWeather extends AppCompatActivity {
 
     XMLParser1 gw = new XMLParser1();

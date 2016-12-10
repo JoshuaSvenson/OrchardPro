@@ -13,6 +13,11 @@ import android.support.v7.app.AppCompatActivity;
  * Created by anaso_000 on 10/9/2016.
  */
 
+/*
+Name: FireBlight
+Description: This class provides the code for the FireBlight page in the Diseases page
+Layout File: fire_blight.xml
+ */
 public class FireBlight extends AppCompatActivity {
 
     TextView description;

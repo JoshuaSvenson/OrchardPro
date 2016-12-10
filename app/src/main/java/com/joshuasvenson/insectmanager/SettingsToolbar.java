@@ -17,6 +17,11 @@ import java.text.DecimalFormat;
 
 import static com.joshuasvenson.insectmanager.Home.myDb;
 
+/*
+Name: SettingsToolbar
+Description: This class provides the code for the Settings page where users can update the date the application thinks it is
+Layout File: settings_toolbar.xml
+ */
 public class SettingsToolbar extends AppCompatActivity {
 
     TextView setDate;

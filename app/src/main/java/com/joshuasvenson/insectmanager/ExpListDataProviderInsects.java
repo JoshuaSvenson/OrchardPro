@@ -12,6 +12,11 @@ import static com.joshuasvenson.insectmanager.Home.myDb;
  * Created by Joshua on 11/9/2016.
  */
 
+/*
+Name: ExpListDataProviderInsects
+Description: This class provides the code for the list inseects page where risks are dislayed
+Layout File: None
+ */
 public class ExpListDataProviderInsects {
 
     public static HashMap<String, List<String>> getInfo(String insect_key)

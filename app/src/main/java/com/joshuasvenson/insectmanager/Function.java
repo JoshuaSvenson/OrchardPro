@@ -17,6 +17,11 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/*
+Name: Function
+Description: This class provides the code for getting weather data
+Layout File: none
+ */
 public class Function {
 
     private static final String OPEN_WEATHER_MAP_URL =
